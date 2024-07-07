@@ -1,7 +1,7 @@
 import Primary from "./Primary";
+import TopBar from "./TopBar";
 import Secondary from "./Secondary";
 import MobileNavbar from "./MobileNavbar";
-import TopBar from "./TopBar";
 
 const Navbar = {
   Primary,
