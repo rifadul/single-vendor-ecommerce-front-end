@@ -1,7 +1,16 @@
 {
   "compilerOptions": {
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "@/components/*":["./src/components/*"],
+      "@/config/*":["./src/config/*"],
+      "@/contexts/*":["./src/contexts/*"],
+      "@/helpers/*":["./src/helpers/*"],
+      "@/layouts/*":["./src/layouts/*"],
+      "@/libs/*":["./src/libs/*"],
+      "@/sections/*":["./src/sections/*"],
+      "@/services/*":["./src/services/*"],
+      "@/utils/*":["./src/utils/*"],
     }
   }
 }
