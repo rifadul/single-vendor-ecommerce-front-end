@@ -1,4 +1,7 @@
-"use client"; // Error components must be Client Components
+"use client";
+import { useEffect } from "react";
+
+ // Error components must be Client Components
 
 
 export default function Error({ error, reset }) {

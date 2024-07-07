@@ -4,6 +4,7 @@ import { montserrat, poppins } from "@/utils/fonts";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import siteMetadata from "./siteMetaData";
+import Layouts from "@/layouts";
 
 export const metadata = {
   metadataBase: new URL(siteMetadata.siteUrl),
@@ -42,8 +43,12 @@ export default function RootLayout({ children }) {
       >
         <Providers>
           <ToastContainer autoClose={3000} />
-          {children}
+          <Layouts.Primary>{children}</Layouts.Primary>
         </Providers>
+        {/* <Providers>
+          <ToastContainer autoClose={3000} />
+          {children}
+        </Providers> */}
       </body>
     </html>
   );
