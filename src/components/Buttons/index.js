@@ -7,6 +7,7 @@ import SearchInput from "./SearchInput";
 import LabelBtn from "./LabelBtn";
 import IconWithLabelBtn from "./IconWithLabelBtn";
 import RatingBtn from "./RatingBtn";
+import OutlineCartBtn from "./OutLineCartBtn";
 
 const Buttons = {
   ProfileTabBtn,
@@ -18,6 +19,7 @@ const Buttons = {
   LabelBtn,
   IconWithLabelBtn,
   RatingBtn,
+  OutlineCartBtn,
 };
 
 export default Buttons;

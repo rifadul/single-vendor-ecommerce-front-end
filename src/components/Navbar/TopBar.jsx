@@ -9,7 +9,7 @@ function TopBar() {
   };
 
   return (
-    <div className="flex justify-center items-center fixed top-0 w-full bg-pink-100 h-10 text-neutral-700 py-2 px-4">
+    <div className="flex justify-center items-center w-full bg-pink-100 h-10 text-neutral-700 py-2 px-4">
       <div className="flex-1 text-center text-lg">
         It's special discount{" "}
         <Link href={"#"} className="text-magenta-600 font-medium">
