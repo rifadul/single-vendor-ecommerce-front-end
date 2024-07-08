@@ -1,21 +1,28 @@
-import React from 'react'
-import Label from './Label';
-import { Form, Rate } from 'antd';
-import RequiredErrorMessage from '../common/RequiredErrorMessage';
+import React from "react";
+import Label from "./Label";
+import { Form, Rate } from "antd";
+import RequiredErrorMessage from "../common/RequiredErrorMessage";
 
 function RatingInputField({
     label,
     name,
     isRequired = false,
     errorMessage = "Please input rating!",
-    onChange
+    onChange,
 }) {
     return (
         <Form.Item
             label={<Label>{label}</Label>}
             name={name}
             rules={[
-                { required: isRequired, message: <RequiredErrorMessage>{errorMessage}</RequiredErrorMessage> },
+                {
+                    required: isRequired,
+                    message: (
+                        <RequiredErrorMessage>
+                            {errorMessage}
+                        </RequiredErrorMessage>
+                    ),
+                },
             ]}
             className="mb-0"
         >
@@ -24,4 +31,4 @@ function RatingInputField({
     );
 }
 
-export default RatingInputField
+export default RatingInputField;

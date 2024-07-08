@@ -39,12 +39,12 @@ export const CHANGE_PASSWORD_PATH = "/change-password";
 export const CHANGE_PASSWORD_VERIFY_PATH = "/change-password-verification";
 
 export const CHANGE_PASSWORD_CONFIRMATION_PATH =
-  "/change-password-confirmation";
+    "/change-password-confirmation";
 
 export const FORGOT_PASSWORD_VERIFY_PATH = "/forgot-password-verification";
 
 export const FORGOT_PASSWORD_CONFIRMATION_PATH =
-  "/forgot-password-confirmation";
+    "/forgot-password-confirmation";
 
 export const CHANGE_PHONE_VERIFICATION_PATH = "/change-phone-verification";
 export const SIGN_UP_VERIFICATION_PATH = "/sign-up-verification";

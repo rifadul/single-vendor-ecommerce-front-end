@@ -2,8 +2,8 @@ import FooterTop from "./FooterTop";
 import Primary from "./Primary";
 
 const Footer = {
-  FooterTop,
-  Primary,
+    FooterTop,
+    Primary,
 };
 
 export default Footer;
