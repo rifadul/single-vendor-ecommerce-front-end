@@ -10,7 +10,10 @@ module.exports = {
   theme: {
     extend: {
       boxShadow: {
-        "light-grey": "0px 0px 16px 0px rgba(0, 0, 0, 0.04)",
+        "light-gray": "0px 0px 16px 0px rgba(0, 0, 0, 0.04)",
+      },
+      borderColor: {
+        "dark-gray": "rgba(135, 144, 171, 0.08)",
       },
       keyframes: {
         fadeIn: {
@@ -62,14 +65,15 @@ module.exports = {
         "neutral-700": "#243757",
         "neutral-800": "#15294B",
         "neutral-900": "#091E42",
-        "black-100": "#FFFFFF",
-        "black-200": "#FCFCFC",
-        "black-300": "#F5F5F5",
-        "black-400": "#F0F0F0",
-        "black-500": "#D9D9D9",
-        "black-600": "#BFBFBF",
-        "black-700": "#8C8C8C",
-        "black-800": "#595959",
+        "black-50": "#FFFFFF",
+        "black-100": "#FCFCFC",
+        "black-200": "#F5F5F5",
+        "black-300": "#F0F0F0",
+        "black-400": "#D9D9D9",
+        "black-500": "#BFBFBF",
+        "black-600": "#8C8C8C",
+        "black-700": "#595959",
+        "black-800": "#3A3A3A",
         "black-900": "#454545",
         "black-1000": "#262626",
         "black-1100": "#1F1F1F",

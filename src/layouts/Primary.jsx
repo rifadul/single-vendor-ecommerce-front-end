@@ -13,7 +13,7 @@ function Primary({ children }) {
   return (
     <Suspense fallback={<p>Loading...</p>}>
       <MetaLayout>
-        <div className="relative h-screen">
+        <div className="relative bg-pink-100">
           <LayoutImages />
           {isDiscountBar && (
             // <TopBar

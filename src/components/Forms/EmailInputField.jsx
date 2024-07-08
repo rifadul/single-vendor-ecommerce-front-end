@@ -47,7 +47,7 @@ function EmailInputField({
     >
       <Input
         placeholder={placeholder}
-        className="font-medium font-poppins text-brand-blue-400 py-3 px-4 rounded"
+        className="font-medium font-poppins text-neutral-100 py-3 px-4 rounded"
         onChange={onChange}
       />
     </Form.Item>

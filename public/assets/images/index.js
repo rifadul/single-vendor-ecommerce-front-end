@@ -19,29 +19,31 @@ import craw from "./craw.svg";
 import ver_draw from "./ver_draw.svg";
 import reel from "./reel.svg";
 import wappGPTlogo from "./wappGPTlogo.svg";
+import signInBanner from "./sign-in-banner.svg";
 
 const Images = {
-    wappGPTlogo,
-    iphone,
-    banner_img,
-    banner_img2,
-    profile_avatar,
-    verify_otp_image,
-    sign_in_bg,
-    forgot_password,
-    wish_list_photo,
-    cart_item,
-    page_not_found,
-    something_went_wrong,
-    bird_left,
-    bird_right,
-    kite_left,
-    kite_right,
-    dram_light,
-    dram,
-    craw,
-    ver_draw,
-    reel,
+  wappGPTlogo,
+  iphone,
+  banner_img,
+  banner_img2,
+  profile_avatar,
+  verify_otp_image,
+  sign_in_bg,
+  forgot_password,
+  wish_list_photo,
+  cart_item,
+  page_not_found,
+  something_went_wrong,
+  bird_left,
+  bird_right,
+  kite_left,
+  kite_right,
+  dram_light,
+  dram,
+  craw,
+  ver_draw,
+  reel,
+  signInBanner,
 };
 
 export default Images;

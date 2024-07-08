@@ -17,7 +17,7 @@ function BannerCard() {
         </div>
         <Link
           href="#"
-          className="bg-magenta-600 py-3 px-9 text-white font-semibold text-base rounded hover:bg-magenta-700 transition duration-300"
+          className="bg-magenta-600 py-3 px-9 text-white font-semibold text-base rounded-sm hover:bg-magenta-700 transition duration-300"
         >
           Shop Now
         </Link>

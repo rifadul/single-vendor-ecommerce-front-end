@@ -1,5 +1,6 @@
+"use client";
 import React, { useState } from "react";
-import { FiSearch } from "react-icons/fi";
+// import { FiSearch } from "react-icons/fi";
 import { useSearchParams } from "next/navigation";
 
 function SearchInputFiled({ setSelectedItems, placeholder = "Search..." }) {
@@ -42,9 +43,9 @@ function SearchInputFiled({ setSelectedItems, placeholder = "Search..." }) {
         <button
           type="submit"
           onClick={handleSubmit}
-          className="absolute inset-y-0 right-0 flex items-center rounded-r px-4 bg-brand-blue-500 hover:bg-brand-blue-400 text-white focus:outline-none"
+          className="absolute inset-y-0 right-0 flex items-center rounded-r px-4 bg-neutral-300 hover:bg-neutral-400 text-white focus:outline-none"
         >
-          <FiSearch />
+          {/* <FiSearch /> */}
         </button>
 
         <input
@@ -52,7 +53,7 @@ function SearchInputFiled({ setSelectedItems, placeholder = "Search..." }) {
           value={searchText}
           onChange={handleOnChange}
           placeholder={placeholder}
-          className="w-full h-[45px] bg-white border border-[#b9babc5d] outline-none font-medium font-poppins text-brand-blue-400 py-3 pl-4 pr-16 rounded"
+          className="w-full h-[45px] bg-white border border-[#b9babc5d] outline-none font-medium font-poppins text-neutral-100 py-3 pl-4 pr-16 rounded"
         />
       </div>
     </form>

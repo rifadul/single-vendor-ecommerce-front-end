@@ -6,6 +6,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  /* font-family: "Poppins", sans-serif; */
 }
 
 /* Add this to your global CSS file or a specific CSS module */
@@ -20,3 +21,7 @@
   -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none;  /* Firefox */
 }
+
+
+
+/* custom css */

@@ -13,50 +13,48 @@ function NextBreadcrumb() {
 
   // Breadcrumb item array
   const breadcrumbPath = () => {
-      const removeQuestionMark = paths.replace(/\?/g, "/");
-      const removeEquals = removeQuestionMark.replace(/\=/g, "/");
-      const pathToPascalCase = toPascalCase(removeEquals);
+    const removeQuestionMark = paths.replace(/\?/g, "/");
+    const removeEquals = removeQuestionMark.replace(/\=/g, "/");
+    const pathToPascalCase = toPascalCase(removeEquals);
 
-      return pathToPascalCase.split("/").slice(1);
+    return pathToPascalCase.split("/").slice(1);
   };
 
   return (
-      <Breadcrumb>
-          <Breadcrumb.Item>
-              <Link href={"/"} className={paths === "/" ? "text-black" : ""}>
-                  Home
-              </Link>
-          </Breadcrumb.Item>
-          {breadcrumbPath().map((route, index) => (
-              <Breadcrumb.Item
-                  key={index}
-                  className={`capitalize ${breadcrumbPath()?.length - 1 === index
-                          ? "text-black-800"
-                          : ""
-                      }`}
-              >
-                  <Link
-                      href={`${route === "profile"
-                              ? "/profile/my-account"
-                              : breadcrumbPath().includes("profile")
-                                  ? `/profile/${route}`
-                                  : `${generateBreadcrumbPath(
-                                      breadcrumbPath(),
-                                      index
-                                  )}`
-                          }`}
-                      className={
-                          breadcrumbPath()?.length - 1 === index
-                              ? "text-magenta-600"
-                              : ""
-                      }
-                  >
-                      {route}
-                  </Link>
-              </Breadcrumb.Item>
-          ))}
-      </Breadcrumb>
+    <Breadcrumb>
+      <Breadcrumb.Item>
+        <Link
+          href={"/"}
+          className={`font-poppins ${paths === "/" ? "text-black" : ""}`}
+        >
+          Home
+        </Link>
+      </Breadcrumb.Item>
+      {breadcrumbPath().map((route, index) => (
+        <Breadcrumb.Item
+          key={index}
+          className={`capitalize ${
+            breadcrumbPath()?.length - 1 === index ? "text-black-800" : ""
+          }`}
+        >
+          <Link
+            href={`${
+              route === "profile"
+                ? "/profile/my-account"
+                : breadcrumbPath().includes("profile")
+                ? `/profile/${route}`
+                : `${generateBreadcrumbPath(breadcrumbPath(), index)}`
+            }`}
+            className={`font-poppins ${
+              breadcrumbPath()?.length - 1 === index ? "text-magenta-600" : ""
+            }`}
+          >
+            {route}
+          </Link>
+        </Breadcrumb.Item>
+      ))}
+    </Breadcrumb>
   );
 }
 
-export default NextBreadcrumb
+export default NextBreadcrumb;

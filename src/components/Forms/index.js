@@ -1,11 +1,14 @@
 import Checkbox from "./Checkbox/Checkbox";
 import InlineCheckbox from "./Checkbox/Inline";
 import EmailInputField from "./EmailInputField";
+import FormCardContainer from "./FormCardContainer";
+import FormContainer from "./FormContainer";
 import FormFieldsContainer from "./FormFieldsContainer";
 import InputField from "./InputField";
 import Label from "./Label";
 import NumberInputField from "./NumberInputField";
 import PasswordInputField from "./PasswordInputField";
+import PhoneNumberInputField from "./PhoneNumberInputField";
 import RadioGroupInputField from "./RadioGroupInputField";
 import RatingInputField from "./RatingInputField";
 import SearchInputFiled from "./SearchInputFiled";
@@ -28,6 +31,9 @@ const CustomForm = {
   UrlInputField,
   RadioGroupInputField,
   SearchInputFiled,
+  FormCardContainer,
+  FormContainer,
+  PhoneNumberInputField,
 };
 
 export default CustomForm;
