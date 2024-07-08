@@ -11,12 +11,12 @@ function PasswordInputField({
     errorMessage = "Please input your password!",
     onChange,
     customRequiredIconInLabelText = false,
-    isConfirmed,
+    dependenciesFieldName,
     min = 8,
 }) {
     return (
         <>
-            {isConfirmed ? (
+            {dependenciesFieldName ? (
                 <Form.Item
                     label={
                         <Label
@@ -26,7 +26,7 @@ function PasswordInputField({
                         </Label>
                     }
                     name={name}
-                    dependencies={[isConfirmed]}
+                    dependencies={[dependenciesFieldName]}
                     rules={[
                         {
                             required: isRequired,
@@ -49,7 +49,8 @@ function PasswordInputField({
                             validator(_, value) {
                                 if (
                                     !value ||
-                                    getFieldValue(isConfirmed) === value
+                                    getFieldValue(dependenciesFieldName) ===
+                                        value
                                 ) {
                                     return Promise.resolve();
                                 }

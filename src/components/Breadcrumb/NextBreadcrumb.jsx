@@ -3,6 +3,7 @@ import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { Breadcrumb } from "antd";
 import { generateBreadcrumbPath } from "@/utils";
+import Slug from "@/helpers/slug";
 
 function NextBreadcrumb() {
     const paths = usePathname();
@@ -24,7 +25,7 @@ function NextBreadcrumb() {
         <Breadcrumb>
             <Breadcrumb.Item>
                 <Link
-                    href={"/"}
+                    href="/"
                     className={`font-poppins ${
                         paths === "/" ? "text-black" : ""
                     }`}
