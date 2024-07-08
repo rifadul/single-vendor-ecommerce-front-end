@@ -2,12 +2,13 @@
 import CustomForm from "@/components/Forms";
 import FormCardContainer from "@/components/Forms/FormCardContainer";
 import FormContainer from "@/components/Forms/FormContainer";
-import { Divider } from "antd";
 import Image from "next/image";
 import Link from "next/link";
 import Images from "../../../public/assets/images";
 import SocialButtons from "@/components/common/socialButtons/SocialButtons";
 import { debounce } from "@/utils";
+import Slug, { SIGN_UP_PATH } from "@/helpers/slug";
+import { Checkbox, Form } from "antd";
 
 function SignInForm() {
     const handleFormSubmit = (values) => {
@@ -18,7 +19,10 @@ function SignInForm() {
     const debounceOnFinish = debounce(handleFormSubmit, 200);
 
     return (
-        <FormCardContainer cardTitle="Sign In">
+        <FormCardContainer cardTitle="Sign in">
+            <p className="text-[40px] font-bold text-magenta-600 text-center">
+                Palooi
+            </p>
             <Image src={Images.signInBanner} alt="Sign in banner" />
             <div className="space-y-9">
                 <div className="space-y-3">
@@ -45,7 +49,15 @@ function SignInForm() {
                     />
 
                     <div className="flex justify-between items-center mb-4">
-                        <CustomForm.Checkbox label="Keep me logged in" />
+                        <Form.Item
+                            name="remember"
+                            valuePropName="checked"
+                            className="flex items-center m-0 "
+                        >
+                            <Checkbox className="  text-neutral-300 text-sm font-semibold">
+                                Keep me logged in
+                            </Checkbox>
+                        </Form.Item>
                         <Link
                             href="#"
                             className="text-magenta-600 font-medium hover:text-magenta-600"
@@ -54,14 +66,16 @@ function SignInForm() {
                         </Link>
                     </div>
 
-                    <Divider className="m-0 text-neutral-300">or</Divider>
                     <SocialButtons />
                 </FormContainer>
             </div>
 
             <p className="font-medium text-neutral-300 text-center">
                 Don't have an account ?{" "}
-                <Link className="text-magenta-500 font-semibold" href="#">
+                <Link
+                    className="text-magenta-500 font-semibold"
+                    href={SIGN_UP_PATH}
+                >
                     Sign up
                 </Link>
             </p>

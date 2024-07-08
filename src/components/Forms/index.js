@@ -1,5 +1,3 @@
-import Checkbox from "./Checkbox/Checkbox";
-import InlineCheckbox from "./Checkbox/Inline";
 import EmailInputField from "./EmailInputField";
 import FormCardContainer from "./FormCardContainer";
 import FormContainer from "./FormContainer";
@@ -25,8 +23,6 @@ const CustomForm = {
     PasswordInputField,
     FormFieldsContainer,
     TextareaInputField,
-    InlineCheckbox,
-    Checkbox,
     RatingInputField,
     UrlInputField,
     RadioGroupInputField,

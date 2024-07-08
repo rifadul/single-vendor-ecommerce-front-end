@@ -26,7 +26,7 @@ const ProfileTabBtn = ({
                     className={`${iconWidth} ${iconHeight}`}
                 />
                 <p
-                    className={`text-sm ${
+                    className={`text-sm font-poppins ${
                         active
                             ? "text-magenta-600"
                             : label === "Logout"

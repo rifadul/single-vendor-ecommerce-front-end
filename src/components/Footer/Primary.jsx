@@ -1,7 +1,7 @@
 import { socialLinks } from "@/libs/socialLinks";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 // import Buttons from "../Buttons";
 import { footerLinks } from "@/libs/footerLinks";
 // import { PRODUCTS_PATH, SIGN_UP_PATH } from "@/helpers/slug";

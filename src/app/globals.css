@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+
 *{
   margin: 0;
   padding: 0;
@@ -25,3 +26,20 @@
 
 
 /* custom css */
+/* Custom styles for checkbox */
+
+.ant-checkbox-checked .ant-checkbox-inner {
+  border-color: #eb038b;
+  background-color: #eb038b;
+}
+
+.ant-checkbox-checked:not(.ant-checkbox-disabled):hover .ant-checkbox-inner {
+  border-color: #eb038b !important;
+  background-color: #eb038b !important;
+}
+
+.ant-checkbox-wrapper-checked:not(.ant-checkbox-disabled):hover
+  .ant-checkbox-inner {
+  border-color: #eb038b !important;
+  background-color: #eb038b !important;
+}
