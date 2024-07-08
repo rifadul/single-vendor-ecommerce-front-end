@@ -10,16 +10,16 @@ import RatingBtn from "./RatingBtn";
 import OutlineCartBtn from "./OutLineCartBtn";
 
 const Buttons = {
-  ProfileTabBtn,
-  IconBtn,
-  TextBtn,
-  PrimaryBtn,
-  PrimaryOutlinedBtn,
-  SearchInput,
-  LabelBtn,
-  IconWithLabelBtn,
-  RatingBtn,
-  OutlineCartBtn,
+    ProfileTabBtn,
+    IconBtn,
+    TextBtn,
+    PrimaryBtn,
+    PrimaryOutlinedBtn,
+    SearchInput,
+    LabelBtn,
+    IconWithLabelBtn,
+    RatingBtn,
+    OutlineCartBtn,
 };
 
 export default Buttons;
