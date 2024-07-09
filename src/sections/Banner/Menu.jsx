@@ -2,8 +2,13 @@
 import Image from "next/image";
 import React, { useState } from "react";
 import Icons from "../../../public/assets/Icons";
+import { useRouter } from "next/navigation";
+import { CATEGORY_WITH_PRODUCT_PATH } from "@/helpers/slug";
+import Link from "next/link";
 
-const Menu = () => {
+const Menu = ({ onClose }) => {
+    const router = useRouter();
+
     const [openCategory, setOpenCategory] = useState(null);
 
     const categories = [
@@ -52,8 +57,17 @@ const Menu = () => {
         setOpenCategory(openCategory === category ? null : category);
     };
 
+    const handleNavigation = () => {
+        router.push(CATEGORY_WITH_PRODUCT_PATH);
+        onClose && onClose(false);
+    };
+
     return (
-        <div className="bg-white h-[500px] overflow-y-auto scrollbar-hide">
+        <div
+            className={`bg-white ${
+                onClose ? " " : "h-[500px]"
+            }  overflow-y-auto scrollbar-hide`}
+        >
             <ul>
                 {categories.map((category, index) => (
                     <li key={index} className="mb-2">
@@ -95,8 +109,9 @@ const Menu = () => {
                                 {category.subcategories.map(
                                     (subcategory, subIndex) => (
                                         <li
+                                            onClick={handleNavigation}
                                             key={subIndex}
-                                            className={`mb-1 py-2 ${
+                                            className={`mb-1 py-2 cursor-pointer ${
                                                 subIndex !==
                                                 category.subcategories.length -
                                                     1

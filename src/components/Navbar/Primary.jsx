@@ -53,7 +53,7 @@ function Primary() {
                         open={open}
                         width={340}
                     >
-                        <MobileNavbar />
+                        <MobileNavbar onClose={onClose} />
                     </Drawer>
                     <button
                         className="text-white md:text-4xl text-[28px] font-bold"

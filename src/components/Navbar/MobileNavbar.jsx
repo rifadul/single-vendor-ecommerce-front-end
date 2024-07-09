@@ -1,7 +1,8 @@
+import Menu from "@/sections/Banner/Menu";
 import React from "react";
 
-function MobileNavbar() {
-    return <div>MobileNavbar</div>;
+function MobileNavbar({ onClose }) {
+    return <Menu onClose={onClose} />;
 }
 
 export default MobileNavbar;
