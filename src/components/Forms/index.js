@@ -5,6 +5,7 @@ import FormFieldsContainer from "./FormFieldsContainer";
 import InputField from "./InputField";
 import Label from "./Label";
 import NumberInputField from "./NumberInputField";
+import OtpInputField from "./OtpInputField";
 import PasswordInputField from "./PasswordInputField";
 import PhoneNumberInputField from "./PhoneNumberInputField";
 import RadioGroupInputField from "./RadioGroupInputField";
@@ -30,6 +31,7 @@ const CustomForm = {
     FormCardContainer,
     FormContainer,
     PhoneNumberInputField,
+    OtpInputField,
 };
 
 export default CustomForm;
