@@ -383,7 +383,7 @@ const FilterSidebar = () => {
     }));
 
     return (
-        <div className="bg-white overflow-y-auto scrollbar-hide lg:w-1/4">
+        <div className="bg-white overflow-y-auto scrollbar-hide">
             <h2 className="text-xl font-semibold px-4 py-5 border-b border-borderColor hidden lg:block">
                 Filter
             </h2>
