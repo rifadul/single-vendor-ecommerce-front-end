@@ -18,7 +18,8 @@ export const MAIN_TRACK_ORDER = "/track-orders";
 
 export const PRODUCTS_PATH = "/products";
 
-export const CATEGORY_WITH_PRODUCT_PATH = "/category/products";
+export const CATEGORY_WITH_PRODUCT_PATH = "/category";
+// export const CATEGORY_WITH_PRODUCT_PATH = "/category/products";
 
 export const SIGN_IN_PATH = "/sign-in";
 

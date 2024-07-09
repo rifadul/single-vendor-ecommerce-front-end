@@ -43,3 +43,74 @@
   border-color: #eb038b !important;
   background-color: #eb038b !important;
 }
+
+
+/* Custom styles for Collapse and Panel */
+.filter-collapse > .ant-collapse-item > .ant-collapse-header {
+  background: none !important;
+  border-bottom: none !important;
+  color: #262626 !important;
+  font-size: 16px !important;
+  font-weight: 500 !important;
+  padding: 10px 16px;
+}
+
+/* custom color for filter options */
+.filter-option-style{
+  color: #5D6B82 !important ;
+}
+
+/* Custom styles for radio */
+.custom-radio-style:hover {
+  border-color: #eb038b;
+}
+
+.custom-radio-style:hover .ant-radio-inner {
+  border-color: #eb038b;
+}
+
+.ant-radio-wrapper .ant-radio-checked::after {
+  border-color: #eb038b;
+}
+
+.custom-radio-style .ant-radio-checked .ant-radio-inner {
+  background-color: #eb038b !important;
+  /* Change the fill color when the radio is checked */
+  border-color: #eb038b !important;
+  outline-color: #eb038b !important;
+}
+
+/* Custom styles for the Slider */
+
+:where(.css-dev-only-do-not-override-98ntnt).ant-slider .ant-slider-handle::after{
+  background-color: #eb038b !important;
+  box-shadow: 0 0 0 2px #eb038b !important;
+}
+
+.ant-slider-track {
+  background-color: #eb038b !important; /* Customize the slider track color */
+}
+
+.ant-slider-rail {
+  background-color: #A6AEBB !important; /* Customize the slider rail background */
+}
+
+.ant-slider-handle {
+  border-color: #eb038b !important; /* Customize the slider handle border color */
+  background-color: #eb038b !important; /* Customize the slider handle background color */
+}
+
+.ant-slider-handle:hover {
+  border-color: #ff1493 !important; /* Customize the slider handle border color on hover */
+  background-color: #ff1493 !important; /* Customize the slider handle background color on hover */
+}
+
+
+.ant-slider:hover .ant-slider-track {
+  background-color: #eb038b !important; /* Customize the slider track color on hover */
+}
+
+.ant-slider:hover .ant-slider-handle {
+  border-color: #eb038b !important; /* Customize the slider handle border color on hover */
+  background-color: #eb038b !important; /* Customize the slider handle background color on hover */
+}

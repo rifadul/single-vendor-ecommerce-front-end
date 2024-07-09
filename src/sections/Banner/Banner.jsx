@@ -1,8 +1,5 @@
-import Buttons from "@/components/Buttons";
-import Link from "next/link";
-import React from "react";
-import BannerCard from "./BannerCard";
 import Menu from "./Menu";
+import ShowcaseCardWithOverlay from "@/components/common/ShowcaseCardWithOverlay";
 
 function Banner({ data }) {
     return (
@@ -12,16 +9,51 @@ function Banner({ data }) {
                     <Menu />
                 </div>
                 <div className="w-full md:w-4/5">
-                    <BannerCard />
+                    <ShowcaseCardWithOverlay
+                        title=" Eid Exclusive Collection"
+                        backgroundImage="https://cdn.pixabay.com/photo/2024/04/06/14/18/ai-generated-8679407_1280.png"
+                        buttonLabel="Shop Now"
+                        link="#"
+                    />
                 </div>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <BannerCard />
-                <BannerCard />
-                <BannerCard />
-                <BannerCard />
-                <BannerCard />
-                <BannerCard />
+                <ShowcaseCardWithOverlay
+                    title=" Eid Exclusive Collection"
+                    backgroundImage="https://cdn.pixabay.com/photo/2024/04/06/14/18/ai-generated-8679407_1280.png"
+                    buttonLabel="Shop Now"
+                    link="#"
+                />
+                <ShowcaseCardWithOverlay
+                    title=" Eid Exclusive Collection"
+                    backgroundImage="https://cdn.pixabay.com/photo/2024/04/06/14/18/ai-generated-8679407_1280.png"
+                    buttonLabel="Shop Now"
+                    link="#"
+                />
+                <ShowcaseCardWithOverlay
+                    title=" Eid Exclusive Collection"
+                    backgroundImage="https://cdn.pixabay.com/photo/2024/04/06/14/18/ai-generated-8679407_1280.png"
+                    buttonLabel="Shop Now"
+                    link="#"
+                />
+                <ShowcaseCardWithOverlay
+                    title=" Eid Exclusive Collection"
+                    backgroundImage="https://cdn.pixabay.com/photo/2024/04/06/14/18/ai-generated-8679407_1280.png"
+                    buttonLabel="Shop Now"
+                    link="#"
+                />
+                <ShowcaseCardWithOverlay
+                    title=" Eid Exclusive Collection"
+                    backgroundImage="https://cdn.pixabay.com/photo/2024/04/06/14/18/ai-generated-8679407_1280.png"
+                    buttonLabel="Shop Now"
+                    link="#"
+                />
+                <ShowcaseCardWithOverlay
+                    title=" Eid Exclusive Collection"
+                    backgroundImage="https://cdn.pixabay.com/photo/2024/04/06/14/18/ai-generated-8679407_1280.png"
+                    buttonLabel="Shop Now"
+                    link="#"
+                />
             </div>
         </div>
     );

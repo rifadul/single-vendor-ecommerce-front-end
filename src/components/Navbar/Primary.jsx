@@ -25,7 +25,7 @@ function Primary() {
     };
 
     return (
-        <nav className="bg-magenta-600 py-4">
+        <nav className="bg-magenta-600">
             <div className="container mx-auto py-3 pl-4 pr-6 sm:px-0 flex justify-between items-center">
                 <div className="flex items-center gap-3">
                     <Buttons.IconBtn
@@ -39,13 +39,16 @@ function Primary() {
 
                     <Drawer
                         title={
-                            <Buttons.IconBtn
-                                alt="cross-icon"
-                                icon={Icons.close_neutral}
-                                width="w-6"
-                                height="h-6"
-                                onClick={onClose}
-                            />
+                            <div className="flex w-full justify-between">
+                                <p className="text-neutral-800">Categories</p>
+                                <Buttons.IconBtn
+                                    alt="cross-icon"
+                                    icon={Icons.close_neutral}
+                                    width="w-6"
+                                    height="h-6"
+                                    onClick={onClose}
+                                />
+                            </div>
                         }
                         placement="left"
                         closable={false}
@@ -53,7 +56,7 @@ function Primary() {
                         open={open}
                         width={340}
                     >
-                        <MobileNavbar />
+                        <MobileNavbar onClose={onClose} />
                     </Drawer>
                     <button
                         className="text-white md:text-4xl text-[28px] font-bold"
