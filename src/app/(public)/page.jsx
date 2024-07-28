@@ -8,7 +8,6 @@ async function getBanners() {
     const res = await MakeApiCall({
         apiUrl: BANNER_API_URL,
     });
-    console.log("resres", res);
     return res;
 }
 
