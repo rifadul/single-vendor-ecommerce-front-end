@@ -1,24 +1,32 @@
 name: CI
 
 on:
-  pull_request:
-    branches: [master]
+    pull_request:
+        branches: [master]
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
+    build:
+        runs-on: ubuntu-latest
 
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v2
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: "20.15.0"
+            - name: Set up Node.js
+              uses: actions/setup-node@v2
+              with:
+                  node-version: "20.15.0"
 
-      - name: Install dependencies
-        run: yarn install
+            - name: Install dependencies
+              run: |
+                  npm install -g yarn
+                  yarn install
 
-      - name: Run build
-        run: yarn run build
+            - name: Setup environment variables
+              run: |
+                  touch .env.local
+                  printf "WHC_API_DOMAIN=%s\n" "${{secrets.PALOOI_API_DOMAIN}}" >> .env.local
+                  printf "NEXT_PUBLIC_WHC_API_DOMAIN=\"%s\"\n" "${{secrets.NEXT_PUBLIC_PALOOI_API_DOMAIN}}" >> .env.local
+
+            - name: Run build
+              run: yarn run build
