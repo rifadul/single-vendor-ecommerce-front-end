@@ -1,26 +1,24 @@
 import Loader from "@/components/common/Loader/Loader";
 import { BANNER_API_URL } from "@/helpers/apiUrls";
 import HomePage from "@/sections/Home/HomePage";
-import MakeApiCall from "@/services/MakeApiCall";
 import { Suspense } from "react";
 
+// Define banner API call functions
 async function getBanners() {
-    const res = await MakeApiCall({
-        apiUrl: BANNER_API_URL,
-    });
-    return res;
+    const res = await fetch(BANNER_API_URL);
+    if (!res.ok) {
+        throw new Error("Failed to fetch banners");
+    }
+    return res.json();
 }
 
-async function Home() {
-    const bannerData = await getBanners();
+export default async function Home() {
+    // Fetch banner data in parallel
+    const [banners] = await Promise.all([getBanners()]);
 
-    // Wait for the promises to resolve
-    const [banners] = await Promise.all([bannerData]);
     return (
         <Suspense fallback={<Loader />}>
             <HomePage banners={banners} />
         </Suspense>
     );
 }
-
-export default Home;
