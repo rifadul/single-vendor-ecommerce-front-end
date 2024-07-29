@@ -8,12 +8,14 @@ const AuthContext = createContext(null);
 
 export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
 
     useEffect(() => {
-        const token = localStorage.getItem("token");
+        const token = localStorage.getItem("access_token");
         const userInfo = localStorage.getItem("user_info");
         if (token && userInfo) {
             setUser(JSON.parse(userInfo));
+            setIsLoggedIn(true);
             // MakeApiCall({
             //     apiUrl: '/users/me/',
             //     method: 'GET',
@@ -32,16 +34,18 @@ export const AuthProvider = ({ children }) => {
         });
         localStorage.setItem("access_token", response.access);
         localStorage.setItem("user_info", JSON.stringify(response.user));
+        setIsLoggedIn(true);
         setUser(response.user);
     };
 
     const logout = () => {
         localStorage.removeItem("access_token");
         setUser(null);
+        setIsLoggedIn(false);
     };
 
     return (
-        <AuthContext.Provider value={{ user, login, logout }}>
+        <AuthContext.Provider value={{ user, login, isLoggedIn, logout }}>
             {children}
         </AuthContext.Provider>
     );
