@@ -7,12 +7,29 @@ import Link from "next/link";
 import Images from "../../../public/assets/images";
 import SocialButtons from "@/components/common/socialButtons/SocialButtons";
 import { debounce } from "@/utils";
-import Slug, { SIGN_UP_PATH } from "@/helpers/slug";
-import { Checkbox, Form } from "antd";
+import { SIGN_UP_PATH } from "@/helpers/slug";
+import { Checkbox, Form, Spin } from "antd";
+import { useState } from "react";
+import { useAuth } from "@/contexts/AuthContext";
+import { toast } from "react-toastify";
+import { useRouter } from "next/navigation";
 
 function SignInForm() {
-    const handleFormSubmit = (values) => {
-        console.log("values", values);
+    const router = useRouter(); // Next.js useRouter hook
+    const [loading, setLoading] = useState(false);
+    const { login } = useAuth();
+
+    const handleFormSubmit = async (values) => {
+        setLoading(true);
+        try {
+            await login(values);
+            toast.success("Signed in successfully!");
+            router.push("/");
+        } catch (error) {
+            toast.error("Failed to sign in. Please check your credentials.");
+        } finally {
+            setLoading(false);
+        }
     };
 
     // submit this form with debounce.
@@ -20,6 +37,7 @@ function SignInForm() {
 
     return (
         <FormCardContainer cardTitle="Sign in">
+            <Spin fullscreen spinning={loading} />
             <p className="text-[40px] font-bold text-magenta-600 text-center">
                 Palooi
             </p>
@@ -35,17 +53,18 @@ function SignInForm() {
                 </div>
 
                 <FormContainer onFinish={debounceOnFinish} buttonName="Sign In">
-                    <CustomForm.NumberInputField
-                        label="Phone Number"
-                        name="number"
+                    <CustomForm.EmailInputField
+                        label="Email"
+                        name="email_or_phone"
                         isRequired={true}
-                        errorMessage="Please input your phone number!"
+                        errorMessage="Please input your email!"
                     />
                     <CustomForm.PasswordInputField
                         label="Password"
                         name="password"
                         isRequired={true}
                         errorMessage="Please input your password!"
+                        min={6}
                     />
 
                     <div className="flex justify-between items-center mb-4">
