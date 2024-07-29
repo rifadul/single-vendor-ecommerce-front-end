@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { SIGN_IN_PATH } from "./helpers/slug";
 
 export async function middleware(request) {
     let currentUser = request.cookies.get("userInfo");
@@ -8,7 +9,11 @@ export async function middleware(request) {
     if (!currentUser) {
         return NextResponse.redirect(
             new URL(
-                `${pathname ? `/log-in?redirect=${pathname}` : "/log-in"}`,
+                `${
+                    pathname
+                        ? `${SIGN_IN_PATH}?redirect=${pathname}`
+                        : SIGN_IN_PATH
+                }`,
                 request.url
             )
         );

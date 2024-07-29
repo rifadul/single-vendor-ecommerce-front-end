@@ -4,15 +4,43 @@ import FormCardContainer from "@/components/Forms/FormCardContainer";
 import FormContainer from "@/components/Forms/FormContainer";
 import RequiredErrorMessage from "@/components/common/RequiredErrorMessage";
 import SocialButtons from "@/components/common/socialButtons/SocialButtons";
-import Slug, { SIGN_IN_PATH } from "@/helpers/slug";
+import { USER_SIGN_UP_API_URL } from "@/helpers/apiUrls";
+import { SIGN_IN_PATH } from "@/helpers/slug";
+import MakeApiCall from "@/services/MakeApiCall";
 import { debounce } from "@/utils";
-import { Checkbox, Divider, Form } from "antd";
+import { Checkbox, Form, Spin } from "antd";
 import Link from "next/link";
-import React from "react";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { toast } from "react-toastify";
 
 function SignUpForm() {
-    const handleFormSubmit = (values) => {
-        console.log("values", values);
+    const router = useRouter(); // Next.js useRouter hook
+    const [loading, setLoading] = useState(false);
+
+    const handleFormSubmit = async (values) => {
+        delete values.acceptTP;
+        const credentials = {
+            ...values,
+            role: "0172ca90-970a-4d4e-9ad8-32f9b6750e0b",
+        };
+        setLoading(true);
+        try {
+            const response = await MakeApiCall({
+                apiUrl: USER_SIGN_UP_API_URL,
+                method: "POST",
+                body: credentials,
+            });
+            toast.success("Signed in successfully!");
+            router.push(SIGN_IN_PATH);
+        } catch (error) {
+            const errorMsg = JSON.parse(error.message);
+            for (const [key, value] of Object.entries(errorMsg)) {
+                toast.error(`${value.join(", ")}`);
+            }
+        } finally {
+            setLoading(false);
+        }
     };
 
     // submit this form with debounce.
@@ -20,6 +48,7 @@ function SignUpForm() {
 
     return (
         <FormCardContainer cardTitle="Sign up">
+            <Spin fullscreen spinning={loading} />
             <p className="text-[40px] font-bold text-magenta-600 text-center">
                 Palooi
             </p>
@@ -35,16 +64,29 @@ function SignUpForm() {
 
                 <FormContainer onFinish={debounceOnFinish} buttonName="Sign up">
                     <CustomForm.InputField
-                        label="Full name"
-                        name="name"
+                        label="First name"
+                        name="first_name"
                         isRequired={true}
-                        errorMessage="Please input your full name!"
+                        errorMessage="Please input your first name!"
                     />
-                    <CustomForm.NumberInputField
-                        label="Phone Number"
-                        name="number"
+                    <CustomForm.InputField
+                        label="Last name"
+                        name="last_name"
                         isRequired={true}
-                        errorMessage="Please input your phone number!"
+                        errorMessage="Please input your last name!"
+                    />
+                    <CustomForm.InputField
+                        label="Phone Number"
+                        name="phone_number"
+                        isRequired={true}
+                        placeholder="+880123456789"
+                        errorMessage="Please input your phone number with country code!"
+                    />
+                    <CustomForm.EmailInputField
+                        label="Email"
+                        name="email"
+                        isRequired={true}
+                        errorMessage="Please input your email!"
                     />
                     <CustomForm.PasswordInputField
                         label="Password"
@@ -53,7 +95,7 @@ function SignUpForm() {
                         errorMessage="Please input your password!"
                     />
                     <CustomForm.PasswordInputField
-                        label="Password"
+                        label="Confirm Password"
                         name="password1"
                         isRequired={true}
                         errorMessage="Please input your password again!"
