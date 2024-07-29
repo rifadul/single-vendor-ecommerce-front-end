@@ -4,8 +4,10 @@ import { Rate, Button, Select } from "antd";
 import Image from "next/image";
 import Icons from "../../../public/assets/Icons";
 import Buttons from "../Buttons";
+import { useCart } from "@/contexts/CartProvider";
 
 const ProductDetails = ({ product }) => {
+    const { addToCart } = useCart();
     const [selectedColor, setSelectedColor] = useState(
         product.variants[0].colors[0]
     );
@@ -21,6 +23,12 @@ const ProductDetails = ({ product }) => {
 
     const handleQuantityChange = (type) => {
         setQuantity((prev) => (type === "increment" ? prev + 1 : prev - 1));
+    };
+
+    const handleAddToCart = () => {
+        const productVariant = selectedColor.variant_id; // Adjust as necessary to get the correct variant ID
+        console.log({ productVariant, quantity });
+        addToCart(productVariant, quantity);
     };
 
     return (
@@ -125,7 +133,10 @@ const ProductDetails = ({ product }) => {
                     </button>
                 </div>
 
-                <Buttons.PrimaryBtn label={"Add to Cart"} />
+                <Buttons.PrimaryBtn
+                    label={"Add to Cart"}
+                    onClick={handleAddToCart}
+                />
 
                 <div className="bg-neutral-20 font-poppins p-4 rounded-sm">
                     <p>
