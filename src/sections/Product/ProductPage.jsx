@@ -7,7 +7,7 @@ import { Drawer } from "antd";
 import { useState } from "react";
 import Icons from "../../../public/assets/Icons";
 
-function ProductPage() {
+function ProductPage({ products }) {
     const [drawerVisible, setDrawerVisible] = useState(false); // Drawer state
 
     const showDrawer = () => {
@@ -41,8 +41,8 @@ function ProductPage() {
                         <h1>{allProducts.length} Results</h1>
                     </div>
 
-                    {allProducts.length > 0 ? (
-                        <ProductListing products={allProducts} />
+                    {products?.results?.length > 0 ? (
+                        <ProductListing products={products?.results} />
                     ) : (
                         <p className="text-center text-gray-500">
                             No products found
