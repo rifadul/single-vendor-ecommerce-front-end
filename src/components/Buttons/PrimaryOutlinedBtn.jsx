@@ -4,12 +4,12 @@ const PrimaryOutlinedBtn = ({
     paddingX,
     paddingY,
     activeBorderColor,
-    deactiveBorderColor,
+    deactivateBorderColor: deactivateBorderColor,
     width,
     border,
     color,
     activeTextColor,
-    deactiveTextColor,
+    deactivateTextColor: deactivateTextColor,
     className,
     ...rest
 }) => {
@@ -29,12 +29,12 @@ const PrimaryOutlinedBtn = ({
                           activeTextColor ? activeTextColor : "text-magenta-500"
                       }`
                     : `${
-                          deactiveBorderColor
-                              ? deactiveBorderColor
+                          deactivateBorderColor
+                              ? deactivateBorderColor
                               : "border-neutral-30"
                       } ${
-                          deactiveTextColor
-                              ? deactiveTextColor
+                          deactivateTextColor
+                              ? deactivateTextColor
                               : "text-neutral-300"
                       }`
             }  rounded-sm`}

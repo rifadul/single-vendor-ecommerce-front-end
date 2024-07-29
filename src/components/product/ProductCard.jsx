@@ -4,6 +4,8 @@ import Image from "next/image";
 import { HeartOutlined } from "@ant-design/icons";
 import Icons from "../../../public/assets/Icons";
 import { Modal } from "antd";
+import ImageCarousel from "./ImageCarousel";
+import ProductDetails from "./ProductDetails";
 
 const ProductCard = ({ product }) => {
     const [isModalVisible, setIsModalVisible] = useState(false);
@@ -64,20 +66,40 @@ const ProductCard = ({ product }) => {
 
             {/* Modal */}
             <Modal
-                title={product?.name}
+                title={<span className="p-4"></span>}
                 open={isModalVisible}
                 onOk={handleOk}
                 onCancel={handleCancel}
+                footer={null}
+                width={900}
                 centered
             >
-                <p>Price: ${product.price}</p>
+                <div className="flex flex-col md:flex-row">
+                    <div className="w-full md:w-1/2 pl-5 md:pl-8">
+                        <ImageCarousel images={product.images} />
+                    </div>
+                    <div className="w-full md:w-1/2 pl-5 md:pl-8">
+                        <ProductDetails product={product} />
+                    </div>
+                </div>
+                {/* <div className="flex">
+                    <div className="w-1/2 flex flex-col items-center">
+                        
+                        <ImageCarousel images={product?.images} />
+                    </div>
+                    <div className="w-1/2 pl-8">
+                        <ProductDetails product={product} />
+                    </div>
+                </div> */}
+
+                {/* <p>Price: ${product.price}</p>
                 <Image
                     src={product?.images[0]?.image}
                     alt={product?.name}
                     width={300}
                     height={300}
                 />
-                <p>Some more details about the product...</p>
+                <p>Some more details about the product...</p> */}
             </Modal>
         </div>
     );

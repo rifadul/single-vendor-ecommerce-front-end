@@ -114,3 +114,21 @@
   border-color: #eb038b !important; /* Customize the slider handle border color on hover */
   background-color: #eb038b !important; /* Customize the slider handle background color on hover */
 }
+
+
+
+/* image */
+.image-carousel .thumbnail-wrapper .thumbnail {
+  width: 64px;
+  height: 64px;
+}
+
+.image-carousel .thumbnail-wrapper .thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.image-carousel .thumbnail-wrapper .thumbnail:hover {
+  border-color: #ff1493;
+}
