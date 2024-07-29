@@ -14,3 +14,4 @@ export const CATEGORY_API_URL = `${BASE_URL}/category`;
 export const PRODUCTS_API_URL = `${BASE_URL}/products`;
 export const ADD_TO_CART_API_URL = `${BASE_URL}/cart-items/`;
 export const USER_SIGN_IN_API_URL = `${BASE_URL}/users/login/`;
+export const USER_SIGN_UP_API_URL = `${BASE_URL}/users/register/`;

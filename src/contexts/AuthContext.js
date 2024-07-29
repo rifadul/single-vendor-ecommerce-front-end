@@ -30,7 +30,6 @@ export const AuthProvider = ({ children }) => {
             method: "POST",
             body: credentials,
         });
-        console.log("response", response);
         localStorage.setItem("access_token", response.access);
         localStorage.setItem("user_info", JSON.stringify(response.user));
         setUser(response.user);

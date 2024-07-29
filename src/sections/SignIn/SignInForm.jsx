@@ -26,7 +26,7 @@ function SignInForm() {
             toast.success("Signed in successfully!");
             router.push("/");
         } catch (error) {
-            toast.error("Failed to sign in. Please check your credentials.");
+            toast.error(error?.message);
         } finally {
             setLoading(false);
         }

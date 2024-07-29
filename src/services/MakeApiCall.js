@@ -48,7 +48,8 @@ async function MakeApiCall({
         const data = await response.json();
 
         if (!response.ok) {
-            throw new Error(data?.message || data?.error);
+            throw new Error(data?.message || JSON.stringify(data));
+            // throw new Error(data?.message || data?.error);
         }
 
         return {
