@@ -15,6 +15,7 @@ async function getBanners() {
 export default async function Home() {
     // Fetch banner data in parallel
     const [banners] = await Promise.all([getBanners()]);
+    console.log("banners", banners);
 
     return (
         <Suspense fallback={<Loader />}>

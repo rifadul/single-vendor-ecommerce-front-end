@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 import { HeartOutlined } from "@ant-design/icons";
 import Icons from "../../../public/assets/Icons";
-import { Modal, Skeleton } from "antd";
+import { Modal } from "antd";
 
 const ProductCard = ({ product }) => {
     const [isModalVisible, setIsModalVisible] = useState(false);
@@ -29,8 +29,8 @@ const ProductCard = ({ product }) => {
             {/* Product Image */}
             <div className="relative w-full h-64 overflow-hidden flex items-center justify-center group">
                 <Image
-                    src={product.image}
-                    alt={product.name}
+                    src={product?.images[0]?.image}
+                    alt={product?.name}
                     fill
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     className="object-cover w-full h-full"
@@ -52,19 +52,19 @@ const ProductCard = ({ product }) => {
             <div className="space-y-2">
                 {/* Product Name */}
                 <h3
-                    title={product.name}
+                    title={product?.name}
                     className="text-base text-black-1000 font-medium mt-2 line-clamp-1"
                 >
-                    {product.name}
+                    {product?.name}
                 </h3>
 
                 {/* Product Price */}
-                <p className="text-black-1000 text-base">${product.price}</p>
+                <p className="text-black-1000 text-base">${product?.price}</p>
             </div>
 
             {/* Modal */}
             <Modal
-                title={product.name}
+                title={product?.name}
                 open={isModalVisible}
                 onOk={handleOk}
                 onCancel={handleCancel}
@@ -72,8 +72,8 @@ const ProductCard = ({ product }) => {
             >
                 <p>Price: ${product.price}</p>
                 <Image
-                    src={product.image}
-                    alt={product.name}
+                    src={product?.images[0]?.image}
+                    alt={product?.name}
                     width={300}
                     height={300}
                 />
