@@ -12,11 +12,13 @@ import {
     SIGN_IN_PATH,
 } from "@/helpers/slug";
 import CategoryMenu from "./CategoryMenu";
+import { useAuth } from "@/contexts/AuthContext";
 
 function Primary() {
     const router = useRouter();
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const { isLoggedIn } = useAuth();
     const [open, setOpen] = useState(false);
+    console.log("isLoggedIn", isLoggedIn);
 
     const showDrawer = () => {
         setOpen(true);
