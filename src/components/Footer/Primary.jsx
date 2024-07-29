@@ -1,3 +1,4 @@
+"use client";
 import { socialLinks } from "@/libs/socialLinks";
 import Image from "next/image";
 import Link from "next/link";

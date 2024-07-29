@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+"use client";
+import { useState } from "react";
 import Buttons from "../Buttons";
 import Icons from "../../../public/assets/Icons";
 import Image from "next/image";
 import { Drawer } from "antd";
-import MobileNavbar from "./MobileNavbar";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import {
@@ -11,6 +11,7 @@ import {
     MY_WISHLIST_PATH,
     SIGN_IN_PATH,
 } from "@/helpers/slug";
+import CategoryMenu from "./CategoryMenu";
 
 function Primary() {
     const router = useRouter();
@@ -56,7 +57,7 @@ function Primary() {
                         open={open}
                         width={340}
                     >
-                        <MobileNavbar onClose={onClose} />
+                        <CategoryMenu onClose={onClose} />
                     </Drawer>
                     <button
                         className="text-white md:text-4xl text-[28px] font-bold"
