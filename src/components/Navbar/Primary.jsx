@@ -18,7 +18,6 @@ function Primary() {
     const router = useRouter();
     const { isLoggedIn } = useAuth();
     const [open, setOpen] = useState(false);
-    console.log("isLoggedIn", isLoggedIn);
 
     const showDrawer = () => {
         setOpen(true);
