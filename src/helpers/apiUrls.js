@@ -16,3 +16,4 @@ export const ADD_TO_CART_API_URL = `${BASE_URL}/cart-items/`;
 export const USER_SIGN_IN_API_URL = `${BASE_URL}/users/login/`;
 export const USER_SIGN_UP_API_URL = `${BASE_URL}/users/register/`;
 export const WISHLIST_API_URL = `${BASE_URL}/wishlist/`;
+export const ADDRESS_API_URL = `${BASE_URL}/address/`;
