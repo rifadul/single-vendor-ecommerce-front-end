@@ -3,19 +3,20 @@ import { USER_SIGN_IN_API_URL } from "@/helpers/apiUrls";
 import MakeApiCall from "@/services/MakeApiCall";
 import { createContext, useContext, useState, useEffect } from "react";
 import { deleteCookie, getCookie, hasCookie, setCookie } from "cookies-next";
+import { useRouter } from "next/navigation";
 
 const AuthContext = createContext(null);
 
 export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const router = useRouter();
 
     useEffect(() => {
         // const token = localStorage.getItem("access_token");
         // const userInfo = localStorage.getItem("user_info");
         if (hasCookie("access_token") && hasCookie("user_info")) {
-            console.log("getCookie", getCookie("user_info"));
-            // setUser(JSON.parse(userInfo));
+            setUser(JSON.parse(getCookie("user_info")));
             setIsLoggedIn(true);
             // MakeApiCall({
             //     apiUrl: '/users/me/',
@@ -48,6 +49,7 @@ export const AuthProvider = ({ children }) => {
         // localStorage.removeItem("access_token");
         setUser(null);
         setIsLoggedIn(false);
+        router.push("/"); // Redirect to home page after logout
     };
 
     return (

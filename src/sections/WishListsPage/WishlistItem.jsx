@@ -4,7 +4,7 @@ import React from "react";
 const WishlistItem = ({ item }) => {
     const { product } = item;
     return (
-        <div className="flex flex-col sm:flex-row items-center justify-between p-4 border-b">
+        <div className="flex flex-col sm:flex-row items-center justify-between border-b bg-white p-6 rounded-lg shadow">
             <div className="flex items-center">
                 <Image
                     src={product.images[0].image}

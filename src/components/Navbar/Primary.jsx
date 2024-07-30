@@ -82,11 +82,6 @@ function Primary() {
                             />
                         </Link>
                     )}
-                    {isLoggedIn && (
-                        <p onClick={logout} className="cursor-pointer">
-                            Logout
-                        </p>
-                    )}
                     {isLoggedIn ? (
                         <Link href={`${MY_ACCOUNT_PATH}`}>
                             <Image
