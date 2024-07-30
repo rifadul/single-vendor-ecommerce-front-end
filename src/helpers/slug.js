@@ -6,7 +6,7 @@ export const NEW_ADDRESS_PATH = "/profile/my-address/new-address";
 
 export const EDIT_ADDRESS_PATH = "/profile/my-address/edit-address";
 
-export const MY_WISHLIST_PATH = "/profile/my-wishlist";
+export const WISHLIST_PATH = "/profile/my-wishlists";
 
 export const TRACK_ORDER_PATH = "/profile/track-orders";
 

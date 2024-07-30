@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { SIGN_IN_PATH } from "./helpers/slug";
 
 export async function middleware(request) {
-    let currentUser = request.cookies.get("userInfo");
+    let currentUser = request.cookies.get("user_info");
     // const response = NextResponse.next();
     const pathname = request.nextUrl.pathname;
 
@@ -34,7 +34,7 @@ export const config = {
         // "/profile/my-account",
         // "/profile/active-orders",
         // "/profile/my-address",
-        // "/profile/my-wishlist",
+        "/profile/wishlists",
         // "/profile/credit-balance",
         // "/profile/order-history/:orderId*",
         // "/my-cart",

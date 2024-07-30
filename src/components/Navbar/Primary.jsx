@@ -6,17 +6,13 @@ import Image from "next/image";
 import { Drawer } from "antd";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import {
-    MY_ACCOUNT_PATH,
-    MY_WISHLIST_PATH,
-    SIGN_IN_PATH,
-} from "@/helpers/slug";
+import { MY_ACCOUNT_PATH, WISHLIST_PATH, SIGN_IN_PATH } from "@/helpers/slug";
 import CategoryMenu from "./CategoryMenu";
 import { useAuth } from "@/contexts/AuthContext";
 
 function Primary() {
     const router = useRouter();
-    const { isLoggedIn } = useAuth();
+    const { isLoggedIn, logout } = useAuth();
     const [open, setOpen] = useState(false);
 
     const showDrawer = () => {
@@ -74,17 +70,18 @@ function Primary() {
                     </button>
                 </div>
                 <div className="flex sm:gap-6 gap-3 items-center">
-                    <div className="flex sm:gap-4 gap-3">
-                        {isLoggedIn && (
-                            <Buttons.IconBtn
+                    <div className="flex sm:gap-4 gap-3"></div>
+                    {isLoggedIn && (
+                        <Link href={`${WISHLIST_PATH}`}>
+                            <Image
                                 alt={"favorite"}
-                                icon={Icons.heart}
-                                width="w-6 md:w-8"
-                                height="h-6 md:h-8"
-                                onClick={() => router.push(MY_WISHLIST_PATH)}
+                                height={1000}
+                                width={1000}
+                                src={Icons.heart}
+                                className="w-6 h-6 md:w-8 md:h-8"
                             />
-                        )}
-                    </div>
+                        </Link>
+                    )}
                     {isLoggedIn ? (
                         <Link href={`${MY_ACCOUNT_PATH}`}>
                             <Image

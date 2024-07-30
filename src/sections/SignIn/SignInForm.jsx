@@ -13,18 +13,26 @@ import { useState } from "react";
 import { useAuth } from "@/contexts/AuthContext";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 
 function SignInForm() {
     const router = useRouter(); // Next.js useRouter hook
     const [loading, setLoading] = useState(false);
     const { login } = useAuth();
+    const searchParams = useSearchParams();
+    const redirect = searchParams.get("redirect");
 
     const handleFormSubmit = async (values) => {
         setLoading(true);
         try {
             await login(values);
             toast.success("Signed in successfully!");
-            router.push("/");
+            if (redirect) {
+                console.log("redirect", redirect);
+                router.push(redirect);
+            } else {
+                router.push("/");
+            }
         } catch (error) {
             toast.error(error?.message);
         } finally {
