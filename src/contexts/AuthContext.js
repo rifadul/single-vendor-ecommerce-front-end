@@ -11,11 +11,13 @@ export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const router = useRouter();
+    const [token, setToken] = useState(null);
 
     useEffect(() => {
         // const token = localStorage.getItem("access_token");
         // const userInfo = localStorage.getItem("user_info");
         if (hasCookie("access_token") && hasCookie("user_info")) {
+            setToken(getCookie("access_token"));
             setUser(JSON.parse(getCookie("user_info")));
             setIsLoggedIn(true);
             // MakeApiCall({
@@ -39,21 +41,24 @@ export const AuthProvider = ({ children }) => {
         // localStorage.setItem("access_token", response.access);
         // localStorage.setItem("user_info", JSON.stringify(response.user));
         setIsLoggedIn(true);
+        setToken(response.access);
         setUser(response.user);
     };
 
     const logout = () => {
-        console.log("I am call");
         deleteCookie("access_token");
         deleteCookie("user_info");
         // localStorage.removeItem("access_token");
         setUser(null);
+        setToken(null);
         setIsLoggedIn(false);
         router.push("/"); // Redirect to home page after logout
     };
 
     return (
-        <AuthContext.Provider value={{ user, login, isLoggedIn, logout }}>
+        <AuthContext.Provider
+            value={{ user, token, login, isLoggedIn, logout }}
+        >
             {children}
         </AuthContext.Provider>
     );

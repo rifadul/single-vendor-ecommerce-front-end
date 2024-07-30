@@ -1,12 +1,25 @@
-import React from "react";
+"use client";
+import { useWishlist } from "@/contexts/WishListContext";
 import WishlistItem from "./WishlistItem";
 
-const WishlistPage = ({ wishLists }) => (
-    <>
-        {wishLists.map((item) => (
-            <WishlistItem key={item.id} item={item} />
-        ))}
-    </>
-);
+import React from "react";
 
-export default WishlistPage;
+function WishListsPage() {
+    const { wishLists } = useWishlist();
+    return (
+        <>
+            {wishLists.map((item, index) => (
+                <div key={item.id}>
+                    <WishlistItem item={item} />
+                    {index < wishLists.length - 1 && (
+                        <div className="my-7">
+                            <hr />
+                        </div>
+                    )}
+                </div>
+            ))}
+        </>
+    );
+}
+
+export default WishListsPage;

@@ -1,14 +1,17 @@
 "use client";
-import React, { useState } from "react";
+import { useState } from "react";
 import Image from "next/image";
-import { HeartOutlined } from "@ant-design/icons";
+import { HeartOutlined, HeartFilled } from "@ant-design/icons";
 import Icons from "../../../public/assets/Icons";
 import { Modal } from "antd";
 import ImageCarousel from "./ImageCarousel";
 import ProductDetails from "./ProductDetails";
+import { useWishlist } from "@/contexts/WishListContext";
 
 const ProductCard = ({ product }) => {
     const [isModalVisible, setIsModalVisible] = useState(false);
+    const { wishLists, addWishlistItem, deleteWishlistItem, loading } =
+        useWishlist();
 
     const showModal = () => {
         setIsModalVisible(true);
@@ -21,11 +24,41 @@ const ProductCard = ({ product }) => {
     const handleCancel = () => {
         setIsModalVisible(false);
     };
+
+    const isProductInWishlist = () => {
+        return wishLists.some((item) => item.product.id === product.id);
+    };
+
+    const handleWishListToggler = (payload) => {
+        if (payload === "add") {
+            addWishlistItem(product?.id);
+        } else {
+            let getWishlist = wishLists.find(
+                (item) => item.product.id === product.id
+            );
+            deleteWishlistItem(getWishlist?.id);
+        }
+    };
+
     return (
         <div className="relative rounded flex flex-col gap-3">
             {/* Favorite Icon */}
             <div className="absolute top-2 right-2 z-10">
-                <HeartOutlined className="text-gray-500 hover:text-red-500 transition duration-300" />
+                {/* <HeartOutlined
+                    className="text-black-1000 hover:text-red-500 transition duration-300"
+                    onClick={() => addWishlistItem(product?.id)}
+                /> */}
+                {isProductInWishlist() ? (
+                    <HeartFilled
+                        className="text-red-500 hover:text-red-700 transition duration-300"
+                        onClick={handleWishListToggler}
+                    />
+                ) : (
+                    <HeartOutlined
+                        className="text-black-1000 hover:text-red-500 transition duration-300"
+                        onClick={() => handleWishListToggler("add")}
+                    />
+                )}
             </div>
 
             {/* Product Image */}
