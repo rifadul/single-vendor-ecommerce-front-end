@@ -20,6 +20,7 @@ export const USER_PROFILE_API_URL = `${BASE_URL}/users/profile/`;
 export const USER_EMAIL_UPDATE_API_URL = `${BASE_URL}/users/update_email/`;
 export const USER_PHONE_NUMBER_UPDATE_API_URL = `${BASE_URL}/users/update_phone/`;
 export const CHANGE_PASSWORD_API_URL = `${BASE_URL}/users/change_password/`;
+export const USER_UPDATE_IMAGE_API_URL = `${BASE_URL}/users/update_image/`;
 export const FORGET_PASSWORD_API_URL = `${BASE_URL}/users/forget_password/`;
 export const RESET_PASSWORD_API_URL = `${BASE_URL}/users/reset_password_with_otp/`;
 export const RESEND_OTP_API_URL = `${BASE_URL}/users/resend_otp/`;

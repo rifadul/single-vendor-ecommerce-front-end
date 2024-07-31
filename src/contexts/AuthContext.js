@@ -8,6 +8,7 @@ import {
     USER_PHONE_NUMBER_UPDATE_API_URL,
     USER_PROFILE_API_URL,
     USER_SIGN_IN_API_URL,
+    USER_UPDATE_IMAGE_API_URL,
 } from "@/helpers/apiUrls";
 import { createContext, useContext, useState, useEffect } from "react";
 import { deleteCookie, getCookie, hasCookie, setCookie } from "cookies-next";
@@ -144,6 +145,7 @@ export const AuthProvider = ({ children }) => {
                 //     otp_type:'phone',
 
                 // }
+                await getProfile();
 
                 setCookie("otp_send_to", user?.email);
                 setCookie("otp_type", "phone");
@@ -264,6 +266,36 @@ export const AuthProvider = ({ children }) => {
         }
     };
 
+    const updateProfileImage = async (imageFile) => {
+        if (!token) return;
+
+        const formData = new FormData();
+        formData.append("image", imageFile);
+
+        try {
+            const response = await fetch(USER_UPDATE_IMAGE_API_URL, {
+                method: "POST",
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+                body: formData,
+            });
+            const data = await response.json();
+            if (response.ok) {
+                setUser(data);
+                setCookie("user_info", JSON.stringify(data));
+                toast.success("Profile image updated successfully");
+                await getProfile();
+            } else {
+                toast.error(data.error || "Failed to update profile image");
+                throw new Error(data.error || "Failed to update profile image");
+            }
+        } catch (error) {
+            console.error("Update profile image error:", error);
+            toast.error(error.message);
+        }
+    };
+
     const logout = () => {
         deleteCookie("access_token");
         deleteCookie("user_info");
@@ -290,6 +322,7 @@ export const AuthProvider = ({ children }) => {
                 changePassword,
                 forgetPassword,
                 resetPassword,
+                updateProfileImage,
             }}
         >
             {children}

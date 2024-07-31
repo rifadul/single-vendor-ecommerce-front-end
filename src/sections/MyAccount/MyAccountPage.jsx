@@ -1,4 +1,5 @@
 "use client";
+import React, { useRef } from "react";
 import { FaEdit } from "react-icons/fa";
 import Image from "next/image";
 import Icons from "../../../public/assets/Icons";
@@ -18,6 +19,7 @@ const MyAccountPage = () => {
         updateEmail,
         updatePhoneNumber,
         changePassword,
+        updateProfileImage,
     } = useAuth();
     const [openUserNameUpdateModal, setOpenUserNameUpdateModal] =
         useState(false);
@@ -32,13 +34,28 @@ const MyAccountPage = () => {
         console.log("values", values);
     };
 
+    // for image
+
+    const fileInputRef = useRef(null);
+
+    const handleImageChange = (event) => {
+        const file = event.target.files[0];
+        if (file) {
+            updateProfileImage(file);
+        }
+    };
+
+    const triggerFileInput = () => {
+        fileInputRef.current.click();
+    };
+
     if (!user) {
         return <p>Loading...</p>;
     }
 
     return (
         <div className="max-w-md mx-auto">
-            <div className="flex flex-col items-center mb-6 relative">
+            {/* <div className="flex flex-col items-center mb-6 relative">
                 <Image
                     src={user?.image ? user?.image : Icons.profile_magenta}
                     alt="Profile Picture"
@@ -55,7 +72,36 @@ const MyAccountPage = () => {
                         className="rounded-full object-cover"
                     />
                 </button>
+            </div> */}
+
+            <div className="flex flex-col items-center mb-6 relative">
+                <Image
+                    src={user?.image ? user?.image : Icons.profile_magenta}
+                    alt="Profile Picture"
+                    width={100}
+                    height={100}
+                    className="rounded-full object-cover border-2 border-red-700"
+                />
+                <button
+                    className="absolute bottom-0 right-0 bg-white p-1 rounded-full"
+                    onClick={triggerFileInput}
+                >
+                    <Image
+                        src={Icons.camera_input}
+                        alt="Edit Profile Picture"
+                        width={25}
+                        height={25}
+                        className="rounded-full object-cover"
+                    />
+                </button>
+                <input
+                    type="file"
+                    ref={fileInputRef}
+                    style={{ display: "none" }}
+                    onChange={handleImageChange}
+                />
             </div>
+
             <Form layout="vertical" className="space-y-4">
                 <Form.Item label={<Label>Name</Label>}>
                     <Input
