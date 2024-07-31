@@ -7,6 +7,7 @@ import CustomForm from "@/components/Forms";
 import Buttons from "@/components/Buttons";
 
 const otpInputFieldLength = 6;
+const otpTime = 30;
 
 function VerificationForm({
     headingText,
@@ -15,7 +16,7 @@ function VerificationForm({
     handleOnResend,
 }) {
     const [otp, setOtp] = useState("");
-    const [timer, setTimer] = useState(10);
+    const [timer, setTimer] = useState(otpTime);
     const [showResend, setShowResend] = useState(false);
 
     useEffect(() => {
@@ -30,14 +31,14 @@ function VerificationForm({
     }, [timer]);
 
     const handleResend = () => {
-        setTimer(10);
+        setTimer(otpTime);
         setShowResend(false);
         // Call resend function here
         handleOnResend && handleOnResend();
     };
 
     return (
-        <FormCardContainer cardTitle="Verification code">
+        <FormCardContainer cardTitle="OTP Verification">
             <Image src={Images.verify_otp_image} alt="verification image" />
             <div className="flex flex-col gap-9">
                 <div className="space-y-3">

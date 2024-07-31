@@ -1,7 +1,7 @@
 "use client";
 import VerificationForm from "@/components/verificationForm/VerificationForm";
 import { useAuth } from "@/contexts/AuthContext";
-import { VERIFY_OTP_API_URL } from "@/helpers/apiUrls";
+import { RESEND_OTP_API_URL, VERIFY_OTP_API_URL } from "@/helpers/apiUrls";
 import { MY_ACCOUNT_PATH } from "@/helpers/slug";
 import { maskString } from "@/utils";
 import { deleteCookie, getCookie } from "cookies-next";
@@ -15,8 +15,30 @@ function OtpVerificationForm() {
     const otp_type = getCookie("otp_type");
     const otp_send_to = getCookie("otp_send_to");
 
-    const handleOnResend = () => {
-        console.log("resend otp");
+    const handleOnResend = async () => {
+        if (!token) return;
+
+        try {
+            const response = await fetch(RESEND_OTP_API_URL, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`,
+                },
+                body: JSON.stringify({
+                    otp_type: otp_type,
+                }),
+            });
+            const data = await response.json();
+
+            if (response.ok) {
+                toast.success(data?.status);
+            } else {
+                throw new Error(data.error || "Failed to update");
+            }
+        } catch (error) {
+            toast.error(error.message);
+        }
     };
 
     const handleOnSubmit = async (otp) => {
@@ -46,11 +68,8 @@ function OtpVerificationForm() {
                 throw new Error(data.error || "Failed to update");
             }
         } catch (error) {
-            // console.error("Update phone number error:", error);
             toast.error(error.message);
         }
-
-        console.log("OTP is: ", otp);
     };
 
     return (
