@@ -7,7 +7,7 @@ import Link from "next/link";
 import Images from "../../../public/assets/images";
 import SocialButtons from "@/components/common/socialButtons/SocialButtons";
 import { debounce } from "@/utils";
-import { SIGN_UP_PATH } from "@/helpers/slug";
+import { FORGET_PASSWORD_PATH, SIGN_UP_PATH } from "@/helpers/slug";
 import { Checkbox, Form, Spin } from "antd";
 import { useState } from "react";
 import { useAuth } from "@/contexts/AuthContext";
@@ -87,7 +87,7 @@ function SignInForm() {
                             </Checkbox>
                         </Form.Item>
                         <Link
-                            href="#"
+                            href={FORGET_PASSWORD_PATH}
                             className="text-magenta-600 font-medium hover:text-magenta-600"
                         >
                             Forgot password?

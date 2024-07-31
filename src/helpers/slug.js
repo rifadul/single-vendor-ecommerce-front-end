@@ -11,3 +11,5 @@ export const PRODUCTS_PATH = "/products";
 
 export const CATEGORY_WITH_PRODUCT_PATH = "/category";
 export const OTP_VERIFICATION_PATH = "/otp-verification";
+export const FORGET_PASSWORD_PATH = "/forget-password";
+export const RESET_PASSWORD_PATH = "/reset-password";

@@ -1,6 +1,8 @@
 "use client";
 import {
     CHANGE_PASSWORD_API_URL,
+    FORGET_PASSWORD_API_URL,
+    RESET_PASSWORD_API_URL,
     USER_API_URL,
     USER_EMAIL_UPDATE_API_URL,
     USER_PHONE_NUMBER_UPDATE_API_URL,
@@ -12,7 +14,7 @@ import { deleteCookie, getCookie, hasCookie, setCookie } from "cookies-next";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { OTP_VERIFICATION_PATH } from "@/helpers/slug";
+import { OTP_VERIFICATION_PATH, RESET_PASSWORD_PATH } from "@/helpers/slug";
 
 const AuthContext = createContext(null);
 
@@ -214,6 +216,54 @@ export const AuthProvider = ({ children }) => {
         }
     };
 
+    const forgetPassword = async (email) => {
+        setLoading(true);
+        try {
+            const response = await fetch(FORGET_PASSWORD_API_URL, {
+                method: "POST",
+                body: JSON.stringify(email),
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            });
+            const data = await response.json();
+            if (response.ok) {
+                toast.success(data?.status);
+                router.push(RESET_PASSWORD_PATH);
+            } else {
+                throw new Error(data.error || "Failed to verify email");
+            }
+        } catch (error) {
+            toast.error(error.message);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const resetPassword = async (values) => {
+        setLoading(true);
+        try {
+            const response = await fetch(RESET_PASSWORD_API_URL, {
+                method: "POST",
+                body: JSON.stringify(values),
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            });
+            const data = await response.json();
+            if (response.ok) {
+                toast.success(data?.status);
+                router.push("/");
+            } else {
+                throw new Error(data.error || "Failed to verify email");
+            }
+        } catch (error) {
+            toast.error(error.message);
+        } finally {
+            setLoading(false);
+        }
+    };
+
     const logout = () => {
         deleteCookie("access_token");
         deleteCookie("user_info");
@@ -238,6 +288,8 @@ export const AuthProvider = ({ children }) => {
                 logout,
                 loading,
                 changePassword,
+                forgetPassword,
+                resetPassword,
             }}
         >
             {children}
