@@ -12,7 +12,7 @@ function PhoneNumberUpdateForm({ modalOpen, onClose, handleFinish }) {
 
     return (
         <Modal
-            title={<span className="py-6">Update Phone number</span>}
+            // title={<span className="py-6">Update Phone number</span>}
             open={modalOpen}
             onCancel={handleCancel}
             footer={null}

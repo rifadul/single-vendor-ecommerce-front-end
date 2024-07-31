@@ -16,7 +16,7 @@ function NameUpdateForm({
     };
     return (
         <Modal
-            title={<span className="py-6">Update Name</span>}
+            // title={<span className="py-6">Update Name</span>}
             open={modalOpen}
             onCancel={handleCancel}
             footer={null}

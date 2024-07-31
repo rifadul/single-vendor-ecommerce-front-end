@@ -9,15 +9,24 @@ import NameUpdateForm from "./NameUpdateForm";
 import PhoneNumberUpdateForm from "./PhoneNumberUpdateForm";
 import { useState } from "react";
 import EmailUpdateForm from "./EmailUpdateForm";
+import ChangePasswordForm from "./ChangePasswordForm";
 
 const MyAccountPage = () => {
-    const { user, updateUserData, updateEmail, updatePhoneNumber } = useAuth();
+    const {
+        user,
+        updateUserData,
+        updateEmail,
+        updatePhoneNumber,
+        changePassword,
+    } = useAuth();
     const [openUserNameUpdateModal, setOpenUserNameUpdateModal] =
         useState(false);
     const [openPhoneNumberUpdateModal, setOpenPhoneNumberUpdateModal] =
         useState(false);
 
     const [openEmailUpdateModal, setOpenEmailUpdateModal] = useState(false);
+    const [openChangePasswordModal, setOpenChangePasswordModal] =
+        useState(false);
 
     const handleFinish = (values) => {
         console.log("values", values);
@@ -90,7 +99,10 @@ const MyAccountPage = () => {
                     />
                 </Form.Item>
             </Form>
-            <button className="py-3 mt-8 flex gap-3 justify-center items-center border w-full border-black-1000 rounded">
+            <button
+                className="py-3 mt-8 flex gap-3 justify-center items-center border w-full border-black-1000 rounded"
+                onClick={() => setOpenChangePasswordModal(true)}
+            >
                 <Image
                     src={Icons.password}
                     alt="Profile Picture"
@@ -127,6 +139,13 @@ const MyAccountPage = () => {
                 handleFinish={updateEmail}
                 initialValues={user}
                 onClose={setOpenEmailUpdateModal}
+            />
+
+            {/* modal for update user phone number */}
+            <ChangePasswordForm
+                modalOpen={openChangePasswordModal}
+                handleFinish={changePassword}
+                onClose={setOpenChangePasswordModal}
             />
         </div>
     );

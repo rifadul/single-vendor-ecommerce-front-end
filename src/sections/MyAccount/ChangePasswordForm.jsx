@@ -2,12 +2,7 @@ import CustomForm from "@/components/Forms";
 import FormContainer from "@/components/Forms/FormContainer";
 import { Form, Modal } from "antd";
 
-function EmailUpdateForm({
-    modalOpen,
-    onClose,
-    handleFinish,
-    initialValues = {},
-}) {
+function ChangePasswordForm({ modalOpen, onClose, handleFinish }) {
     const [form] = Form.useForm();
 
     const handleCancel = () => {
@@ -17,7 +12,7 @@ function EmailUpdateForm({
 
     return (
         <Modal
-            // title={<span className="py-6">Update Email</span>}
+            // title={<span className="py-6">Change Password</span>}
             open={modalOpen}
             onCancel={handleCancel}
             footer={null}
@@ -26,31 +21,32 @@ function EmailUpdateForm({
             <FormContainer
                 form={form}
                 onFinish={handleFinish}
-                buttonName="Update Email"
+                buttonName="Change Password"
             >
                 <CustomForm.PasswordInputField
-                    label="Password"
-                    name="password"
+                    label="Current Password"
+                    name="old_password"
                     isRequired={true}
                     min={3}
-                    errorMessage="Please input your password!"
+                    errorMessage="Please input current password!"
                 />
 
-                <CustomForm.EmailInputField
-                    label="Enter Email"
-                    name="existing_email"
+                <CustomForm.PasswordInputField
+                    label="New Password"
+                    name="new_password"
                     isRequired={true}
-                    errorMessage="Please input your new email!"
+                    errorMessage="Please input new password!"
                 />
-                <CustomForm.EmailInputField
-                    label="Enter New Email"
-                    name="new_email"
+                <CustomForm.PasswordInputField
+                    label="Confirm New Password"
+                    name="new_password1"
                     isRequired={true}
-                    errorMessage="Please input your new email!"
+                    errorMessage="Please input new password again!"
+                    dependenciesFieldName={"new_password"}
                 />
             </FormContainer>
         </Modal>
     );
 }
 
-export default EmailUpdateForm;
+export default ChangePasswordForm;

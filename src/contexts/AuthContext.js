@@ -1,5 +1,6 @@
 "use client";
 import {
+    CHANGE_PASSWORD_API_URL,
     USER_API_URL,
     USER_EMAIL_UPDATE_API_URL,
     USER_PHONE_NUMBER_UPDATE_API_URL,
@@ -117,6 +118,7 @@ export const AuthProvider = ({ children }) => {
             setLoading(false);
         }
     };
+
     const updatePhoneNumber = async (updateValues) => {
         if (!token) return;
         setLoading(true);
@@ -149,6 +151,31 @@ export const AuthProvider = ({ children }) => {
             }
         } catch (error) {
             console.error("Update phone number error:", error);
+            toast.error(error.message);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const changePassword = async (updateValues) => {
+        if (!token) return;
+        setLoading(true);
+        try {
+            const response = await fetch(CHANGE_PASSWORD_API_URL, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`,
+                },
+                body: JSON.stringify(updateValues),
+            });
+            const data = await response.json();
+            if (response.ok) {
+                toast.success("Password updated successfully");
+            } else {
+                throw new Error(data.error || "Failed to update email");
+            }
+        } catch (error) {
             toast.error(error.message);
         } finally {
             setLoading(false);
@@ -210,6 +237,7 @@ export const AuthProvider = ({ children }) => {
                 updateEmail,
                 logout,
                 loading,
+                changePassword,
             }}
         >
             {children}

@@ -19,6 +19,7 @@ export const USER_SIGN_UP_API_URL = `${BASE_URL}/users/register/`;
 export const USER_PROFILE_API_URL = `${BASE_URL}/users/profile/`;
 export const USER_EMAIL_UPDATE_API_URL = `${BASE_URL}/users/update_email/`;
 export const USER_PHONE_NUMBER_UPDATE_API_URL = `${BASE_URL}/users/update_phone/`;
+export const CHANGE_PASSWORD_API_URL = `${BASE_URL}/users/change_password/`;
 export const RESEND_OTP_API_URL = `${BASE_URL}/users/resend_otp/`;
 export const VERIFY_OTP_API_URL = `${BASE_URL}/users/verify_otp/`;
 export const WISHLIST_API_URL = `${BASE_URL}/wishlist/`;
