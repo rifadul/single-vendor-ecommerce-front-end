@@ -1,9 +1,9 @@
 import { useState } from "react";
 import Image from "next/image";
 import Icons from "../../../public/assets/Icons";
-import { useAddress } from "@/contexts/AddressContext";
 import { Modal } from "antd";
 import AddressForm from "./AddressForm";
+import { useAddress } from "@/contexts/AddressContext";
 
 const AddressItem = ({ address }) => {
     const {

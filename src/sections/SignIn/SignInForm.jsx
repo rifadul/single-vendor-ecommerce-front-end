@@ -17,27 +17,28 @@ import { useSearchParams } from "next/navigation";
 
 function SignInForm() {
     const router = useRouter(); // Next.js useRouter hook
-    const [loading, setLoading] = useState(false);
-    const { login } = useAuth();
+    // const [loading, setLoading] = useState(false);
+    const { login, loading } = useAuth();
     const searchParams = useSearchParams();
     const redirect = searchParams.get("redirect");
 
     const handleFormSubmit = async (values) => {
-        setLoading(true);
-        try {
-            await login(values);
-            toast.success("Signed in successfully!");
-            if (redirect) {
-                console.log("redirect", redirect);
-                router.push(redirect);
-            } else {
-                router.push("/");
-            }
-        } catch (error) {
-            toast.error(error?.message);
-        } finally {
-            setLoading(false);
-        }
+        await login(values);
+        // setLoading(true);
+        // try {
+
+        //     toast.success("Signed in successfully!");
+        //     if (redirect) {
+        //         console.log("redirect", redirect);
+        //         router.push(redirect);
+        //     } else {
+        //         router.push("/");
+        //     }
+        // } catch (error) {
+        //     toast.error(error?.message);
+        // } finally {
+        //     setLoading(false);
+        // }
     };
 
     // submit this form with debounce.

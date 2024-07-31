@@ -28,3 +28,14 @@ export const formatLastPathSegment = (path) => {
         .map((word) => word.charAt(0).toUpperCase() + word.slice(1)) // Capitalize first char
         .join(" "); // Join words with space
 };
+
+export function maskString(input) {
+    if (input.includes("@")) {
+        // Mask email
+        const [user, domain] = input.split("@");
+        return user.slice(0, 3) + "***" + user.slice(-2) + "@" + domain;
+    } else {
+        // Mask phone number
+        return input.slice(0, 7) + "******" + input.slice(-1);
+    }
+}
