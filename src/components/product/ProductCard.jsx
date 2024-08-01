@@ -10,15 +10,10 @@ import { useWishlist } from "@/contexts/WishListContext";
 
 const ProductCard = ({ product }) => {
     const [isModalVisible, setIsModalVisible] = useState(false);
-    const { wishLists, addWishlistItem, deleteWishlistItem, loading } =
-        useWishlist();
+    const { wishLists, addWishlistItem, deleteWishlistItem } = useWishlist();
 
     const showModal = () => {
         setIsModalVisible(true);
-    };
-
-    const handleOk = () => {
-        setIsModalVisible(false);
     };
 
     const handleCancel = () => {
@@ -44,14 +39,10 @@ const ProductCard = ({ product }) => {
         <div className="relative rounded flex flex-col gap-3">
             {/* Favorite Icon */}
             <div className="absolute top-2 right-2 z-10">
-                {/* <HeartOutlined
-                    className="text-black-1000 hover:text-red-500 transition duration-300"
-                    onClick={() => addWishlistItem(product?.id)}
-                /> */}
                 {isProductInWishlist() ? (
                     <HeartFilled
                         className="text-red-500 hover:text-red-700 transition duration-300"
-                        onClick={handleWishListToggler}
+                        onClick={() => handleWishListToggler("remove")}
                     />
                 ) : (
                     <HeartOutlined
@@ -64,7 +55,7 @@ const ProductCard = ({ product }) => {
             {/* Product Image */}
             <div className="relative w-full h-64 overflow-hidden flex items-center justify-center group">
                 <Image
-                    src={product?.images[0]?.image}
+                    src={product?.primary_image}
                     alt={product?.name}
                     fill
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
@@ -101,7 +92,6 @@ const ProductCard = ({ product }) => {
             <Modal
                 title={<span className="p-4"></span>}
                 open={isModalVisible}
-                onOk={handleOk}
                 onCancel={handleCancel}
                 footer={null}
                 width={900}
@@ -109,30 +99,12 @@ const ProductCard = ({ product }) => {
             >
                 <div className="flex flex-col md:flex-row">
                     <div className="w-full md:w-1/2 pl-5 md:pl-8">
-                        <ImageCarousel images={product.images} />
+                        <ImageCarousel images={product.all_images} />
                     </div>
                     <div className="w-full md:w-1/2 pl-5 md:pl-8">
                         <ProductDetails product={product} />
                     </div>
                 </div>
-                {/* <div className="flex">
-                    <div className="w-1/2 flex flex-col items-center">
-                        
-                        <ImageCarousel images={product?.images} />
-                    </div>
-                    <div className="w-1/2 pl-8">
-                        <ProductDetails product={product} />
-                    </div>
-                </div> */}
-
-                {/* <p>Price: ${product.price}</p>
-                <Image
-                    src={product?.images[0]?.image}
-                    alt={product?.name}
-                    width={300}
-                    height={300}
-                />
-                <p>Some more details about the product...</p> */}
             </Modal>
         </div>
     );
