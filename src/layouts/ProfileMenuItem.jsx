@@ -72,7 +72,8 @@ function ProfileMenuItem() {
                     alt="Profile Image"
                     width={48}
                     height={48}
-                    className="rounded-full"
+                    className="rounded-full object-cover"
+                    style={{ width: "48px", height: "48px" }}
                 />
                 <p className="text-base font-medium">{`${user?.first_name} ${user?.last_name}`}</p>
             </div>

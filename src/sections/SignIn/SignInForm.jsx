@@ -7,7 +7,7 @@ import Link from "next/link";
 import Images from "../../../public/assets/images";
 import SocialButtons from "@/components/common/socialButtons/SocialButtons";
 import { debounce } from "@/utils";
-import { SIGN_UP_PATH } from "@/helpers/slug";
+import { FORGET_PASSWORD_PATH, SIGN_UP_PATH } from "@/helpers/slug";
 import { Checkbox, Form, Spin } from "antd";
 import { useState } from "react";
 import { useAuth } from "@/contexts/AuthContext";
@@ -17,27 +17,28 @@ import { useSearchParams } from "next/navigation";
 
 function SignInForm() {
     const router = useRouter(); // Next.js useRouter hook
-    const [loading, setLoading] = useState(false);
-    const { login } = useAuth();
+    // const [loading, setLoading] = useState(false);
+    const { login, loading } = useAuth();
     const searchParams = useSearchParams();
     const redirect = searchParams.get("redirect");
 
     const handleFormSubmit = async (values) => {
-        setLoading(true);
-        try {
-            await login(values);
-            toast.success("Signed in successfully!");
-            if (redirect) {
-                console.log("redirect", redirect);
-                router.push(redirect);
-            } else {
-                router.push("/");
-            }
-        } catch (error) {
-            toast.error(error?.message);
-        } finally {
-            setLoading(false);
-        }
+        await login(values);
+        // setLoading(true);
+        // try {
+
+        //     toast.success("Signed in successfully!");
+        //     if (redirect) {
+        //         console.log("redirect", redirect);
+        //         router.push(redirect);
+        //     } else {
+        //         router.push("/");
+        //     }
+        // } catch (error) {
+        //     toast.error(error?.message);
+        // } finally {
+        //     setLoading(false);
+        // }
     };
 
     // submit this form with debounce.
@@ -86,7 +87,7 @@ function SignInForm() {
                             </Checkbox>
                         </Form.Item>
                         <Link
-                            href="#"
+                            href={FORGET_PASSWORD_PATH}
                             className="text-magenta-600 font-medium hover:text-magenta-600"
                         >
                             Forgot password?

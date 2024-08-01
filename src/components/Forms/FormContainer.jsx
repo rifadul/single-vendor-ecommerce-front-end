@@ -3,7 +3,13 @@ import React from "react";
 import FormFieldsContainer from "./FormFieldsContainer";
 import Buttons from "../Buttons";
 
-function FormContainer({ onFinish, initialValues = {}, buttonName, children }) {
+function FormContainer({
+    onFinish,
+    initialValues = {},
+    buttonName,
+    children,
+    ...rest
+}) {
     return (
         <Form
             layout="vertical"
@@ -11,6 +17,7 @@ function FormContainer({ onFinish, initialValues = {}, buttonName, children }) {
             initialValues={{ ...initialValues, address: "hello" }}
             onFinish={onFinish}
             className="space-y-9 font-poppins font-normal"
+            {...rest}
         >
             <FormFieldsContainer>{children}</FormFieldsContainer>
             <Buttons.PrimaryBtn label={buttonName} />

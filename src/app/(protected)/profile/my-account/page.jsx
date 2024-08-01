@@ -1,10 +1,11 @@
 import Layouts from "@/layouts";
+import MyAccountPage from "@/sections/MyAccount/MyAccountPage";
 import React from "react";
 
 function MyProfile() {
     return (
         <Layouts.ProfileLayout>
-            <div>MyProfile</div>
+            <MyAccountPage />
         </Layouts.ProfileLayout>
     );
 }

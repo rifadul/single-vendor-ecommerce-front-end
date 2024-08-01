@@ -2,8 +2,8 @@
 import { Modal } from "antd";
 import { useEffect, useState } from "react";
 import AddressItem from "./AddressItem";
-import { useAddress } from "@/contexts/AddressContext";
 import AddressForm from "./AddressForm";
+import { useAddress } from "@/contexts/AddressContext";
 
 function AddressPage() {
     const { addresses, loading, error, fetchAddresses, createAddress } =
@@ -23,7 +23,7 @@ function AddressPage() {
     if (error) return <p>Error: {error}</p>;
 
     return (
-        <div className="space-y-8">
+        <div className="space-y-8 overflow-y-auto scrollbar-hide">
             <div className="flex gap-1 md:justify-between items-center">
                 <p className="text-base font-medium font-poppins text-neutral-300">
                     Choose your default address{" "}
