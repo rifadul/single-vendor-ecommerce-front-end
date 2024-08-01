@@ -1,6 +1,5 @@
-// components/ProductDetails.jsx
-import React, { useState } from "react";
-import { Rate, Button, Select } from "antd";
+import React, { useState, useEffect } from "react";
+import { Rate } from "antd";
 import Image from "next/image";
 import Icons from "../../../public/assets/Icons";
 import Buttons from "../Buttons";
@@ -8,27 +7,46 @@ import { useCart } from "@/contexts/CartProvider";
 
 const ProductDetails = ({ product }) => {
     const { addToCart } = useCart();
-    const [selectedColor, setSelectedColor] = useState(
-        product.variants[0].colors[0]
+    const [selectedColor, setSelectedColor] = useState(product.variants[0]);
+    const [selectedSize, setSelectedSize] = useState(
+        product.variants[0].sizes[0]
     );
     const [quantity, setQuantity] = useState(1);
 
+    useEffect(() => {
+        setSelectedSize(selectedColor.sizes[0]);
+        setQuantity(1); // Reset quantity when color changes
+    }, [selectedColor]);
+
+    useEffect(() => {
+        setQuantity(1); // Reset quantity when size changes
+    }, [selectedSize]);
+
     const handleColorChange = (color) => {
-        console.log("color", color);
-        const variant = product.variants.find((v) =>
-            v.colors.some((c) => c.id === color?.id)
+        const variant = product.variants.find((v) => v.color === color);
+        setSelectedColor(variant);
+    };
+
+    const handleSizeChange = (size) => {
+        const sizeVariant = selectedColor.sizes.find(
+            (s) => s.size_id === size.size_id
         );
-        setSelectedColor(variant.colors.find((c) => c.id === color?.id));
+        setSelectedSize(sizeVariant);
     };
 
     const handleQuantityChange = (type) => {
-        setQuantity((prev) => (type === "increment" ? prev + 1 : prev - 1));
+        setQuantity((prev) => {
+            if (type === "increment") {
+                return prev < selectedSize.quantity ? prev + 1 : prev;
+            } else {
+                return prev > 1 ? prev - 1 : prev;
+            }
+        });
     };
 
     const handleAddToCart = () => {
-        const productVariant = selectedColor.variant_id; // Adjust as necessary to get the correct variant ID
-        console.log({ productVariant, quantity });
-        addToCart(productVariant, quantity);
+        const productVariant = selectedSize.variant_id;
+        addToCart(product.id, productVariant, quantity);
     };
 
     return (
@@ -56,31 +74,28 @@ const ProductDetails = ({ product }) => {
                 </div>
             </div>
 
-            {/* color */}
+            {/* Color Selection */}
             <div className="space-y-3 mt-4">
                 <h4 className="font-medium text-sm text-neutral-200">Colors</h4>
                 <div className="grid grid-cols-8 gap-3">
-                    {product?.variants?.map((variant, key) =>
-                        variant?.colors?.map((color) => (
-                            <span
-                                key={color?.id}
-                                //
-                                className={`w-7 h-7 rounded-full cursor-pointer ${
-                                    color?.id === selectedColor?.id
-                                        ? "border-4 border-black-400"
-                                        : ""
-                                } `}
-                                style={{ backgroundColor: color.color }}
-                                onClick={() => handleColorChange(color)}
-                            ></span>
-                        ))
-                    )}
+                    {product?.variants?.map((variant) => (
+                        <span
+                            key={variant.color}
+                            className={`w-7 h-7 rounded-full cursor-pointer ${
+                                variant.color === selectedColor.color
+                                    ? "border-4 border-black-400"
+                                    : ""
+                            } `}
+                            style={{ backgroundColor: variant.color }}
+                            onClick={() => handleColorChange(variant.color)}
+                        ></span>
+                    ))}
                 </div>
             </div>
 
             <hr className="w-full bg-neutral-300" />
 
-            {/* size */}
+            {/* Size Selection */}
             <div className="flex flex-col gap-3">
                 <div className="flex flex-col gap-8">
                     <div className="space-y-3">
@@ -88,16 +103,21 @@ const ProductDetails = ({ product }) => {
                             Sizes
                         </h4>
                         <div className="grid grid-cols-5 gap-3">
-                            {product.variants.map((variant) => (
+                            {selectedColor.sizes.map((size) => (
                                 <div
-                                    key={variant.size.id}
-                                    className="w-full h-12 border-[1px] border-neutral-50 flex justify-center items-center"
+                                    key={size.size_id}
+                                    className={`w-full h-12 border-[1px] flex justify-center items-center cursor-pointer ${
+                                        size.size_id === selectedSize.size_id
+                                            ? "border-magenta-500"
+                                            : "border-neutral-50"
+                                    }`}
+                                    onClick={() => handleSizeChange(size)}
                                 >
                                     <p
                                         className="font-poppins cursor-pointer text-wrap line-clamp-1"
-                                        title={variant.size.size}
+                                        title={size.size}
                                     >
-                                        {variant.size.size}
+                                        {size.size}
                                     </p>
                                 </div>
                             ))}
@@ -105,11 +125,15 @@ const ProductDetails = ({ product }) => {
                     </div>
 
                     <div>
-                        <div className=" flex p-4 gap-6 float-left items-center border-[1px] rounded-sm border-neutral-50">
+                        <div className="flex p-4 gap-6 float-left items-center border-[1px] rounded-sm border-neutral-50">
                             <Image
                                 alt="decrement"
                                 src={Icons.minus}
-                                className="cursor-pointer text-3xl"
+                                className={`cursor-pointer text-3xl ${
+                                    quantity === 1
+                                        ? "opacity-50 cursor-not-allowed"
+                                        : ""
+                                }`}
                                 onClick={() =>
                                     handleQuantityChange("decrement")
                                 }
@@ -118,9 +142,13 @@ const ProductDetails = ({ product }) => {
                                 {quantity}
                             </span>
                             <Image
-                                alt="decrement"
+                                alt="increment"
                                 src={Icons.plus}
-                                className="cursor-pointer"
+                                className={`cursor-pointer text-3xl ${
+                                    quantity >= selectedSize.quantity
+                                        ? "opacity-50 cursor-not-allowed"
+                                        : ""
+                                }`}
                                 onClick={() =>
                                     handleQuantityChange("increment")
                                 }
@@ -141,7 +169,7 @@ const ProductDetails = ({ product }) => {
                 <div className="bg-neutral-20 font-poppins p-4 rounded-sm">
                     <p>
                         This product requires an additional 2-3 days beyond our
-                        usual 4-7 days delivery time.
+                        usual 4-7 days delivery time.
                     </p>
                 </div>
             </div>
