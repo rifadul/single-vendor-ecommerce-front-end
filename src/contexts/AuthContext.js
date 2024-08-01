@@ -282,10 +282,11 @@ export const AuthProvider = ({ children }) => {
             });
             const data = await response.json();
             if (response.ok) {
-                setUser(data);
-                setCookie("user_info", JSON.stringify(data));
-                toast.success("Profile image updated successfully");
-                await getProfile();
+                setUser(data?.user);
+                setCookie("user_info", JSON.stringify(data?.user));
+                toast.success(
+                    data?.status || "Profile image updated successfully"
+                );
             } else {
                 toast.error(data.error || "Failed to update profile image");
                 throw new Error(data.error || "Failed to update profile image");

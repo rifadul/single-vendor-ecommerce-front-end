@@ -55,50 +55,36 @@ const MyAccountPage = () => {
 
     return (
         <div className="max-w-md mx-auto">
-            {/* <div className="flex flex-col items-center mb-6 relative">
-                <Image
-                    src={user?.image ? user?.image : Icons.profile_magenta}
-                    alt="Profile Picture"
-                    width={100}
-                    height={100}
-                    className="rounded-full object-cover border-2 border-red-700"
-                />
-                <button className="mt-2 text-sm text-blue-500 absolute top-0 bottom-0">
+            <div className="flex flex-col items-center mb-6">
+                <div className="relative">
                     <Image
-                        src={Icons.camera_input}
+                        src={user?.image ? user?.image : Icons.profile_magenta}
                         alt="Profile Picture"
-                        width={25}
-                        height={25}
+                        width={120}
+                        height={120}
                         className="rounded-full object-cover"
+                        style={{ width: "120px", height: "120px" }}
                     />
-                </button>
-            </div> */}
-
-            <div className="flex flex-col items-center mb-6 relative">
-                <Image
-                    src={user?.image ? user?.image : Icons.profile_magenta}
-                    alt="Profile Picture"
-                    width={100}
-                    height={100}
-                    className="rounded-full object-cover border-2 border-red-700"
-                />
-                <button
-                    className="absolute bottom-0 right-0 bg-white p-1 rounded-full"
-                    onClick={triggerFileInput}
-                >
-                    <Image
-                        src={Icons.camera_input}
-                        alt="Edit Profile Picture"
-                        width={25}
-                        height={25}
-                        className="rounded-full object-cover"
-                    />
-                </button>
+                    <button
+                        className="absolute bottom-0 right-0 bg-white p-1 rounded-full"
+                        onClick={triggerFileInput}
+                        style={{ transform: "translate(50%, 50%)" }}
+                    >
+                        <Image
+                            src={Icons.camera_input}
+                            alt="Edit Profile Picture"
+                            width={25}
+                            height={25}
+                            className="rounded-full object-cover"
+                        />
+                    </button>
+                </div>
                 <input
                     type="file"
                     ref={fileInputRef}
                     style={{ display: "none" }}
                     onChange={handleImageChange}
+                    accept="image/jpeg, image/jpg"
                 />
             </div>
 
