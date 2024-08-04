@@ -7,13 +7,13 @@ import { useCart } from "@/contexts/CartContext";
 import { Spin } from "antd";
 import CartTableHeading from "./CartTableHeading";
 import Link from "next/link";
-import { PRODUCTS_PATH } from "@/helpers/slug";
+import { CHECKOUT_PATH, PRODUCTS_PATH } from "@/helpers/slug";
 
 const MyCartPage = () => {
     const { cart, loading, applyCoupon } = useCart();
 
     return (
-        <div className="container mx-auto p-8">
+        <div className="container mx-auto">
             <Spin fullscreen spinning={loading} />
             <h2 className="font-semibold text-black-1000 text-xl mb-4">
                 Your cart items{" "}
@@ -55,9 +55,11 @@ const MyCartPage = () => {
                         coupon={cart?.coupon}
                     />
                     <CouponCode applyCoupon={applyCoupon} />
-                    <button className="bg-magenta-600 font-semibold text-white px-6 w-full py-4 rounded-sm">
-                        CHECKOUT
-                    </button>
+                    <Link href={CHECKOUT_PATH}>
+                        <button className="bg-magenta-600 font-semibold text-white px-6 w-full py-4 rounded-sm">
+                            CHECKOUT
+                        </button>
+                    </Link>
                 </div>
             </div>
         </div>
