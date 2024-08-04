@@ -3,7 +3,7 @@ import { Rate } from "antd";
 import Image from "next/image";
 import Icons from "../../../public/assets/Icons";
 import Buttons from "../Buttons";
-import { useCart } from "@/contexts/CartProvider";
+import { useCart } from "@/contexts/CartContext";
 
 const ProductDetails = ({ product }) => {
     const { addToCart } = useCart();
@@ -46,7 +46,7 @@ const ProductDetails = ({ product }) => {
 
     const handleAddToCart = () => {
         const productVariant = selectedSize.variant_id;
-        addToCart(product.id, productVariant, quantity);
+        addToCart(productVariant, quantity);
     };
 
     return (

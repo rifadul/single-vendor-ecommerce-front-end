@@ -1,6 +1,6 @@
 import React from "react";
 import { CategoriesProvider } from "./CategoriesContext";
-import { CartProvider } from "./CartProvider";
+import { CartProvider } from "./CartContext";
 import { AuthProvider } from "./AuthContext";
 import { WishlistProvider } from "./WishListContext";
 import { AddressProvider } from "./AddressContext";
