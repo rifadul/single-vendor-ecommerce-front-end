@@ -1,7 +1,8 @@
+import OrderSuccessPage from "@/sections/OrderSuccess/OrderSuccessPage";
 import React from "react";
 
-function OrderSuccessPage() {
-    return <div>OrderSuccessPage</div>;
+function OrderSuccess() {
+    return <OrderSuccessPage />;
 }
 
-export default OrderSuccessPage;
+export default OrderSuccess;

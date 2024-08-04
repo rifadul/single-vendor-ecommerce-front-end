@@ -33,11 +33,25 @@ const MyCartPage = () => {
                                 ))}
                             </>
                         )}
-                        <Link href={PRODUCTS_PATH}>
-                            <button className="bg-magenta-600 text-center font-semibold text-white px-6 py-4 rounded-sm my-4">
-                                CONTINUE SHOPPING
-                            </button>
-                        </Link>
+                        <div
+                            className={`flex items-center flex-col ${
+                                cart?.items?.length > 0
+                                    ? "justify-end"
+                                    : "justify-center"
+                            } `}
+                        >
+                            {cart?.items?.length === 0 && (
+                                <div className="text-neutral-300 text-lg">
+                                    No items added
+                                </div>
+                            )}
+
+                            <Link href={PRODUCTS_PATH}>
+                                <button className="bg-magenta-600 text-center font-semibold text-white px-6 py-4 rounded-sm my-4">
+                                    CONTINUE SHOPPING
+                                </button>
+                            </Link>
+                        </div>
                     </div>
                 </div>
 
