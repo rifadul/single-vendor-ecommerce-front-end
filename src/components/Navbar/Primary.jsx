@@ -16,7 +16,6 @@ function Primary() {
     const { isLoggedIn } = useAuth();
     const { wishLists } = useWishlist();
     const [open, setOpen] = useState(false);
-    console.log(wishLists);
 
     const showDrawer = () => {
         setOpen(true);

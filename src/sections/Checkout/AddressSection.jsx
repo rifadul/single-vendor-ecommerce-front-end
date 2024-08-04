@@ -4,19 +4,20 @@ import AddressItem from "./AddressItem";
 
 const AddressSection = ({
     addresses,
-    selectedAddress,
-    setSelectedAddress,
-    billingAddress,
-    setBillingAddress,
+    selectedDeliveryAddress,
+    setSelectedDeliveryAddress,
+    deliveryAddressIsBillingAddress,
+    setDeliveryAddressIsBillingAddress,
     selectedBillingAddress,
     setSelectedBillingAddress,
 }) => {
     const handleAddressChange = (event) => {
-        setSelectedAddress(event.target.id);
+        console.log("--event.target.id", event.target.id);
+        setSelectedDeliveryAddress(event.target.id);
     };
 
     const handleBillingAddressChange = (checked) => {
-        setBillingAddress(checked);
+        setDeliveryAddressIsBillingAddress(checked);
     };
 
     const handleBillingAddressSelect = (event) => {
@@ -35,7 +36,7 @@ const AddressSection = ({
                             <AddressItem
                                 key={key}
                                 address={address}
-                                selectedAddress={selectedAddress}
+                                selectedAddress={selectedDeliveryAddress}
                                 handleAddressChange={handleAddressChange}
                             />
                         ))}
@@ -53,12 +54,12 @@ const AddressSection = ({
                             Same as delivery address{" "}
                         </p>
                         <Switch
-                            checked={billingAddress}
+                            checked={deliveryAddressIsBillingAddress}
                             defaultChecked
                             onChange={handleBillingAddressChange}
                         />
                     </div>
-                    {!billingAddress && (
+                    {!deliveryAddressIsBillingAddress && (
                         <div className="max-h-96 overflow-y-scroll scrollbar-hide">
                             {addresses.map((address, key) => (
                                 <AddressItem

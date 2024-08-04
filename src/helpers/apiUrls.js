@@ -29,3 +29,5 @@ export const VERIFY_OTP_API_URL = `${BASE_URL}/users/verify_otp/`;
 export const WISHLIST_API_URL = `${BASE_URL}/wishlist/`;
 export const ADDRESS_API_URL = `${BASE_URL}/address/`;
 export const APPLY_COUPON_API_URL = `${BASE_URL}/coupons/apply-coupon/`;
+export const ORDER_API_URL = `${BASE_URL}/orders/`;
+export const SHIPPING_METHOD_API_URL = `${BASE_URL}/shipping-methods/`;

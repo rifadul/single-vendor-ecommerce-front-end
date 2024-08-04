@@ -4,16 +4,19 @@ import { CartProvider } from "./CartContext";
 import { AuthProvider } from "./AuthContext";
 import { WishlistProvider } from "./WishListContext";
 import { AddressProvider } from "./AddressContext";
+import { OrderProvider } from "./OrderContext";
 
 function Providers({ children }) {
     return (
         <CategoriesProvider>
             <AuthProvider>
-                <WishlistProvider>
-                    <AddressProvider>
-                        <CartProvider>{children}</CartProvider>
-                    </AddressProvider>
-                </WishlistProvider>
+                <CartProvider>
+                    <WishlistProvider>
+                        <AddressProvider>
+                            <OrderProvider>{children}</OrderProvider>
+                        </AddressProvider>
+                    </WishlistProvider>
+                </CartProvider>
             </AuthProvider>
         </CategoriesProvider>
     );

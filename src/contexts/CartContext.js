@@ -43,7 +43,6 @@ export const CartProvider = ({ children }) => {
             }
 
             const data = await response.json();
-            console.log("data", data);
             setCart(data);
         } catch (err) {
             setError(err.message);
