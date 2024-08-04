@@ -8,7 +8,11 @@ const RadioGroup = ({ items, selectedItem, handleChange, title }) => {
             </p>
             <div className="px-4 py-6">
                 {items.map((item, key) => (
-                    <div className="flex items-center py-3 gap-2" key={key}>
+                    <label
+                        htmlFor={item?.id}
+                        className="flex items-center py-3 gap-2 cursor-pointer"
+                        key={key}
+                    >
                         <input
                             type="radio"
                             id={item?.id}
@@ -26,7 +30,7 @@ const RadioGroup = ({ items, selectedItem, handleChange, title }) => {
                                 )}
                             </p>
                         </div>
-                    </div>
+                    </label>
                 ))}
             </div>
         </div>
