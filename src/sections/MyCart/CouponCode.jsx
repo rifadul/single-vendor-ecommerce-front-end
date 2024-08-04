@@ -22,6 +22,7 @@ const CouponCode = ({ applyCoupon }) => {
                     placeholder="e.g. paooli40"
                 />
                 <button
+                    disabled={code === ""}
                     onClick={handleApply}
                     className="bg-magenta-600 text-white px-4 py-2 rounded-r font-medium"
                 >

@@ -16,6 +16,7 @@ const OrderContext = createContext(null);
 export const OrderProvider = ({ children }) => {
     const { token } = useAuth();
     const [orders, setOrders] = useState([]);
+    const [orderDetails, setOrderDetails] = useState([]);
     const [shippingMethods, setShippingMethods] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
@@ -40,6 +41,28 @@ export const OrderProvider = ({ children }) => {
             setOrders(data.results);
         } catch (err) {
             setError(err.message);
+            toast.error(err.message);
+        } finally {
+            setLoading(false);
+        }
+    };
+    const fetchOrderDetails = async (orderId) => {
+        setLoading(true);
+        setError(null);
+        try {
+            const response = await fetch(`${ORDER_API_URL}${orderId}/`, {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`,
+                },
+            });
+            if (!response.ok) {
+                throw new Error("Failed to fetch orders");
+            }
+            const data = await response.json();
+            setOrderDetails(data);
+        } catch (err) {
             toast.error(err.message);
         } finally {
             setLoading(false);
@@ -118,7 +141,9 @@ export const OrderProvider = ({ children }) => {
                 loading,
                 error,
                 fetchOrders,
+                orderDetails,
                 fetchShippingMethods,
+                fetchOrderDetails,
                 placeOrder,
             }}
         >
