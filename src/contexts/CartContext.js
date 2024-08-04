@@ -10,6 +10,7 @@ import { toast } from "react-toastify";
 import { useAuth } from "@/contexts/AuthContext";
 import {
     ADD_TO_CART_API_URL,
+    APPLY_COUPON_API_URL,
     CART_API_URL,
     MY_CART_API_URL,
 } from "@/helpers/apiUrls";
@@ -137,13 +138,57 @@ export const CartProvider = ({ children }) => {
                 },
             });
 
+            if (response.status === 204) {
+                // No content response from the server
+                toast.success("Cart item deleted successfully.");
+                fetchCart(); // Refresh the cart data
+            } else {
+                // Handle other responses that include a JSON body
+                const data = await response.json();
+
+                if (!response.ok) {
+                    throw new Error(
+                        data.message || "Failed to delete cart item"
+                    );
+                }
+
+                toast.success(
+                    data.message || "Cart item deleted successfully."
+                );
+                fetchCart(); // Refresh the cart data
+            }
+        } catch (err) {
+            setError(err.message);
+            toast.error(err.message);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const applyCoupon = async (couponCode) => {
+        if (!isLoggedIn || !token) return;
+
+        setLoading(true);
+        setError(null);
+        try {
+            const response = await fetch(APPLY_COUPON_API_URL, {
+                method: "POST",
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    code: couponCode,
+                }),
+            });
+
             const data = await response.json();
 
             if (!response.ok) {
-                throw new Error(data.message || "Failed to delete cart item");
+                throw new Error(data.message || "Failed to apply coupon");
             }
 
-            toast.success(data.message || "Cart item deleted successfully.");
+            toast.success(data.message || "Coupon applied successfully.");
             fetchCart(); // Refresh the cart data
         } catch (err) {
             setError(err.message);
@@ -161,6 +206,7 @@ export const CartProvider = ({ children }) => {
         addToCart,
         updateCartItem,
         removeCartItem,
+        applyCoupon,
     };
 
     return (

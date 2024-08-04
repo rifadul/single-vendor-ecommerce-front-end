@@ -22,7 +22,7 @@ const OutlineCartBtn = ({ className, ...rest }) => {
                 />
                 <p className="text-white text-sm font-semibold">My Cart</p>
                 <div className="px-2 py-0.5 bg-white rounded-full text-sm font-semibold text-neutral-700">
-                    {/* {cart?.results[0]?.items?.length} */}
+                    {cart?.items?.length}
                 </div>
             </div>
             <div className={`block relative md:hidden`} {...rest}>
@@ -33,7 +33,7 @@ const OutlineCartBtn = ({ className, ...rest }) => {
                     height={24}
                 />
                 <div className="px-1 absolute -top-2.5 left-5 bg-white rounded-full text-xs font-semibold text-neutral-700">
-                    0
+                    {cart?.items?.length}
                 </div>
             </div>
         </Link>

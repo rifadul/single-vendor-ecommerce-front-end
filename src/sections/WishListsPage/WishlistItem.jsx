@@ -3,14 +3,16 @@ import Icons from "../../../public/assets/Icons";
 import Image from "next/image";
 import { Spin } from "antd";
 import { useWishlist } from "@/contexts/WishListContext";
+import { useCart } from "@/contexts/CartContext";
 
 const WishlistItem = ({ item }) => {
     const { product, id } = item;
-    const { deleteWishlistItem, loading } = useWishlist();
+    const { deleteWishlistItem, loading: wishlistLoading } = useWishlist();
+    const { addToCart, loading: cartLoading } = useCart();
 
     return (
         <div className="flex items-center justify-between bg-white p-4 rounded-lg shadow-md">
-            <Spin fullscreen spinning={loading} />
+            <Spin fullscreen spinning={wishlistLoading || cartLoading} />
             <div className="flex items-center gap-4 flex-1">
                 <div className="flex-shrink-0">
                     <Image
@@ -31,7 +33,11 @@ const WishlistItem = ({ item }) => {
                 </div>
             </div>
             <div className="flex flex-col items-center justify-center space-y-2 ml-4">
-                <button className="p-2" onClick={() => deleteWishlistItem(id)}>
+                <button
+                    title="Delete"
+                    className="p-2"
+                    onClick={() => deleteWishlistItem(id)}
+                >
                     <Image
                         alt="delete icon"
                         src={Icons.trash}
@@ -39,7 +45,13 @@ const WishlistItem = ({ item }) => {
                         height={24}
                     />
                 </button>
-                <button className="p-2">
+                <button
+                    className="p-2"
+                    title="Add to cart"
+                    onClick={() =>
+                        addToCart(product?.variants[0]?.sizes[0]?.variant_id, 1)
+                    }
+                >
                     <Image
                         alt="add to cart icon"
                         src={Icons.add_to_Cart}
