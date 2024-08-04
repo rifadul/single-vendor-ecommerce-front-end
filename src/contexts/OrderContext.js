@@ -87,8 +87,6 @@ export const OrderProvider = ({ children }) => {
                 throw new Error(errorData.message || "Failed to place order");
             }
             const data = await response.json();
-
-            console.log("data", data);
             toast.success(data?.message || "Order placed successfully");
             setOrders((prev) => [...prev, data]);
             fetchCart();
