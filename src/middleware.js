@@ -31,13 +31,13 @@ export const config = {
         // "/place-order",
         // "/change-phone",
         // "/change-phone-verification",
-        // "/profile/my-account",
-        // "/profile/active-orders",
-        // "/profile/my-address",
+        "/profile/my-account",
+        "/profile/active-orders",
+        "/profile/my-address",
         "/profile/wishlists",
         // "/profile/credit-balance",
         // "/profile/order-history/:orderId*",
-        // "/my-cart",
+        "/my-cart",
         // // "/products/product-details/:slug*", // example
     ],
 };

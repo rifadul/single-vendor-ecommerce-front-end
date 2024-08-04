@@ -4,16 +4,10 @@ import Icons from "../../../public/assets/Icons";
 import { Modal } from "antd";
 import AddressForm from "./AddressForm";
 import { useAddress } from "@/contexts/AddressContext";
+import AddressInfo from "./AddressInfo";
 
 const AddressItem = ({ address }) => {
-    const {
-        addresses,
-        loading,
-        error,
-        fetchAddresses,
-        deleteAddress,
-        updateAddress,
-    } = useAddress();
+    const { deleteAddress, updateAddress } = useAddress();
     const [modalOpen, setModalOpen] = useState(false);
 
     const handleDelete = () => {
@@ -40,22 +34,7 @@ const AddressItem = ({ address }) => {
                     className="text-magenta-500 accent-magenta-600"
                     readOnly
                 />
-                <div className="ml-4">
-                    <div className="flex items-center">
-                        <h3 className="text-base font-poppins font-medium text-black-800">
-                            {address.name}
-                        </h3>
-                        {address.defaultAddress && (
-                            <span className="ml-2 px-3 py-2 text-xs font-medium bg-neutral-20 text-neutral-300 rounded">
-                                Default
-                            </span>
-                        )}
-                    </div>
-                    <p className="text-neutral-300  font-medium">
-                        {address.address}, {address.city}, {address.state},{" "}
-                        {address.zipcode}, {address.country}
-                    </p>
-                </div>
+                <AddressInfo address={address} />
             </div>
             <div className="flex space-x-2 pl-2 border-l">
                 <button className="p-2" onClick={() => setModalOpen(true)}>

@@ -9,10 +9,12 @@ import Link from "next/link";
 import { MY_ACCOUNT_PATH, WISHLIST_PATH, SIGN_IN_PATH } from "@/helpers/slug";
 import CategoryMenu from "./CategoryMenu";
 import { useAuth } from "@/contexts/AuthContext";
+import { useWishlist } from "@/contexts/WishListContext";
 
 function Primary() {
     const router = useRouter();
-    const { isLoggedIn, logout } = useAuth();
+    const { isLoggedIn } = useAuth();
+    const { wishLists } = useWishlist();
     const [open, setOpen] = useState(false);
 
     const showDrawer = () => {
@@ -72,15 +74,20 @@ function Primary() {
                 <div className="flex sm:gap-6 gap-3 items-center">
                     <div className="flex sm:gap-4 gap-3"></div>
                     {isLoggedIn && (
-                        <Link href={`${WISHLIST_PATH}`}>
-                            <Image
-                                alt={"favorite"}
-                                height={1000}
-                                width={1000}
-                                src={Icons.heart}
-                                className="w-6 h-6 md:w-8 md:h-8"
-                            />
-                        </Link>
+                        <div className="relative">
+                            <Link href={WISHLIST_PATH}>
+                                <Image
+                                    alt="favorite"
+                                    height={1000}
+                                    width={1000}
+                                    src={Icons.heart}
+                                    className="w-6 h-6 md:w-8 md:h-8"
+                                />
+                            </Link>
+                            <span className="absolute top-0 right-0 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-neutral-700 bg-white rounded-full transform translate-x-1/2 -translate-y-1/2">
+                                {wishLists.length || 0}
+                            </span>
+                        </div>
                     )}
                     {isLoggedIn ? (
                         <Link href={`${MY_ACCOUNT_PATH}`}>

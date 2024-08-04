@@ -3,14 +3,15 @@ import { useState } from "react";
 import Image from "next/image";
 import { HeartOutlined, HeartFilled } from "@ant-design/icons";
 import Icons from "../../../public/assets/Icons";
-import { Modal } from "antd";
+import { Modal, Spin } from "antd";
 import ImageCarousel from "./ImageCarousel";
 import ProductDetails from "./ProductDetails";
 import { useWishlist } from "@/contexts/WishListContext";
 
 const ProductCard = ({ product }) => {
     const [isModalVisible, setIsModalVisible] = useState(false);
-    const { wishLists, addWishlistItem, deleteWishlistItem } = useWishlist();
+    const { wishLists, addWishlistItem, deleteWishlistItem, loading } =
+        useWishlist();
 
     const showModal = () => {
         setIsModalVisible(true);
@@ -37,6 +38,7 @@ const ProductCard = ({ product }) => {
 
     return (
         <div className="relative rounded flex flex-col gap-3">
+            <Spin fullscreen spinning={loading} />
             {/* Favorite Icon */}
             <div className="absolute top-2 right-2 z-10">
                 {isProductInWishlist() ? (

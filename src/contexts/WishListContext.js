@@ -49,6 +49,7 @@ export const WishlistProvider = ({ children }) => {
     }, [isLoggedIn, fetchWishlist]);
 
     const deleteWishlistItem = async (itemId) => {
+        setLoading(true);
         setError(null);
         setSuccess(null);
         try {
@@ -67,10 +68,13 @@ export const WishlistProvider = ({ children }) => {
         } catch (err) {
             setError(err.message);
             toast.error(err.message);
+        } finally {
+            setLoading(false);
         }
     };
 
     const addWishlistItem = async (productId) => {
+        setLoading(true);
         setError(null);
         setSuccess(null);
         try {
@@ -94,6 +98,8 @@ export const WishlistProvider = ({ children }) => {
         } catch (err) {
             setError(err.message);
             toast.error(err.message);
+        } finally {
+            setLoading(false);
         }
     };
 
