@@ -5,6 +5,10 @@ import Image from "next/image";
 import Icons from "../../../public/assets/Icons";
 import Buttons from "../Buttons";
 import { useCart } from "@/contexts/CartContext";
+import Link from "next/link";
+import { PRODUCT_DETAILS_PATH, PRODUCTS_PATH } from "@/helpers/slug";
+import { usePathname } from "next/navigation";
+// import { useRouter } from "next/navigation";
 
 const ProductDetails = ({ product }) => {
     const { addToCart } = useCart();
@@ -13,6 +17,7 @@ const ProductDetails = ({ product }) => {
         product.variants[0].sizes[0]
     );
     const [quantity, setQuantity] = useState(1);
+    const pathname = usePathname();
 
     useEffect(() => {
         setSelectedSize(selectedColor.sizes[0]);
@@ -67,7 +72,7 @@ const ProductDetails = ({ product }) => {
                         ${product.price}
                     </span>
                     <span className="text-xl font-semibold text-black-1000 font-poppins">
-                        ${product.discount_price}
+                        {/* ${product.discount_price} */}
                     </span>
                     <span className="text-base font-medium text-error-500 font-poppins">
                         25% off
@@ -157,9 +162,13 @@ const ProductDetails = ({ product }) => {
                         </div>
                     </div>
 
-                    <button className="border border-black-1000 py-4 text-base font-semibold font-poppins">
-                        View Details
-                    </button>
+                    {!pathname.includes(PRODUCT_DETAILS_PATH) && (
+                        <Link href={`${PRODUCT_DETAILS_PATH}/${product?.id}`}>
+                            <button className="border border-black-1000 py-4 text-base font-semibold font-poppins w-full">
+                                View Details
+                            </button>
+                        </Link>
+                    )}
                 </div>
 
                 <Buttons.PrimaryBtn

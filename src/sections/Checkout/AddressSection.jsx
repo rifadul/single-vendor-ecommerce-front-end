@@ -12,7 +12,6 @@ const AddressSection = ({
     setSelectedBillingAddress,
 }) => {
     const handleAddressChange = (event) => {
-        console.log("--event.target.id", event.target.id);
         setSelectedDeliveryAddress(event.target.id);
     };
 
