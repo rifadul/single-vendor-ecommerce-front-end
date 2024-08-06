@@ -1,3 +1,4 @@
+"use client";
 import { useState, useRef, useEffect } from "react";
 import { Carousel, Image } from "antd";
 import { LeftOutlined, RightOutlined } from "@ant-design/icons";
@@ -23,7 +24,7 @@ const ImageCarousel = ({ images }) => {
     };
 
     return (
-        <div className="image-carousel relative">
+        <div className="image-carousel">
             <Carousel
                 afterChange={(current) => setCurrentIndex(current)}
                 dots={false}
@@ -35,7 +36,8 @@ const ImageCarousel = ({ images }) => {
                         <Image
                             src={img.image}
                             alt={`Product ${index}`}
-                            className="w-full h-96 object-contain cursor-pointer"
+                            height={"600px"}
+                            // className="w-full h-96 object-contain cursor-pointer"
                         />
                     </div>
                 ))}
