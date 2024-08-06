@@ -2,13 +2,13 @@ import { Divider } from "antd";
 import React from "react";
 
 const OrderSummary = ({
-    totalItems,
-    subtotal,
-    tax,
-    shipping,
-    discount,
-    total,
-    coupon,
+    totalItems = 0,
+    subtotal = 0,
+    tax = 0,
+    shipping = 0,
+    discount = 0,
+    total = 0,
+    coupon = 0,
 }) => {
     return (
         <div className="border py-6 px-4 flex flex-col gap-4">

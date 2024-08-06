@@ -7,6 +7,8 @@ import { Modal, Spin } from "antd";
 import ImageCarousel from "./ImageCarousel";
 import ProductDetails from "./ProductDetails";
 import { useWishlist } from "@/contexts/WishListContext";
+import Link from "next/link";
+import { PRODUCT_DETAILS_PATH, PRODUCTS_PATH } from "@/helpers/slug";
 
 const ProductCard = ({ product }) => {
     const [isModalVisible, setIsModalVisible] = useState(false);
@@ -79,12 +81,14 @@ const ProductCard = ({ product }) => {
 
             <div className="space-y-2">
                 {/* Product Name */}
-                <h3
-                    title={product?.name}
-                    className="text-base text-black-1000 font-medium mt-2 line-clamp-1"
-                >
-                    {product?.name}
-                </h3>
+                <Link href={`${PRODUCT_DETAILS_PATH}/${product?.id}`}>
+                    <h3
+                        title={product?.name}
+                        className="text-base text-black-1000 font-medium mt-2 line-clamp-1"
+                    >
+                        {product?.name}
+                    </h3>
+                </Link>
 
                 {/* Product Price */}
                 <p className="text-black-1000 text-base">${product?.price}</p>

@@ -14,6 +14,8 @@ import {
     CART_API_URL,
     MY_CART_API_URL,
 } from "@/helpers/apiUrls";
+import { SIGN_IN_PATH } from "@/helpers/slug";
+import { useRouter, usePathname } from "next/navigation";
 
 const CartContext = createContext(null);
 
@@ -22,6 +24,8 @@ export const CartProvider = ({ children }) => {
     const [cart, setCart] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
+    const router = useRouter();
+    const pathname = usePathname();
 
     const fetchCart = useCallback(async () => {
         if (!isLoggedIn || !token) return;
@@ -56,8 +60,16 @@ export const CartProvider = ({ children }) => {
         fetchCart();
     }, [fetchCart]);
 
+    const handleRedirectToLogin = () => {
+        toast.warn("You need to be logged in to perform this action.");
+        router.push(`${SIGN_IN_PATH}?redirect=${encodeURIComponent(pathname)}`);
+    };
+
     const addToCart = async (variantId, quantity) => {
-        if (!isLoggedIn || !token) return;
+        if (!isLoggedIn || !token) {
+            handleRedirectToLogin();
+            return;
+        }
 
         setLoading(true);
         setError(null);
@@ -93,7 +105,10 @@ export const CartProvider = ({ children }) => {
     };
 
     const updateCartItem = async (itemId, quantity) => {
-        if (!isLoggedIn || !token) return;
+        if (!isLoggedIn || !token) {
+            handleRedirectToLogin();
+            return;
+        }
 
         setLoading(true);
         setError(null);
@@ -124,7 +139,10 @@ export const CartProvider = ({ children }) => {
     };
 
     const removeCartItem = async (itemId) => {
-        if (!isLoggedIn || !token) return;
+        if (!isLoggedIn || !token) {
+            handleRedirectToLogin();
+            return;
+        }
 
         setLoading(true);
         setError(null);
@@ -165,7 +183,10 @@ export const CartProvider = ({ children }) => {
     };
 
     const applyCoupon = async (couponCode) => {
-        if (!isLoggedIn || !token) return;
+        if (!isLoggedIn || !token) {
+            handleRedirectToLogin();
+            return;
+        }
 
         setLoading(true);
         setError(null);
