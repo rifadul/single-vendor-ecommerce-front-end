@@ -132,3 +132,71 @@
 .image-carousel .thumbnail-wrapper .thumbnail:hover {
   border-color: #ff1493;
 }
+
+
+
+/* for pagination */
+/* .pagination {
+  display: flex;
+  list-style: none;
+  gap: 0.5rem;
+  padding: 0;
+  margin: 1rem 0;
+  justify-content: center;
+}
+
+.pagination__link {
+  padding: 0.5rem 1rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.pagination__link:hover {
+  background-color: #f0f0f0;
+}
+
+.pagination__link--active {
+  background-color: #0070f3;
+  color: #fff;
+  border-color: #0070f3;
+}
+
+.pagination__link--disabled {
+  color: #ccc;
+  pointer-events: none;
+} */
+
+.pagination {
+  display: flex;
+  list-style: none;
+  gap: 0.5rem;
+  padding: 0;
+  margin: 1rem 0;
+  justify-content: center;
+}
+
+.pagination__link {
+  padding: 0.5rem 1rem; /* Adjusted padding for better look */
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.pagination__link:hover {
+  background-color: #f0f0f0;
+}
+
+.pagination__link--active {
+  background-color: #0070f3;
+  color: #fff;
+  border-color: #0070f3;
+}
+
+.pagination__link--disabled {
+  color: #ccc;
+  pointer-events: none;
+}
+
