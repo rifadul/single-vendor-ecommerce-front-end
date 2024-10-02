@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { Collapse, Checkbox, Slider, InputNumber, Button } from "antd";
+import { Collapse, Checkbox, Slider, InputNumber, Button, Radio } from "antd";
 import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
 import Icons from "../../../public/assets/Icons";
@@ -28,12 +28,17 @@ const FilterSidebar = () => {
         Number(searchParams.get("min_price")) || 0,
         Number(searchParams.get("max_price")) || 0,
     ];
+    const initialAvailability = searchParams.get("in_stock") || "";
+    const initialSortBy = searchParams.get("ordering") || "";
 
     const [selectedCategories, setSelectedCategories] =
         useState(initialCategories);
     const [selectedColors, setSelectedColors] = useState(initialColors);
     const [selectedPriceRange, setSelectedPriceRange] =
         useState(initialPriceRange);
+    const [selectedAvailability, setSelectedAvailability] =
+        useState(initialAvailability);
+    const [selectedSortBy, setSelectedSortBy] = useState(initialSortBy);
 
     // Fetch Colors using fetch directly
     useEffect(() => {
@@ -54,7 +59,7 @@ const FilterSidebar = () => {
                     }
                     return acc;
                 }, []);
-                setColors(uniqueColors); // Access the 'data' property
+                setColors(uniqueColors);
             } catch (error) {
                 console.error("Failed to fetch colors:", error);
             } finally {
@@ -85,7 +90,6 @@ const FilterSidebar = () => {
             }
         };
 
-        // Call fetchPriceRange whenever searchParams changes
         fetchPriceRange();
     }, [searchParams]);
 
@@ -113,6 +117,18 @@ const FilterSidebar = () => {
             params.delete("max_price");
         }
 
+        if (filters.availability !== "") {
+            params.set("in_stock", filters.availability);
+        } else {
+            params.delete("in_stock");
+        }
+
+        if (filters.sortBy) {
+            params.set("ordering", filters.sortBy);
+        } else {
+            params.delete("ordering");
+        }
+
         router.replace(`?${params.toString()}`);
         console.log("Updated filters:", filters); // Console log after filters are updated
     };
@@ -124,6 +140,8 @@ const FilterSidebar = () => {
             category: values,
             color: selectedColors,
             price: selectedPriceRange,
+            availability: selectedAvailability,
+            sortBy: selectedSortBy,
         });
     };
 
@@ -133,6 +151,8 @@ const FilterSidebar = () => {
             category: selectedCategories,
             color: values,
             price: selectedPriceRange,
+            availability: selectedAvailability,
+            sortBy: selectedSortBy,
         });
     };
 
@@ -142,6 +162,31 @@ const FilterSidebar = () => {
             category: selectedCategories,
             color: selectedColors,
             price: value,
+            availability: selectedAvailability,
+            sortBy: selectedSortBy,
+        });
+    };
+
+    const handleAvailabilityChange = (e) => {
+        console.log("e.target.value", e.target.value);
+        setSelectedAvailability(e.target.value);
+        updateUrlParams({
+            category: selectedCategories,
+            color: selectedColors,
+            price: selectedPriceRange,
+            availability: e.target.value,
+            sortBy: selectedSortBy,
+        });
+    };
+
+    const handleSortByChange = (e) => {
+        setSelectedSortBy(e.target.value);
+        updateUrlParams({
+            category: selectedCategories,
+            color: selectedColors,
+            price: selectedPriceRange,
+            availability: selectedAvailability,
+            sortBy: e.target.value,
         });
     };
 
@@ -174,6 +219,8 @@ const FilterSidebar = () => {
         setSelectedCategories([]);
         setSelectedColors([]);
         setSelectedPriceRange([priceRange[0], priceRange[1]]); // Reset to initial values
+        setSelectedAvailability("");
+        setSelectedSortBy("");
 
         router.replace(window.location.pathname);
     };
@@ -201,7 +248,13 @@ const FilterSidebar = () => {
             <div className="py-3">
                 <Collapse
                     ghost
-                    defaultActiveKey={["category", "price", "color"]}
+                    defaultActiveKey={[
+                        "category",
+                        "price",
+                        "color",
+                        "availability",
+                        "sortBy",
+                    ]}
                     bordered={false}
                     className="filter-collapse font-poppins"
                     expandIconPosition="end"
@@ -228,6 +281,64 @@ const FilterSidebar = () => {
                         >
                             {renderCategoryTree(filteredCategories)}
                         </Checkbox.Group>
+                    </Collapse.Panel>
+
+                    {/* Sort By Filter */}
+                    <Collapse.Panel
+                        header="Sort By"
+                        key="sortBy"
+                        className="filter-panel"
+                    >
+                        <Radio.Group
+                            className="flex flex-col"
+                            value={selectedSortBy}
+                            onChange={handleSortByChange}
+                        >
+                            <Radio
+                                value="price"
+                                className="font-poppins filter-option-style"
+                            >
+                                Price
+                            </Radio>
+                            <Radio
+                                value="popularity"
+                                className="font-poppins filter-option-style"
+                            >
+                                Popularity
+                            </Radio>
+                            <Radio
+                                value="rating"
+                                className="font-poppins filter-option-style"
+                            >
+                                Rating
+                            </Radio>
+                        </Radio.Group>
+                    </Collapse.Panel>
+
+                    {/* Availability Filter */}
+                    <Collapse.Panel
+                        header="Availability"
+                        key="availability"
+                        className="filter-panel"
+                    >
+                        <Radio.Group
+                            className="flex flex-col"
+                            value={selectedAvailability}
+                            onChange={handleAvailabilityChange}
+                        >
+                            <Radio
+                                value="true"
+                                className="font-poppins filter-option-style"
+                            >
+                                In Stock
+                            </Radio>
+                            <Radio
+                                value="false"
+                                className="font-poppins filter-option-style"
+                            >
+                                Out of Stock
+                            </Radio>
+                        </Radio.Group>
                     </Collapse.Panel>
 
                     {/* Price Filter */}
