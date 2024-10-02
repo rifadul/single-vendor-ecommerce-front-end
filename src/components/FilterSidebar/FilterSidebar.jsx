@@ -234,13 +234,12 @@ const FilterSidebar = () => {
                 <h2 className="text-xl font-semibold hidden lg:block">
                     Filter
                 </h2>
-                <Button
-                    type="link"
+                <p
+                    className="text-red-500 hover:text-red-700 cursor-pointer"
                     onClick={clearAllFilters}
-                    className="text-red-500 hover:text-red-700"
                 >
                     Clear All
-                </Button>
+                </p>
             </div>
 
             <div className="py-3">
