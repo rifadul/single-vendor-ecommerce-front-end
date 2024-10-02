@@ -25,26 +25,6 @@ const filterConfig = [
             console.log("Availability changed:", checkedValues);
         },
     },
-    {
-        key: "3",
-        label: "Price",
-        type: "range",
-        onChange: (value) => {
-            console.log("Price range changed:", value);
-        },
-    },
-    {
-        key: "4",
-        label: "Color",
-        type: "checkbox",
-        options: Array.from({ length: 10 }, (_, index) => ({
-            value: `color${index}`,
-            label: `Color ${index + 1}`,
-        })),
-        onChange: (checkedValues) => {
-            console.log("Color changed:", checkedValues);
-        },
-    },
 ];
 
 export default filterConfig;

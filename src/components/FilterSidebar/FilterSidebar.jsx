@@ -1,108 +1,93 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Collapse, Checkbox, Slider, InputNumber, Button } from "antd";
 import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
 import Icons from "../../../public/assets/Icons";
-
-// Static Data
-const staticCategories = [
-    {
-        id: "6c82805f-0870-44d2-bb8e-8a918d7b7f70",
-        name: "Shirt",
-        slug: "shirt",
-        parent: "83b1db32-cc68-4531-8e05-bec3916788c5",
-        subcategories: [],
-    },
-    {
-        id: "61aaa6f5-90c7-45be-aa99-844daa6f4514",
-        name: "Computer",
-        slug: "computer",
-        parent: null,
-        subcategories: [],
-    },
-    {
-        id: "f47e8710-cfed-4685-af22-32e0df629dcd",
-        name: "Short Panjabi",
-        slug: "short-panjabi",
-        parent: "b0ec08ab-9b15-409c-9c14-d4d30e1bc438",
-        subcategories: [],
-    },
-    {
-        id: "b0ec08ab-9b15-409c-9c14-d4d30e1bc438",
-        name: "Panjabi",
-        slug: "panjabi",
-        parent: "83b1db32-cc68-4531-8e05-bec3916788c5",
-        subcategories: [
-            {
-                id: "f47e8710-cfed-4685-af22-32e0df629dcd",
-                name: "Short Panjabi",
-                slug: "short-panjabi",
-                parent: "b0ec08ab-9b15-409c-9c14-d4d30e1bc438",
-                subcategories: [],
-            },
-        ],
-    },
-    {
-        id: "83b1db32-cc68-4531-8e05-bec3916788c5",
-        name: "Men",
-        slug: "men",
-        parent: null,
-        subcategories: [
-            {
-                id: "6c82805f-0870-44d2-bb8e-8a918d7b7f70",
-                name: "Shirt",
-                slug: "shirt",
-                parent: "83b1db32-cc68-4531-8e05-bec3916788c5",
-                subcategories: [],
-            },
-            {
-                id: "b0ec08ab-9b15-409c-9c14-d4d30e1bc438",
-                name: "Panjabi",
-                slug: "panjabi",
-                parent: "83b1db32-cc68-4531-8e05-bec3916788c5",
-                subcategories: [
-                    {
-                        id: "f47e8710-cfed-4685-af22-32e0df629dcd",
-                        name: "Short Panjabi",
-                        slug: "short-panjabi",
-                        parent: "b0ec08ab-9b15-409c-9c14-d4d30e1bc438",
-                        subcategories: [],
-                    },
-                ],
-            },
-        ],
-    },
-];
-
-const staticPriceRange = { min_price: 257, max_price: 12342 };
-const staticColors = [
-    { code: "#FFFFFF", name: "White" },
-    { code: "#52CCFF", name: "Blue" },
-    { code: "#29FFA3", name: "Green" },
-    { code: "#8CFF69", name: "Green" },
-    { code: "#2BA2FF", name: "Blue" },
-    { code: "#2C7DFF", name: "Blue" },
-    { code: "#3EFFDB", name: "Cyan" },
-    { code: "#161398", name: "Blue" },
-];
+import {
+    PRODUCT_COLORS_API_URL,
+    PRODUCT_PRICE_STATS_API_URL,
+} from "@/helpers/apiUrls"; // Update URLs accordingly
+import { useCategoriesContext } from "@/contexts/CategoriesContext"; // Use CategoriesContext
+import FilterSkeleton from "@/components/common/Loader/FilterSkeleton"; // Assume you have a skeleton component
 
 const FilterSidebar = () => {
     const router = useRouter();
     const searchParams = useSearchParams();
+    const { categoriesData } = useCategoriesContext(); // Get categories from context
 
-    // Extract initial selected filters from URL parameters
+    // States for API data
+    const [priceRange, setPriceRange] = useState([0, 0]);
+    const [colors, setColors] = useState([]);
+    const [loading, setLoading] = useState({ colors: true, price: true });
+
+    // States for selected filters
     const initialCategories = searchParams.get("category")?.split(",") || [];
     const initialColors = searchParams.get("color")?.split(",") || [];
     const initialPriceRange = [
-        Number(searchParams.get("min_price")) || staticPriceRange.min_price,
-        Number(searchParams.get("max_price")) || staticPriceRange.max_price,
+        Number(searchParams.get("min_price")) || 0,
+        Number(searchParams.get("max_price")) || 0,
     ];
 
     const [selectedCategories, setSelectedCategories] =
         useState(initialCategories);
     const [selectedColors, setSelectedColors] = useState(initialColors);
-    const [priceRange, setPriceRange] = useState(initialPriceRange);
+    const [selectedPriceRange, setSelectedPriceRange] =
+        useState(initialPriceRange);
+
+    // Fetch Colors using fetch directly
+    useEffect(() => {
+        const fetchColors = async () => {
+            try {
+                const response = await fetch(PRODUCT_COLORS_API_URL);
+                if (!response.ok) {
+                    throw new Error("Failed to fetch colors");
+                }
+                const data = await response.json();
+                // Filter out duplicate colors based on the `name` property
+                const uniqueColors = data.data.reduce((acc, current) => {
+                    const duplicate = acc.find(
+                        (color) => color.name === current.name
+                    );
+                    if (!duplicate) {
+                        acc.push(current);
+                    }
+                    return acc;
+                }, []);
+                setColors(uniqueColors); // Access the 'data' property
+            } catch (error) {
+                console.error("Failed to fetch colors:", error);
+            } finally {
+                setLoading((prev) => ({ ...prev, colors: false }));
+            }
+        };
+        fetchColors();
+    }, []);
+
+    // Fetch Price Range
+    useEffect(() => {
+        const fetchPriceRange = async () => {
+            try {
+                const response = await fetch(PRODUCT_PRICE_STATS_API_URL);
+                if (!response.ok) {
+                    throw new Error("Failed to fetch price range");
+                }
+                const data = await response.json();
+                setPriceRange([data.min_price, data.max_price]);
+                setSelectedPriceRange([
+                    Number(searchParams.get("min_price")) || data.min_price,
+                    Number(searchParams.get("max_price")) || data.max_price,
+                ]);
+            } catch (error) {
+                console.error("Failed to fetch price range:", error);
+            } finally {
+                setLoading((prev) => ({ ...prev, price: false }));
+            }
+        };
+
+        // Call fetchPriceRange whenever searchParams changes
+        fetchPriceRange();
+    }, [searchParams]);
 
     // Update URL parameters and state when filters are changed
     const updateUrlParams = (filters) => {
@@ -128,16 +113,17 @@ const FilterSidebar = () => {
             params.delete("max_price");
         }
 
-        router.push(`?${params.toString()}`);
+        router.replace(`?${params.toString()}`);
         console.log("Updated filters:", filters); // Console log after filters are updated
     };
 
+    // Handlers for filters
     const handleCategoryChange = (values) => {
         setSelectedCategories(values);
         updateUrlParams({
             category: values,
             color: selectedColors,
-            price: priceRange,
+            price: selectedPriceRange,
         });
     };
 
@@ -146,12 +132,12 @@ const FilterSidebar = () => {
         updateUrlParams({
             category: selectedCategories,
             color: values,
-            price: priceRange,
+            price: selectedPriceRange,
         });
     };
 
     const handlePriceChange = (value) => {
-        setPriceRange(value);
+        setSelectedPriceRange(value);
         updateUrlParams({
             category: selectedCategories,
             color: selectedColors,
@@ -160,10 +146,10 @@ const FilterSidebar = () => {
     };
 
     // Filter out categories that have a parent
-    const filteredCategories = staticCategories.filter(
-        (category) => !category.parent
-    );
+    const filteredCategories =
+        categoriesData?.results?.filter((category) => !category.parent) || [];
 
+    // Render category tree
     const renderCategoryTree = (categories) => {
         return categories.map((category) => (
             <div key={category.id} className="ml-4">
@@ -187,10 +173,15 @@ const FilterSidebar = () => {
     const clearAllFilters = () => {
         setSelectedCategories([]);
         setSelectedColors([]);
-        setPriceRange([staticPriceRange.min_price, staticPriceRange.max_price]); // Reset to initial values (you may need to adjust based on your default)
+        setSelectedPriceRange([priceRange[0], priceRange[1]]); // Reset to initial values
 
         router.replace(window.location.pathname);
     };
+
+    // Conditional rendering based on loading state
+    if (loading.colors || loading.price) {
+        return <FilterSkeleton />;
+    }
 
     return (
         <div className="bg-white overflow-y-auto scrollbar-hide">
@@ -247,9 +238,9 @@ const FilterSidebar = () => {
                     >
                         <Slider
                             range
-                            min={staticPriceRange.min_price}
-                            max={staticPriceRange.max_price}
-                            value={priceRange}
+                            min={priceRange[0]}
+                            max={priceRange[1]}
+                            value={selectedPriceRange}
                             onChange={handlePriceChange}
                         />
                         <div className="flex justify-between items-center mt-4">
@@ -260,11 +251,14 @@ const FilterSidebar = () => {
                                         $
                                     </span>
                                 }
-                                min={staticPriceRange.min_price}
-                                max={staticPriceRange.max_price}
-                                value={priceRange[0]}
+                                min={priceRange[0]}
+                                max={priceRange[1]}
+                                value={selectedPriceRange[0]}
                                 onChange={(value) =>
-                                    handlePriceChange([value, priceRange[1]])
+                                    handlePriceChange([
+                                        value,
+                                        selectedPriceRange[1],
+                                    ])
                                 }
                                 className="font-poppins filter-option-style"
                             />
@@ -275,11 +269,14 @@ const FilterSidebar = () => {
                                         $
                                     </span>
                                 }
-                                min={staticPriceRange.min_price}
-                                max={staticPriceRange.max_price}
-                                value={priceRange[1]}
+                                min={priceRange[0]}
+                                max={priceRange[1]}
+                                value={selectedPriceRange[1]}
                                 onChange={(value) =>
-                                    handlePriceChange([priceRange[0], value])
+                                    handlePriceChange([
+                                        selectedPriceRange[0],
+                                        value,
+                                    ])
                                 }
                                 className="font-poppins filter-option-style"
                             />
@@ -297,7 +294,7 @@ const FilterSidebar = () => {
                             value={selectedColors}
                             onChange={handleColorChange}
                         >
-                            {staticColors.map((color) => (
+                            {colors.map((color) => (
                                 <Checkbox
                                     key={color.code}
                                     value={color.code}
