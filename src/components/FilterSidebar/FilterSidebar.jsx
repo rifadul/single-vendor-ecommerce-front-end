@@ -1,397 +1,216 @@
-// "use client";
-// import React from "react";
-// import { Collapse } from "antd";
-// import Image from "next/image";
-// import Icons from "../../../public/assets/Icons";
-// import filterConfig from "./filterConfig";
-// import FilterOption from "./FilterOption";
-
-// const { Panel } = Collapse;
-
-// // v-3
-
-// const FilterSidebar = () => {
-//     return (
-//         <div className="bg-white w-full lg:w-1/5 h-screen overflow-y-auto scrollbar-hide">
-//             <h2 className="text-xl font-semibold px-4 py-5 border-b border-borderColor">
-//                 Filter
-//             </h2>
-//             <div className="py-3">
-//                 <Collapse
-//                     ghost
-//                     defaultActiveKey={["1"]}
-//                     bordered={false}
-//                     className="filter-collapse font-poppins"
-//                     expandIconPosition="end"
-//                     expandIcon={({ isActive }) => (
-//                         <Image
-//                             src={Icons.right_arrow_gray}
-//                             alt="right arrow"
-//                             className={`w-6 h-6 duration-300 ${
-//                                 isActive ? "rotate-90" : "rotate-0"
-//                             }`}
-//                         />
-//                     )}
-//                 >
-//                     {filterConfig.map((filter, index) => (
-//                         <Panel
-//                             header={filter.title}
-//                             key={index}
-//                             className="filter-panel"
-//                         >
-//                             <FilterOption
-//                                 type={filter.type}
-//                                 options={filter.options}
-//                                 handler={filter.handler}
-//                             />
-//                         </Panel>
-//                     ))}
-//                 </Collapse>
-//             </div>
-//         </div>
-//     );
-// };
-
-// export default FilterSidebar;
-
-// // v-2
-// // const FilterSidebar = () => {
-// //     return (
-// //         <div className="bg-white w-full lg:w-1/4 overflow-y-auto scrollbar-hide">
-// //             <h2 className="text-xl font-semibold px-4 py-5 border-b border-borderColor">
-// //                 Filter
-// //             </h2>
-// //             <div className="py-3">
-// //                 <Collapse
-// //                     ghost
-// //                     defaultActiveKey={["1"]}
-// //                     bordered={false}
-// //                     className="filter-collapse font-poppins"
-// //                     expandIconPosition="end"
-// //                     expandIcon={({ isActive }) => (
-// //                         <Image
-// //                             src={Icons.right_arrow_gray}
-// //                             alt="right arrow"
-// //                             className={`w-6 h-6 duration-300 ${
-// //                                 isActive ? "rotate-90" : "rotate-0"
-// //                             }`}
-// //                         />
-// //                     )}
-// //                 >
-// //                     {filterConfig.map((filter, index) => (
-// //                         <Panel
-// //                             header={filter.title}
-// //                             key={index}
-// //                             className="filter-panel"
-// //                         >
-// //                             <FilterOption
-// //                                 type={filter.type}
-// //                                 options={filter.options}
-// //                             />
-// //                         </Panel>
-// //                     ))}
-// //                 </Collapse>
-// //             </div>
-// //         </div>
-// //     );
-// // };
-
-// // v-1
-
-// // "use client";
-// // import React from "react";
-// // import { Collapse, Radio, Checkbox, Slider, InputNumber } from "antd";
-// // import Image from "next/image";
-// // import Icons from "../../../public/assets/Icons";
-// // import filterConfig from "./filterConfig";
-
-// // const { Panel } = Collapse;
-
-// // const FilterSidebar = () => {
-// //     return (
-// //         <div className="bg-white w-full lg:w-1/4 overflow-y-auto scrollbar-hide">
-// //             <h2 className="text-xl font-semibold px-4 py-5 border-b border-borderColor">
-// //                 Filter
-// //             </h2>
-// //             <div className="py-3">
-// //                 <Collapse
-// //                     ghost
-// //                     defaultActiveKey={["1"]}
-// //                     bordered={false}
-// //                     className="filter-collapse font-poppins"
-// //                     expandIconPosition="end"
-// //                     expandIcon={({ isActive }) => (
-// //                         <Image
-// //                             src={Icons.right_arrow_gray}
-// //                             alt="right arrow"
-// //                             className={`w-6 h-6 duration-300 ${
-// //                                 isActive ? "rotate-90" : "rotate-0"
-// //                             }`}
-// //                         />
-// //                     )}
-// //                 >
-// //                     {filterConfig.map((filter, index) => (
-// //                         <Panel
-// //                             header={filter.title}
-// //                             key={index}
-// //                             className="filter-panel"
-// //                         >
-// //                             {filter.type === "sort" && (
-// //                                 <Radio.Group className="flex flex-col">
-// //                                     {filter.options.map((option) => (
-// //                                         <Radio
-// //                                             key={option.value}
-// //                                             value={option.value}
-// //                                             className="font-poppins custom-radio-style filter-option-style"
-// //                                         >
-// //                                             {option.label}
-// //                                         </Radio>
-// //                                     ))}
-// //                                 </Radio.Group>
-// //                             )}
-// //                             {filter.type === "availability" && (
-// //                                 <Checkbox.Group className="flex flex-col">
-// //                                     {filter.options.map((option) => (
-// //                                         <Checkbox
-// //                                             key={option.value}
-// //                                             value={option.value}
-// //                                             className="font-poppins filter-option-style"
-// //                                         >
-// //                                             {option.label}
-// //                                         </Checkbox>
-// //                                     ))}
-// //                                 </Checkbox.Group>
-// //                             )}
-// //                             {filter.type === "price" && (
-// //                                 <>
-// //                                     <Slider range defaultValue={[20, 50]} />
-// //                                     <div className="flex justify-between items-center mt-4">
-// //                                         <InputNumber
-// //                                             controls={false}
-// //                                             prefix={
-// //                                                 <span className="text-neutral-700 text-sm font-medium">
-// //                                                     $
-// //                                                 </span>
-// //                                             }
-// //                                             min={0}
-// //                                             placeholder="Min Price"
-// //                                             className="font-poppins filter-option-style"
-// //                                         />
-// //                                         <InputNumber
-// //                                             controls={false}
-// //                                             prefix={
-// //                                                 <span className="text-neutral-700 text-sm font-medium">
-// //                                                     $
-// //                                                 </span>
-// //                                             }
-// //                                             min={0}
-// //                                             placeholder="Max Price"
-// //                                             className="font-poppins filter-option-style"
-// //                                         />
-// //                                     </div>
-// //                                 </>
-// //                             )}
-// //                             {filter.type === "color" && (
-// //                                 <Checkbox.Group className="flex flex-col">
-// //                                     {filter.options.map((option) => (
-// //                                         <Checkbox
-// //                                             key={option.value}
-// //                                             value={option.value}
-// //                                             className="font-poppins filter-option-style"
-// //                                         >
-// //                                             {option.label}
-// //                                         </Checkbox>
-// //                                     ))}
-// //                                 </Checkbox.Group>
-// //                             )}
-// //                         </Panel>
-// //                     ))}
-// //                 </Collapse>
-// //             </div>
-// //         </div>
-// //     );
-// // };
-
-// // export default FilterSidebar;
-
-// // v-0
-// // "use client";
-// // import React from "react";
-// // import { Collapse, Radio, Checkbox, Slider, InputNumber } from "antd";
-// // import Image from "next/image";
-// // import Icons from "../../../public/assets/Icons";
-
-// // const { Panel } = Collapse;
-
-// // const FilterSidebar = () => {
-// //     return (
-// //         <div className="bg-white w-full lg:w-1/4 overflow-y-auto scrollbar-hide">
-// //             <h2 className="text-xl font-semibold px-4 py-5 border-b border-borderColor">
-// //                 Filter
-// //             </h2>
-// //             <div className="py-3">
-// //                 <Collapse
-// //                     ghost
-// //                     defaultActiveKey={["1"]}
-// //                     bordered={false}
-// //                     className="filter-collapse font-poppins"
-// //                     expandIconPosition="end"
-// //                     expandIcon={({ isActive }) => (
-// //                         <Image
-// //                             src={Icons.right_arrow_gray}
-// //                             alt="right arrow"
-// //                             className={`w-6 h-6 duration-300 ${
-// //                                 isActive ? "rotate-90" : "rotate-0"
-// //                             }`}
-// //                         />
-// //                     )}
-// //                 >
-// //                     {/* Sort By Filter */}
-// //                     <Panel header="Sort By" key="1" className="filter-panel">
-// //                         <Radio.Group className="flex flex-col">
-// //                             <Radio
-// //                                 value="price"
-// //                                 className="font-poppins custom-radio-style filter-option-style"
-// //                             >
-// //                                 Price
-// //                             </Radio>
-// //                             <Radio
-// //                                 value="popularity"
-// //                                 className="font-poppins custom-radio-style filter-option-style"
-// //                             >
-// //                                 Popularity
-// //                             </Radio>
-// //                             <Radio
-// //                                 value="rating"
-// //                                 className="font-poppins custom-radio-style filter-option-style"
-// //                             >
-// //                                 Rating
-// //                             </Radio>
-// //                         </Radio.Group>
-// //                     </Panel>
-
-// //                     {/* Availability Filter */}
-// //                     <Panel
-// //                         header="Availability"
-// //                         key="2"
-// //                         className="filter-panel"
-// //                     >
-// //                         <Checkbox.Group className="flex flex-col">
-// //                             <Checkbox
-// //                                 value="inStock"
-// //                                 className="font-poppins filter-option-style"
-// //                             >
-// //                                 In Stock
-// //                             </Checkbox>
-// //                             <Checkbox
-// //                                 value="outOfStock"
-// //                                 className="font-poppins filter-option-style"
-// //                             >
-// //                                 Out of Stock
-// //                             </Checkbox>
-// //                         </Checkbox.Group>
-// //                     </Panel>
-
-// //                     {/* Price Filter */}
-// //                     <Panel header="Price" key="3" className="filter-panel">
-// //                         <Slider range defaultValue={[20, 50]} />
-// //                         <div className="flex justify-between items-center mt-4">
-// //                             <InputNumber
-// //                                 controls={false}
-// //                                 prefix={
-// //                                     <span className="text-neutral-700 text-sm font-medium">
-// //                                         $
-// //                                     </span>
-// //                                 }
-// //                                 min={0}
-// //                                 placeholder="Min Price"
-// //                                 className="font-poppins filter-option-style"
-// //                             />
-// //                             {/* <span className="mx-2">-</span> */}
-// //                             <InputNumber
-// //                                 controls={false}
-// //                                 prefix={
-// //                                     <span className="text-neutral-700 text-sm font-medium">
-// //                                         $
-// //                                     </span>
-// //                                 }
-// //                                 min={0}
-// //                                 placeholder="Max Price"
-// //                                 className="font-poppins filter-option-style"
-// //                             />
-// //                         </div>
-// //                     </Panel>
-
-// //                     {/* Color Filter */}
-// //                     <Panel header="Color" key="4" className="filter-panel">
-// //                         <Checkbox.Group className="flex flex-col">
-// //                             {Array.from({ length: 35 }).map((_, index) => (
-// //                                 <Checkbox
-// //                                     value={`Value${index}`}
-// //                                     key={index}
-// //                                     className="font-poppins filter-option-style"
-// //                                 >
-// //                                     Red
-// //                                 </Checkbox>
-// //                             ))}
-// //                         </Checkbox.Group>
-// //                     </Panel>
-// //                 </Collapse>
-// //             </div>
-// //         </div>
-// //     );
-// // };
-
-// // export default FilterSidebar;
-
 "use client";
 import React, { useState } from "react";
-import { Collapse, Radio, Checkbox, Slider, InputNumber } from "antd";
+import { Collapse, Checkbox, Slider, InputNumber, Button } from "antd";
 import Image from "next/image";
+import { useRouter, useSearchParams } from "next/navigation";
 import Icons from "../../../public/assets/Icons";
-import filterConfig from "./filterConfig";
-import FilterOption from "./FilterOption";
+
+// Static Data
+const staticCategories = [
+    {
+        id: "6c82805f-0870-44d2-bb8e-8a918d7b7f70",
+        name: "Shirt",
+        slug: "shirt",
+        parent: "83b1db32-cc68-4531-8e05-bec3916788c5",
+        subcategories: [],
+    },
+    {
+        id: "61aaa6f5-90c7-45be-aa99-844daa6f4514",
+        name: "Computer",
+        slug: "computer",
+        parent: null,
+        subcategories: [],
+    },
+    {
+        id: "f47e8710-cfed-4685-af22-32e0df629dcd",
+        name: "Short Panjabi",
+        slug: "short-panjabi",
+        parent: "b0ec08ab-9b15-409c-9c14-d4d30e1bc438",
+        subcategories: [],
+    },
+    {
+        id: "b0ec08ab-9b15-409c-9c14-d4d30e1bc438",
+        name: "Panjabi",
+        slug: "panjabi",
+        parent: "83b1db32-cc68-4531-8e05-bec3916788c5",
+        subcategories: [
+            {
+                id: "f47e8710-cfed-4685-af22-32e0df629dcd",
+                name: "Short Panjabi",
+                slug: "short-panjabi",
+                parent: "b0ec08ab-9b15-409c-9c14-d4d30e1bc438",
+                subcategories: [],
+            },
+        ],
+    },
+    {
+        id: "83b1db32-cc68-4531-8e05-bec3916788c5",
+        name: "Men",
+        slug: "men",
+        parent: null,
+        subcategories: [
+            {
+                id: "6c82805f-0870-44d2-bb8e-8a918d7b7f70",
+                name: "Shirt",
+                slug: "shirt",
+                parent: "83b1db32-cc68-4531-8e05-bec3916788c5",
+                subcategories: [],
+            },
+            {
+                id: "b0ec08ab-9b15-409c-9c14-d4d30e1bc438",
+                name: "Panjabi",
+                slug: "panjabi",
+                parent: "83b1db32-cc68-4531-8e05-bec3916788c5",
+                subcategories: [
+                    {
+                        id: "f47e8710-cfed-4685-af22-32e0df629dcd",
+                        name: "Short Panjabi",
+                        slug: "short-panjabi",
+                        parent: "b0ec08ab-9b15-409c-9c14-d4d30e1bc438",
+                        subcategories: [],
+                    },
+                ],
+            },
+        ],
+    },
+];
+
+const staticPriceRange = { min_price: 257, max_price: 12342 };
+const staticColors = [
+    { code: "#FFFFFF", name: "White" },
+    { code: "#52CCFF", name: "Blue" },
+    { code: "#29FFA3", name: "Green" },
+    { code: "#8CFF69", name: "Green" },
+    { code: "#2BA2FF", name: "Blue" },
+    { code: "#2C7DFF", name: "Blue" },
+    { code: "#3EFFDB", name: "Cyan" },
+    { code: "#161398", name: "Blue" },
+];
 
 const FilterSidebar = () => {
-    const [priceRange, setPriceRange] = useState([20, 50]);
+    const router = useRouter();
+    const searchParams = useSearchParams();
+
+    // Extract initial selected filters from URL parameters
+    const initialCategories = searchParams.get("category")?.split(",") || [];
+    const initialColors = searchParams.get("color")?.split(",") || [];
+    const initialPriceRange = [
+        Number(searchParams.get("min_price")) || staticPriceRange.min_price,
+        Number(searchParams.get("max_price")) || staticPriceRange.max_price,
+    ];
+
+    const [selectedCategories, setSelectedCategories] =
+        useState(initialCategories);
+    const [selectedColors, setSelectedColors] = useState(initialColors);
+    const [priceRange, setPriceRange] = useState(initialPriceRange);
+
+    // Update URL parameters and state when filters are changed
+    const updateUrlParams = (filters) => {
+        const params = new URLSearchParams(searchParams.toString());
+
+        if (filters.category.length) {
+            params.set("category", filters.category.join(","));
+        } else {
+            params.delete("category");
+        }
+
+        if (filters.color.length) {
+            params.set("color", filters.color.join(","));
+        } else {
+            params.delete("color");
+        }
+
+        if (filters.price) {
+            params.set("min_price", filters.price[0]);
+            params.set("max_price", filters.price[1]);
+        } else {
+            params.delete("min_price");
+            params.delete("max_price");
+        }
+
+        router.push(`?${params.toString()}`);
+        console.log("Updated filters:", filters); // Console log after filters are updated
+    };
+
+    const handleCategoryChange = (values) => {
+        setSelectedCategories(values);
+        updateUrlParams({
+            category: values,
+            color: selectedColors,
+            price: priceRange,
+        });
+    };
+
+    const handleColorChange = (values) => {
+        setSelectedColors(values);
+        updateUrlParams({
+            category: selectedCategories,
+            color: values,
+            price: priceRange,
+        });
+    };
 
     const handlePriceChange = (value) => {
-        // setPriceRange(value);
-        console.log("Price change");
+        setPriceRange(value);
+        updateUrlParams({
+            category: selectedCategories,
+            color: selectedColors,
+            price: value,
+        });
     };
 
-    const handleMinPriceChange = (value) => {
-        // setPriceRange([value, priceRange[1]]);
-        console.log("min Price change");
+    // Filter out categories that have a parent
+    const filteredCategories = staticCategories.filter(
+        (category) => !category.parent
+    );
+
+    const renderCategoryTree = (categories) => {
+        return categories.map((category) => (
+            <div key={category.id} className="ml-4">
+                <Checkbox
+                    value={category.slug}
+                    className="font-poppins filter-option-style"
+                >
+                    {category.name}
+                </Checkbox>
+                {category.subcategories &&
+                    category.subcategories.length > 0 && (
+                        <div className="ml-4">
+                            {renderCategoryTree(category.subcategories)}
+                        </div>
+                    )}
+            </div>
+        ));
     };
 
-    const handleMaxPriceChange = (value) => {
-        // setPriceRange([priceRange[0], value]);
-        console.log("Max Price change");
-    };
+    // Function to clear all filters
+    const clearAllFilters = () => {
+        setSelectedCategories([]);
+        setSelectedColors([]);
+        setPriceRange([staticPriceRange.min_price, staticPriceRange.max_price]); // Reset to initial values (you may need to adjust based on your default)
 
-    const filterItems = filterConfig.map((filter) => ({
-        key: filter.key,
-        label: filter.label,
-        children: FilterOption(
-            filter,
-            priceRange,
-            handleMaxPriceChange,
-            handleMinPriceChange,
-            handlePriceChange
-        ),
-    }));
+        router.replace(window.location.pathname);
+    };
 
     return (
         <div className="bg-white overflow-y-auto scrollbar-hide">
-            <h2 className="text-xl font-semibold px-4 py-5 border-b border-borderColor hidden lg:block">
-                Filter
-            </h2>
+            <div className="flex items-center justify-between px-4 py-5 border-b border-borderColor">
+                <h2 className="text-xl font-semibold hidden lg:block">
+                    Filter
+                </h2>
+                <Button
+                    type="link"
+                    onClick={clearAllFilters}
+                    className="text-red-500 hover:text-red-700"
+                >
+                    Clear All
+                </Button>
+            </div>
+
             <div className="py-3">
                 <Collapse
                     ghost
-                    defaultActiveKey={["1"]}
-                    items={filterItems}
+                    defaultActiveKey={["category", "price", "color"]}
                     bordered={false}
                     className="filter-collapse font-poppins"
                     expandIconPosition="end"
@@ -404,7 +223,92 @@ const FilterSidebar = () => {
                             }`}
                         />
                     )}
-                />
+                >
+                    {/* Category Filter */}
+                    <Collapse.Panel
+                        header="Category"
+                        key="category"
+                        className="filter-panel"
+                    >
+                        <Checkbox.Group
+                            className="flex flex-col"
+                            value={selectedCategories}
+                            onChange={handleCategoryChange}
+                        >
+                            {renderCategoryTree(filteredCategories)}
+                        </Checkbox.Group>
+                    </Collapse.Panel>
+
+                    {/* Price Filter */}
+                    <Collapse.Panel
+                        header="Price"
+                        key="price"
+                        className="filter-panel"
+                    >
+                        <Slider
+                            range
+                            min={staticPriceRange.min_price}
+                            max={staticPriceRange.max_price}
+                            value={priceRange}
+                            onChange={handlePriceChange}
+                        />
+                        <div className="flex justify-between items-center mt-4">
+                            <InputNumber
+                                controls={false}
+                                prefix={
+                                    <span className="text-neutral-700 text-sm font-medium">
+                                        $
+                                    </span>
+                                }
+                                min={staticPriceRange.min_price}
+                                max={staticPriceRange.max_price}
+                                value={priceRange[0]}
+                                onChange={(value) =>
+                                    handlePriceChange([value, priceRange[1]])
+                                }
+                                className="font-poppins filter-option-style"
+                            />
+                            <InputNumber
+                                controls={false}
+                                prefix={
+                                    <span className="text-neutral-700 text-sm font-medium">
+                                        $
+                                    </span>
+                                }
+                                min={staticPriceRange.min_price}
+                                max={staticPriceRange.max_price}
+                                value={priceRange[1]}
+                                onChange={(value) =>
+                                    handlePriceChange([priceRange[0], value])
+                                }
+                                className="font-poppins filter-option-style"
+                            />
+                        </div>
+                    </Collapse.Panel>
+
+                    {/* Color Filter */}
+                    <Collapse.Panel
+                        header="Color"
+                        key="color"
+                        className="filter-panel"
+                    >
+                        <Checkbox.Group
+                            className="flex flex-col"
+                            value={selectedColors}
+                            onChange={handleColorChange}
+                        >
+                            {staticColors.map((color) => (
+                                <Checkbox
+                                    key={color.code}
+                                    value={color.code}
+                                    className="font-poppins filter-option-style"
+                                >
+                                    {color.name}
+                                </Checkbox>
+                            ))}
+                        </Checkbox.Group>
+                    </Collapse.Panel>
+                </Collapse>
             </div>
         </div>
     );

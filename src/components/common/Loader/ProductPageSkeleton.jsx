@@ -8,7 +8,7 @@ function ProductPageSkeleton() {
     return (
         <div className="container mx-auto">
             <div className="flex flex-col lg:flex-row h-screen gap-6">
-                <FilterSkeleton />
+                {/* <FilterSkeleton /> */}
 
                 {/* Product List */}
                 <div className="flex-1 overflow-y-auto scrollbar-hide">
