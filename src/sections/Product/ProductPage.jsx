@@ -38,7 +38,7 @@ function ProductPage({ products }) {
                             label="Filter"
                             className="lg:hidden"
                         />
-                        <h1>{allProducts.length} Results</h1>
+                        <h1>{products?.count} Results</h1>
                     </div>
 
                     {products?.results?.length > 0 ? (
@@ -78,61 +78,3 @@ function ProductPage({ products }) {
 }
 
 export default ProductPage;
-
-const allProducts = [
-    {
-        id: 1,
-        name: "Emerald Green Embroidered Muslin Saree 11",
-        price: 29.99,
-        image: "https://cdn.pixabay.com/photo/2024/04/06/14/18/ai-generated-8679407_1280.png",
-    },
-    {
-        id: 2,
-        name: "Emerald Green Embroidered Muslin Saree Emerald Green Embroidered Muslin Saree Emerald Green Embroidered Muslin Saree",
-        price: 39.99,
-        image: "https://cdn.pixabay.com/photo/2021/01/06/07/52/lipsticks-5893480_1280.jpg",
-    },
-    {
-        id: 3,
-        name: "Emerald Green Embroidered Muslin Saree",
-        price: 49.99,
-        image: "https://cdn.pixabay.com/photo/2024/04/06/14/18/ai-generated-8679407_1280.png",
-    },
-    {
-        id: 3,
-        name: "Emerald Green Embroidered Muslin Saree",
-        price: 49.99,
-        image: "https://cdn.pixabay.com/photo/2024/04/06/14/18/ai-generated-8679407_1280.png",
-    },
-    {
-        id: 3,
-        name: "Emerald Green Embroidered Muslin Saree",
-        price: 49.99,
-        image: "https://cdn.pixabay.com/photo/2024/04/06/14/18/ai-generated-8679407_1280.png",
-    },
-    {
-        id: 3,
-        name: "Emerald Green Embroidered Muslin Saree",
-        price: 49.99,
-        image: "https://cdn.pixabay.com/photo/2024/04/06/14/18/ai-generated-8679407_1280.png",
-    },
-    {
-        id: 3,
-        name: "Emerald Green Embroidered Muslin Saree",
-        price: 49.99,
-        image: "https://cdn.pixabay.com/photo/2024/04/06/14/18/ai-generated-8679407_1280.png",
-    },
-    {
-        id: 3,
-        name: "Emerald Green Embroidered Muslin Saree",
-        price: 49.99,
-        image: "https://cdn.pixabay.com/photo/2024/04/06/14/18/ai-generated-8679407_1280.png",
-    },
-    {
-        id: 3,
-        name: "Emerald Green Embroidered Muslin last",
-        price: 49.99,
-        image: "https://cdn.pixabay.com/photo/2024/04/06/14/18/ai-generated-8679407_1280.png",
-    },
-    // Add more products here
-];
