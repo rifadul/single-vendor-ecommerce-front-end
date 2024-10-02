@@ -130,7 +130,6 @@ const FilterSidebar = () => {
         }
 
         router.replace(`?${params.toString()}`);
-        console.log("Updated filters:", filters); // Console log after filters are updated
     };
 
     // Handlers for filters
@@ -168,7 +167,6 @@ const FilterSidebar = () => {
     };
 
     const handleAvailabilityChange = (e) => {
-        console.log("e.target.value", e.target.value);
         setSelectedAvailability(e.target.value);
         updateUrlParams({
             category: selectedCategories,
