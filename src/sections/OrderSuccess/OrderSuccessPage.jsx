@@ -13,11 +13,11 @@ import ProductSummary from "../Checkout/ProductSummary";
 
 function OrderSuccessPage() {
     const searchParams = useSearchParams();
-    const orderId = searchParams.get("orderId");
+    const orderNumber = searchParams.get("order_number");
     const { orderDetails, fetchOrderDetails, loading } = useOrder();
 
     useEffect(() => {
-        fetchOrderDetails(orderId);
+        fetchOrderDetails(orderNumber);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 

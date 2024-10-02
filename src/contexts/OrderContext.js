@@ -4,7 +4,7 @@ import { useAuth } from "@/contexts/AuthContext";
 import { toast } from "react-toastify";
 import {
     ORDER_API_URL,
-    SHIPPING_ADDRESS_API_URL,
+    ORDER_DETAILS_API_URL,
     SHIPPING_METHOD_API_URL,
 } from "@/helpers/apiUrls";
 import { useCart } from "./CartContext";
@@ -46,22 +46,25 @@ export const OrderProvider = ({ children }) => {
             setLoading(false);
         }
     };
-    const fetchOrderDetails = async (orderId) => {
+    const fetchOrderDetails = async (orderNumber) => {
         setLoading(true);
         setError(null);
         try {
-            const response = await fetch(`${ORDER_API_URL}${orderId}/`, {
-                method: "GET",
-                headers: {
-                    "Content-Type": "application/json",
-                    Authorization: `Bearer ${token}`,
-                },
-            });
+            const response = await fetch(
+                `${ORDER_DETAILS_API_URL}${orderNumber}`,
+                {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/json",
+                        Authorization: `Bearer ${token}`,
+                    },
+                }
+            );
             if (!response.ok) {
                 throw new Error("Failed to fetch orders");
             }
             const data = await response.json();
-            setOrderDetails(data);
+            setOrderDetails(data?.data);
         } catch (err) {
             toast.error(err.message);
         } finally {
@@ -115,7 +118,7 @@ export const OrderProvider = ({ children }) => {
             fetchCart();
 
             const params = {
-                orderId: data?.data?.id,
+                order_number: data?.data?.order_number,
             };
             const queryString = new URLSearchParams(params).toString();
 
