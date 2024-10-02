@@ -41,21 +41,21 @@ export const footerLinks = [
                 title: "All products",
                 path: PRODUCTS_PATH,
             },
-            {
-                id: 2,
-                title: "Top rated",
-                path: PRODUCTS_PATH,
-            },
+            // {
+            //     id: 2,
+            //     title: "Top rated",
+            //     path: PRODUCTS_PATH,
+            // },
             // {
             //     id: 3,
             //     title: "Best sellers",
             //     path: "/best-sellers",
             // },
-            {
-                id: 4,
-                title: "New arrivals",
-                path: PRODUCTS_PATH,
-            },
+            // {
+            //     id: 4,
+            //     title: "New arrivals",
+            //     path: PRODUCTS_PATH,
+            // },
             // {
             //     id: 5,
             //     title: "Popular this week",
@@ -108,16 +108,16 @@ export const footerLinks = [
         id: 4,
         title: "Help  & support",
         links: [
-            {
-                id: 1,
-                title: "Become a seller",
-                path: "https://portal.palooi.us/registration",
-            },
-            {
-                id: 2,
-                title: "Contact us",
-                path: "/contact-us",
-            },
+            // {
+            //     id: 1,
+            //     title: "Become a seller",
+            //     path: "https://portal.palooi.us/registration",
+            // },
+            // {
+            //     id: 2,
+            //     title: "Contact us",
+            //     path: "/contact-us",
+            // },
             // {
             //     id: 3,
             //     title: "How to order",

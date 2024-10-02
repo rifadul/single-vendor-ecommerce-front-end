@@ -4,7 +4,7 @@ import { Skeleton } from "antd";
 
 const FilterSkeleton = () => {
     return (
-        <div className="bg-white w-full lg:w-1/4 p-4 overflow-y-auto scrollbar-hide">
+        <div className="bg-white w-full p-4 overflow-y-auto scrollbar-hide">
             <Skeleton.Input active className="w-1/3 mb-4" size="default" />
             <div className="mb-4">
                 <Skeleton.Input active className="w-2/3 mb-2" size="default" />
