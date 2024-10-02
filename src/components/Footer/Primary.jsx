@@ -118,7 +118,6 @@ const Primary = () => {
                                             key={subLink.id}
                                             href={subLink.path}
                                             className="text-sm text-white"
-                                            target="_blank"
                                         >
                                             {subLink.title}
                                         </Link>
@@ -132,11 +131,7 @@ const Primary = () => {
                 <div className="flex flex-col md:flex-row items-center justify-between">
                     <div className="flex sm:hidden gap-6 mt-3 ">
                         {socialLinks.map((item) => (
-                            <Link
-                                href={item.links}
-                                key={item.id}
-                                target="_blank"
-                            >
+                            <Link href={item.links} key={item.id}>
                                 <Image src={item.icon} alt="social-icons" />
                             </Link>
                         ))}

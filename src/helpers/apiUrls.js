@@ -34,3 +34,5 @@ export const ORDER_DETAILS_API_URL = `${ORDER_API_URL}order_details/?order_numbe
 export const SHIPPING_METHOD_API_URL = `${BASE_URL}/shipping-methods/`;
 export const PRODUCT_PRICE_STATS_API_URL = `${PRODUCTS_API_URL}/price-stats/`;
 export const PRODUCT_COLORS_API_URL = `${PRODUCTS_API_URL}/colors/`;
+export const TERMS_AND_CONDITIONS_API_URL = `${BASE_URL}/terms-and-conditions/`;
+export const PRIVACY_POLICY_API_URL = `${BASE_URL}/privacy-policy/`;
