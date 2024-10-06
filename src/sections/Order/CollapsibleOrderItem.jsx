@@ -3,12 +3,61 @@
 import Image from "next/image";
 import React, { useState } from "react";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa"; // Import icons for dropdown
+import { Modal, Button, Input, Form, Rate } from "antd"; // Use antd for modal and form components
+import { toast } from "react-toastify"; // Notification
+import { PRODUCT_REVIEW_API_URL } from "@/helpers/apiUrls";
+import { useAuth } from "@/contexts/AuthContext";
 
 export function CollapsibleOrderItem({ item }) {
     const [isOpen, setIsOpen] = useState(false);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const { token } = useAuth();
+    const [form] = Form.useForm(); // Ant Design form instance
 
     const toggleCollapse = () => {
         setIsOpen(!isOpen);
+    };
+
+    // Handle Review Button Click
+    const showReviewModal = () => {
+        setIsModalOpen(true);
+    };
+
+    // Reset form and close modal when clicking cancel
+    const handleCancel = () => {
+        form.resetFields(); // Reset form fields when modal is closed
+        setIsModalOpen(false);
+    };
+
+    // Handle Review Form Submission
+    const handleReviewSubmit = async (values) => {
+        try {
+            const response = await fetch(PRODUCT_REVIEW_API_URL, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`,
+                },
+                body: JSON.stringify({
+                    product_id: item.product.id,
+                    rating: values.rating,
+                    comment: values.comment,
+                }),
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(
+                    errorData.message || "Failed to submit the review"
+                );
+            }
+
+            toast.success("Review submitted successfully!");
+            form.resetFields(); // Clear form fields after submission
+            setIsModalOpen(false); // Close modal after submission
+        } catch (error) {
+            toast.error(error.message);
+        }
     };
 
     return (
@@ -19,7 +68,7 @@ export function CollapsibleOrderItem({ item }) {
                 onClick={toggleCollapse}
             >
                 {/* Left: Product Name */}
-                <div className="text-lg text-neutral-700 font-medium">
+                <div className="text-lg text-neutral-700 font-medium truncate w-1/2">
                     {item.product.name}
                 </div>
 
@@ -57,15 +106,15 @@ export function CollapsibleOrderItem({ item }) {
                         <Image
                             src={item.product_variant.image}
                             alt={item.product.name}
-                            width={128} // 32 * 4 (tailwind w-32)
-                            height={128} // 32 * 4 (tailwind h-32)
+                            width={128}
+                            height={128}
                             className="mb-4 object-cover"
                         />
 
                         {/* Product Info */}
                         <div className="grid grid-cols-2 gap-4">
                             <div>
-                                <p className="text-neutral-300">
+                                <p className="text-neutral-300 truncate">
                                     <strong className="text-neutral-700">
                                         SKU:
                                     </strong>{" "}
@@ -77,7 +126,7 @@ export function CollapsibleOrderItem({ item }) {
                                     </strong>{" "}
                                     {item.product.category.name}
                                 </p>
-                                <p className="text-neutral-300">
+                                <p className="text-neutral-300 line-clamp-2">
                                     <strong className="text-neutral-700">
                                         Description:
                                     </strong>{" "}
@@ -112,9 +161,73 @@ export function CollapsibleOrderItem({ item }) {
                                 </p>
                             </div>
                         </div>
+
+                        {/* Review Button */}
+                        <Button
+                            className="mt-4 bg-magenta-500 text-white hover:bg-magenta-600"
+                            onClick={showReviewModal}
+                        >
+                            Review this product
+                        </Button>
                     </div>
                 )}
             </div>
+
+            {/* Review Modal */}
+            <Modal
+                title={`Review ${item.product.name}`}
+                open={isModalOpen}
+                onCancel={handleCancel}
+                footer={null}
+            >
+                <Form
+                    form={form} // Attach form instance to the form
+                    layout="vertical"
+                    onFinish={handleReviewSubmit}
+                >
+                    {/* Rating Input */}
+                    <Form.Item
+                        name="rating"
+                        label="Rating"
+                        rules={[
+                            {
+                                required: true,
+                                message: "Please rate the product!",
+                            },
+                        ]}
+                    >
+                        <Rate />
+                    </Form.Item>
+
+                    {/* Comment Input */}
+                    <Form.Item
+                        name="comment"
+                        label="Comment"
+                        rules={[
+                            {
+                                required: true,
+                                message: "Please provide a comment",
+                            },
+                        ]}
+                    >
+                        <Input.TextArea
+                            rows={4}
+                            placeholder="Write your review"
+                        />
+                    </Form.Item>
+
+                    {/* Submit Button */}
+                    <Form.Item>
+                        <Button
+                            type="primary"
+                            htmlType="submit"
+                            className="bg-magenta-500"
+                        >
+                            Submit Review
+                        </Button>
+                    </Form.Item>
+                </Form>
+            </Modal>
         </div>
     );
 }
