@@ -61,11 +61,12 @@ export const OrderProvider = ({ children }) => {
                 }
             );
             if (!response.ok) {
-                throw new Error("Failed to fetch orders");
+                throw new Error("Failed to fetch order details");
             }
             const data = await response.json();
             setOrderDetails(data?.data);
         } catch (err) {
+            setError(err.message);
             toast.error(err.message);
         } finally {
             setLoading(false);

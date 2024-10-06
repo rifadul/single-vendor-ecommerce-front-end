@@ -12,6 +12,7 @@ let BASE_URL = domain;
 export const BANNER_API_URL = `${BASE_URL}/banners`;
 export const CATEGORY_API_URL = `${BASE_URL}/category`;
 export const PRODUCTS_API_URL = `${BASE_URL}/products`;
+export const PRODUCT_REVIEW_API_URL = `${BASE_URL}/products/add-review/`;
 export const MY_CART_API_URL = `${BASE_URL}/my-cart/`;
 export const ADD_TO_CART_API_URL = `${BASE_URL}/cart-items/`;
 export const USER_API_URL = `${BASE_URL}/users/`;

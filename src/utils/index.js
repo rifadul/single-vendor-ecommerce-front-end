@@ -39,3 +39,42 @@ export function maskString(input) {
         return input.slice(0, 7) + "******" + input.slice(-1);
     }
 }
+
+export function formatDateTime(createdAt) {
+    const date = new Date(createdAt);
+
+    // Define options for time formatting
+    const optionsTime = {
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: true,
+    };
+
+    // Get the components of the date
+    const day = date.getDate().toString().padStart(2, "0"); // Ensure two-digit day
+    const month = date.toLocaleString("default", { month: "short" }); // Get short month name
+    const year = date.getFullYear(); // Get the full year
+
+    // Format the date as "10 Jun, 2024"
+    const formattedDate = `${day} ${month}, ${year}`;
+
+    // Format the time
+    const formattedTime = date.toLocaleTimeString(undefined, optionsTime);
+
+    return {
+        date: formattedDate,
+        time: formattedTime,
+    };
+}
+
+export function formatString(input) {
+    // Remove any non-alphanumeric characters (except space) and replace with a space
+    const cleanedString = input.replace(/[_-]/g, ' ');
+
+    // Capitalize the first character and lowercase the rest of each word
+    const formattedString = cleanedString
+        .toLowerCase()
+        .replace(/\b\w/g, (char) => char.toUpperCase());
+
+    return formattedString;
+}
