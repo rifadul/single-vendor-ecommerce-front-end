@@ -66,3 +66,15 @@ export function formatDateTime(createdAt) {
         time: formattedTime,
     };
 }
+
+export function formatString(input) {
+    // Remove any non-alphanumeric characters (except space) and replace with a space
+    const cleanedString = input.replace(/[_-]/g, ' ');
+
+    // Capitalize the first character and lowercase the rest of each word
+    const formattedString = cleanedString
+        .toLowerCase()
+        .replace(/\b\w/g, (char) => char.toUpperCase());
+
+    return formattedString;
+}

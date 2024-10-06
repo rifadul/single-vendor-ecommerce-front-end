@@ -1,10 +1,11 @@
 import React from "react";
 import Layouts from "@/layouts";
+import OrderDetails from "@/sections/Order/OrderDetails";
 
 export default async function TrackOrderDetailsPage() {
     return (
         <Layouts.ProfileLayout>
-            <p>Order details</p>
+            <OrderDetails />
         </Layouts.ProfileLayout>
     );
 }

@@ -35,10 +35,9 @@ function OrderItem({ order }) {
             </div>
             <div className="flex justify-between">
                 <span
-                    className={`inline-block px-3 py-1 rounded-full ${bg} ${text}`}
+                    className={`inline-block px-3 py-1 rounded-full capitalize ${bg} ${text}`}
                 >
-                    {order.order_status.charAt(0).toUpperCase() +
-                        order.order_status.slice(1)}
+                    {order.order_status}
                 </span>
                 <span className="font-semibold">Total: ${order.total}</span>
             </div>
