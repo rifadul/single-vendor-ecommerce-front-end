@@ -1,11 +1,12 @@
-export const MY_ACCOUNT_PATH = "/profile/my-account";
-
-export const MY_ADDRESS_PATH = "/profile/my-address";
-
-export const WISHLIST_PATH = "/profile/my-wishlists";
 export const SIGN_IN_PATH = "/sign-in";
-
 export const SIGN_UP_PATH = "/sign-up";
+
+export const MY_ACCOUNT_PATH = "/profile/my-account";
+export const MY_ADDRESS_PATH = "/profile/my-address";
+export const WISHLIST_PATH = "/profile/my-wishlists";
+export const TRACK_ORDERS_PATH = "/profile/track-orders";
+export const ACTIVE_ORDERS_PATH = "/profile/active-orders";
+export const ORDER_HISTORY_PATH = "/profile/order-history";
 
 export const PRODUCTS_PATH = "/products";
 export const PRODUCT_DETAILS_PATH = "/products/product-details";
