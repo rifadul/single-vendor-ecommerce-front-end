@@ -1,12 +1,12 @@
 "use client";
 import { useOrder } from "@/contexts/OrderContext";
-import { Divider, Spin } from "antd";
+import { Divider } from "antd";
 import { useParams } from "next/navigation";
-import React, { useEffect } from "react";
-import ProductSummary from "../Checkout/ProductSummary";
+import { useEffect } from "react";
 import OrderSummary from "../MyCart/OrderSummary";
-import { formatDateTime, formatString } from "@/utils";
+import { formatDateTime } from "@/utils";
 import { CollapsibleOrderItem } from "./CollapsibleOrderItem";
+import OrderDetailsLoaderSkeleton from "@/components/common/Loader/Skeleton/OrderDetailsLoaderSkeleton";
 
 function OrderDetails() {
     const { orderNumber } = useParams();
@@ -22,7 +22,7 @@ function OrderDetails() {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
     if (loading) {
-        <p>Loading...</p>;
+        <OrderDetailsLoaderSkeleton />;
     }
 
     return (
