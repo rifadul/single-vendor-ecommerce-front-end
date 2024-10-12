@@ -9,17 +9,23 @@ import {
 import { useAuth } from "@/contexts/AuthContext";
 import { WISHLIST_API_URL } from "@/helpers/apiUrls";
 import { toast } from "react-toastify";
+import { handleApiResponse, handleRedirectToLogin } from "@/utils/apiHandler";
+import { showToastError } from "@/utils/errorHandler";
+import { useRouter, usePathname } from "next/navigation";
 
 const WishlistContext = createContext(null);
 
 export const WishlistProvider = ({ children }) => {
-    const { isLoggedIn, user, token } = useAuth();
+    const { isLoggedIn, logout, token } = useAuth();
     const [wishLists, setWishLists] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
     const [success, setSuccess] = useState("");
+    const router = useRouter();
+    const pathname = usePathname();
 
     const fetchWishlist = useCallback(async () => {
+        if (!isLoggedIn || !token) return;
         setLoading(true);
         setError(null);
         try {
@@ -30,17 +36,15 @@ export const WishlistProvider = ({ children }) => {
                     Authorization: `Bearer ${token}`,
                 },
             });
-            if (!response.ok) {
-                throw new Error("Failed to fetch wishlist");
-            }
-            const data = await response.json();
+            const data = await handleApiResponse(response, logout); // Centralized API handler
             setWishLists(data.results);
         } catch (err) {
             setError(err.message);
+            showToastError(err.message);
         } finally {
             setLoading(false);
         }
-    }, [token]);
+    }, [isLoggedIn, token, logout]);
 
     useEffect(() => {
         if (isLoggedIn) {
@@ -74,6 +78,10 @@ export const WishlistProvider = ({ children }) => {
     };
 
     const addWishlistItem = async (productId) => {
+        if (!isLoggedIn || !token) {
+            handleRedirectToLogin(router, pathname);
+            return;
+        }
         setLoading(true);
         setError(null);
         setSuccess(null);

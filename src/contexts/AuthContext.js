@@ -12,10 +12,14 @@ import {
 } from "@/helpers/apiUrls";
 import { createContext, useContext, useState, useEffect } from "react";
 import { deleteCookie, getCookie, hasCookie, setCookie } from "cookies-next";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { OTP_VERIFICATION_PATH, RESET_PASSWORD_PATH } from "@/helpers/slug";
+import {
+    OTP_VERIFICATION_PATH,
+    RESET_PASSWORD_PATH,
+    SIGN_IN_PATH,
+} from "@/helpers/slug";
 
 const AuthContext = createContext(null);
 
@@ -24,6 +28,7 @@ export const AuthProvider = ({ children }) => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [token, setToken] = useState(null);
     const router = useRouter();
+    const searchParams = useSearchParams();
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
@@ -52,9 +57,9 @@ export const AuthProvider = ({ children }) => {
                 setToken(data.access);
                 setUser(data.user);
                 toast.success("Login successful!");
-                router.push("/"); // Redirect to home page after successful login
+                const redirectTo = searchParams.get("redirect") || "/";
+                router.push(redirectTo);
             } else {
-                // toast.error(data.error || "Failed to login");
                 throw new Error(data.error || "Failed to login");
             }
         } catch (error) {
@@ -108,9 +113,6 @@ export const AuthProvider = ({ children }) => {
             if (response.ok) {
                 toast.success("Name updated successfully");
                 await getProfile();
-                // Optionally update user state
-                // setUser(data);
-                // setCookie("user_info", JSON.stringify(data));
             } else {
                 throw new Error(data.error || "Failed to update name");
             }
@@ -138,13 +140,6 @@ export const AuthProvider = ({ children }) => {
             const data = await response.json();
             if (response.ok) {
                 toast.success("Phone number updated successfully");
-                // Optionally update user state
-                // setUser(data);
-                // let test = {
-                //     headingText:'Verify your phone number',
-                //     otp_type:'phone',
-
-                // }
                 await getProfile();
 
                 setCookie("otp_send_to", user?.email);
@@ -204,9 +199,6 @@ export const AuthProvider = ({ children }) => {
                 setCookie("otp_send_to", updateValues?.new_email);
                 setCookie("otp_type", "email");
                 router.push(OTP_VERIFICATION_PATH);
-                // Optionally update user state
-                // setUser(data);
-                // setCookie("user_info", JSON.stringify(data));
             } else {
                 throw new Error(data.error || "Failed to update email");
             }
@@ -255,7 +247,7 @@ export const AuthProvider = ({ children }) => {
             const data = await response.json();
             if (response.ok) {
                 toast.success(data?.status);
-                router.push("/");
+                router.push(SIGN_IN_PATH);
             } else {
                 throw new Error(data.error || "Failed to verify email");
             }

@@ -1,5 +1,5 @@
 "use client";
-import React, {
+import {
     createContext,
     useContext,
     useState,
@@ -11,16 +11,16 @@ import { useAuth } from "@/contexts/AuthContext";
 import {
     ADD_TO_CART_API_URL,
     APPLY_COUPON_API_URL,
-    CART_API_URL,
     MY_CART_API_URL,
 } from "@/helpers/apiUrls";
-import { SIGN_IN_PATH } from "@/helpers/slug";
 import { useRouter, usePathname } from "next/navigation";
+import { handleApiResponse, handleRedirectToLogin } from "@/utils/apiHandler";
+import { showToastError } from "@/utils/errorHandler";
 
 const CartContext = createContext(null);
 
 export const CartProvider = ({ children }) => {
-    const { isLoggedIn, token } = useAuth();
+    const { isLoggedIn, token, logout } = useAuth();
     const [cart, setCart] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
@@ -40,34 +40,24 @@ export const CartProvider = ({ children }) => {
                     "Content-Type": "application/json",
                 },
             });
-
-            if (!response.ok) {
-                const data = await response.json();
-                throw new Error(data.message || "Failed to fetch cart");
-            }
-
-            const data = await response.json();
+            const data = await handleApiResponse(response, logout); // Centralized API handler
             setCart(data);
         } catch (err) {
             setError(err.message);
-            toast.error(err.message);
+            showToastError(err.message);
         } finally {
             setLoading(false);
         }
-    }, [isLoggedIn, token]);
+    }, [isLoggedIn, token, logout]);
 
     useEffect(() => {
         fetchCart();
     }, [fetchCart]);
 
-    const handleRedirectToLogin = () => {
-        toast.warn("You need to be logged in to perform this action.");
-        router.push(`${SIGN_IN_PATH}?redirect=${encodeURIComponent(pathname)}`);
-    };
 
     const addToCart = async (variantId, quantity) => {
         if (!isLoggedIn || !token) {
-            handleRedirectToLogin();
+            handleRedirectToLogin(router, pathname);
             return;
         }
 

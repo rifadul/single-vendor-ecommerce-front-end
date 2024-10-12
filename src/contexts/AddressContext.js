@@ -9,18 +9,20 @@ import {
 import { useAuth } from "@/contexts/AuthContext"; // Assuming you have an AuthContext
 import { ADDRESS_API_URL } from "@/helpers/apiUrls";
 import { toast } from "react-toastify";
+import { handleApiResponse } from "@/utils/apiHandler";
+import { showToastError } from "@/utils/errorHandler";
 
 const AddressContext = createContext(null);
 
 export const AddressProvider = ({ children }) => {
-    const { isLoggedIn, token } = useAuth();
+    const { isLoggedIn, token, logout } = useAuth();
     const [addresses, setAddresses] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
     const [modalVisible, setModalVisible] = useState(false);
 
     const fetchAddresses = useCallback(async () => {
-        if (!isLoggedIn) return;
+        if (!isLoggedIn || !token) return;
 
         setLoading(true);
         setError(null);
@@ -32,21 +34,14 @@ export const AddressProvider = ({ children }) => {
                     Authorization: `Bearer ${token}`,
                 },
             });
-            if (!response.ok) {
-                const errorData = await response.json();
-                throw new Error(
-                    errorData.message || "Failed to fetch addresses"
-                );
-            }
-            const data = await response.json();
+            const data = await handleApiResponse(response, logout); // Centralized API handler
             setAddresses(data?.results);
         } catch (err) {
-            toast.error(err.message);
-            // setError(err.message);
+            showToastError(err.message);
         } finally {
             setLoading(false);
         }
-    }, [isLoggedIn, token]);
+    }, [isLoggedIn, logout, token]);
 
     useEffect(() => {
         fetchAddresses();

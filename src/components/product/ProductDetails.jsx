@@ -1,12 +1,12 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Rate } from "antd";
 import Image from "next/image";
 import Icons from "../../../public/assets/Icons";
 import Buttons from "../Buttons";
 import { useCart } from "@/contexts/CartContext";
 import Link from "next/link";
-import { PRODUCT_DETAILS_PATH, PRODUCTS_PATH } from "@/helpers/slug";
+import { PRODUCT_DETAILS_PATH } from "@/helpers/slug";
 import { usePathname } from "next/navigation";
 // import { useRouter } from "next/navigation";
 

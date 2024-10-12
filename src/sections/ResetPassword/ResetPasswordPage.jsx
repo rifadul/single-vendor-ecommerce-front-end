@@ -3,12 +3,14 @@ import CustomForm from "@/components/Forms";
 import FormCardContainer from "@/components/Forms/FormCardContainer";
 import FormContainer from "@/components/Forms/FormContainer";
 import { useAuth } from "@/contexts/AuthContext";
+import { Spin } from "antd";
 import React from "react";
 
 function ResetPasswordPage() {
-    const { resetPassword } = useAuth();
+    const { resetPassword, loading } = useAuth();
     return (
         <FormCardContainer cardTitle="Change Password">
+            <Spin fullscreen spinning={loading} />
             <div className="">
                 <FormContainer
                     onFinish={resetPassword}

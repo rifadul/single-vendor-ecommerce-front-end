@@ -6,12 +6,14 @@ import Images from "../../../public/assets/images";
 import FormContainer from "@/components/Forms/FormContainer";
 import CustomForm from "@/components/Forms";
 import { useAuth } from "@/contexts/AuthContext";
+import { Spin } from "antd";
 
 function ForgetPasswordPage() {
-    const { forgetPassword } = useAuth();
+    const { forgetPassword, loading } = useAuth();
 
     return (
         <FormCardContainer cardTitle="Forget Password">
+            <Spin fullscreen spinning={loading} />
             <p className="text-[40px] font-bold text-magenta-600 text-center">
                 Palooi
             </p>
