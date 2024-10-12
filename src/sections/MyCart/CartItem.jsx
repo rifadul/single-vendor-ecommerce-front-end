@@ -11,7 +11,6 @@ const CartItem = ({ item }) => {
             actionName === "increment"
                 ? item?.quantity + 1
                 : item?.quantity - 1;
-        // console.log(item?.id, value);
         updateCartItem(item?.id, value);
     };
 

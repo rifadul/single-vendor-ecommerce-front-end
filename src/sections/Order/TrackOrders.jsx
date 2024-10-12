@@ -39,7 +39,6 @@ function TrackOrders() {
                 toast.success(data.message);
                 setOrderInfo(data.data);
             } catch (err) {
-                console.log(err.message);
                 setError(err.message);
                 setOrderInfo(null);
                 toast.error(err.message);
