@@ -10,17 +10,15 @@ import { debounce } from "@/utils";
 import { FORGET_PASSWORD_PATH, SIGN_UP_PATH } from "@/helpers/slug";
 import { Checkbox, Form, Spin } from "antd";
 import { useAuth } from "@/contexts/AuthContext";
-import { useRouter } from "next/navigation";
 import { useSearchParams } from "next/navigation";
 
 function SignInForm() {
-    const router = useRouter();
     const { login, loading } = useAuth();
     const searchParams = useSearchParams();
-    const redirect = searchParams.get("redirect");
 
     const handleFormSubmit = async (values) => {
-        await login(values);
+        const redirectTo = searchParams.get("redirect") || "/";
+        await login(values, redirectTo);
     };
 
     // submit this form with debounce.
