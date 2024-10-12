@@ -28,7 +28,6 @@ export const AuthProvider = ({ children }) => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [token, setToken] = useState(null);
     const router = useRouter();
-    const searchParams = useSearchParams();
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
@@ -39,7 +38,7 @@ export const AuthProvider = ({ children }) => {
         }
     }, []);
 
-    const login = async (credentials) => {
+    const login = async (credentials, redirectPath = "/") => {
         setLoading(true);
         try {
             const response = await fetch(USER_SIGN_IN_API_URL, {
@@ -57,13 +56,11 @@ export const AuthProvider = ({ children }) => {
                 setToken(data.access);
                 setUser(data.user);
                 toast.success("Login successful!");
-                const redirectTo = searchParams.get("redirect") || "/";
-                router.push(redirectTo);
+                router.push(redirectPath);
             } else {
                 throw new Error(data.error || "Failed to login");
             }
         } catch (error) {
-            // console.error("Login error:", error);
             toast.error(error.message);
         } finally {
             setLoading(false);
