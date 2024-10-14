@@ -109,7 +109,7 @@ const RatingSection = ({ data }) => {
                         >
                             <div className="flex items-center justify-between">
                                 <h3 className="font-medium text-neutral-700">
-                                    Anonymous User
+                                    {`${review.user.first_name} ${review.user.last_name}`}
                                 </h3>
                                 <span className="text-sm text-gray-500">
                                     {`${
