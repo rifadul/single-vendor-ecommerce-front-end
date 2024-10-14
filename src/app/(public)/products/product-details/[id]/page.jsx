@@ -1,4 +1,5 @@
 import ImageCarousel from "@/components/product/ImageCarousel";
+import ProductDescriptionAndRatingTabs from "@/components/product/ProductDescriptionAndRatingTabs";
 import ProductDetails from "@/components/product/ProductDetails";
 import { PRODUCTS_API_URL } from "@/helpers/apiUrls";
 import React from "react";
@@ -7,7 +8,13 @@ import React from "react";
 async function getProductDetails(id) {
     try {
         const url = `${PRODUCTS_API_URL}/${id}`;
-        const res = await fetch(url);
+        const res = await fetch(url, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            cache: "no-store", // Ensure no caching happens
+        });
         if (!res.ok) {
             const errorData = await res.json();
             throw new Error(errorData.message || "Failed to fetch products");
@@ -38,7 +45,7 @@ async function ProductDetailsPage({ params }) {
     }
 
     return (
-        <div className="container mx-auto">
+        <div className="container mx-auto flex flex-col gap-12">
             <div className="flex flex-col md:flex-row">
                 <div className="w-full md:w-1/2">
                     <ImageCarousel images={product?.data.all_images} />
@@ -46,6 +53,9 @@ async function ProductDetailsPage({ params }) {
                 <div className="w-full md:w-1/2 pl-5 md:pl-8">
                     <ProductDetails product={product?.data} />
                 </div>
+            </div>
+            <div>
+                <ProductDescriptionAndRatingTabs product={product?.data} />
             </div>
         </div>
     );
