@@ -65,7 +65,13 @@ const ProductDetails = ({ product }) => {
                     <h2 className="text-2xl text-black-1000 font-medium leading-relaxed tracking-wide text-wrap line-clamp-3">
                         {product.name}
                     </h2>
-                    <Rate disabled defaultValue={4} />
+                    <Rate
+                        disabled
+                        defaultValue={4}
+                        style={{
+                            color: "#F08200",
+                        }}
+                    />
                 </div>
                 <div className="flex items-center space-x-2">
                     <span className="text-neutral-300 text-base font-medium line-through font-poppins">
