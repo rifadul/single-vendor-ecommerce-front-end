@@ -17,6 +17,6 @@ export const OTP_VERIFICATION_PATH = "/otp-verification";
 export const FORGET_PASSWORD_PATH = "/forget-password";
 export const RESET_PASSWORD_PATH = "/reset-password";
 
-export const CHECKOUT_PATH = "/checkout";
+export const CHECKOUT_PATH = "/my-cart/checkout";
 export const ORDER_CANCEL_PATH = "/order-cancel";
 export const ORDER_SUCCESS_PATH = "/order-success";

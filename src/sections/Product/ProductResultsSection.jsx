@@ -23,7 +23,7 @@ function ProductResultsSection({ showDrawer }) {
     const [currentPage, setCurrentPage] = useState(1);
     const searchParams = useSearchParams();
     const router = useRouter();
-    const itemsPerPage = 10; // Adjust items per page as needed
+    const itemsPerPage = 24; // Adjust items per page as needed
 
     // Fetch products whenever search parameters or current page changes
     useEffect(() => {

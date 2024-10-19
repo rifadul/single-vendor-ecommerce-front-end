@@ -13,7 +13,7 @@ function ProfileSidebar({ isSidebarOpen, setIsSidebarOpen }) {
                 onClick={() => setIsSidebarOpen(false)}
             ></div>
             <div
-                className={`bg-white fixed h-screen top-0 lg:relative w-5/6 lg:w-1/4 py-12 px-6 z-20 transform lg:transform-none transition-transform duration-300 ease-in-out ${
+                className={`bg-white lg:overflow-y-auto scrollbar-hide fixed h-screen top-0 lg:relative w-5/6 lg:w-1/4 py-12 px-6 z-20 transform lg:transform-none transition-transform duration-300 ease-in-out ${
                     isSidebarOpen ? "translate-x-0" : "-translate-x-full"
                 }`}
             >

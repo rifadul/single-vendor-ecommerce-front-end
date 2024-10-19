@@ -104,6 +104,16 @@ const RatingSection = ({ data }) => {
                 {filteredReviews.length > 0 ? (
                     filteredReviews.map((review) => (
                         <div
+                            onClick={() => {
+                                if (this.state.info) {
+                                    this.setState({ infoOpen: false });
+                                } else {
+                                    this.setState({
+                                        spendingCategoryDetail: false,
+                                        sub_category_id: "",
+                                    });
+                                }
+                            }}
                             key={review.id}
                             className="border p-3 rounded-lg shadow-sm"
                         >

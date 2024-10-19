@@ -9,7 +9,7 @@ import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 
 function OtpVerificationForm() {
-    const { getProfile } = useAuth;
+    const { getProfile } = useAuth();
     const router = useRouter();
     const token = getCookie("access_token");
     const otp_type = getCookie("otp_type");

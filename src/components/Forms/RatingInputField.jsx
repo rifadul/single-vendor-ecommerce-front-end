@@ -26,7 +26,12 @@ function RatingInputField({
             ]}
             className="mb-0"
         >
-            <Rate onChange={onChange} />
+            <Rate
+                onChange={onChange}
+                style={{
+                    color: "#F08200",
+                }}
+            />
         </Form.Item>
     );
 }
