@@ -5,7 +5,13 @@ import { Suspense } from "react";
 
 // Define banner API call functions
 async function getBanners() {
-    const res = await fetch(BANNER_API_URL);
+    const res = await fetch(BANNER_API_URL, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        cache: "no-store", // Ensure no caching happens
+    });
     if (!res.ok) {
         throw new Error("Failed to fetch banners");
     }

@@ -17,7 +17,7 @@ function Categories() {
     const searchParams = useSearchParams();
     const router = useRouter();
     const childrenOfSlug = searchParams.get("children_of");
-    const itemsPerPage = 5;
+    const itemsPerPage = 20;
 
     useEffect(() => {
         if (!childrenOfSlug) {

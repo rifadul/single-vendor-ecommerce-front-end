@@ -5,22 +5,22 @@ import { Form, Modal } from "antd";
 function PhoneNumberUpdateForm({ modalOpen, onClose, handleFinish }) {
     const [form] = Form.useForm();
 
+    const handleOnFinish = (values) => {
+        onClose(false);
+        form.resetFields();
+        handleFinish(values);
+    };
+
     const handleCancel = () => {
         onClose(false);
         form.resetFields();
     };
 
     return (
-        <Modal
-            // title={<span className="py-6">Update Phone number</span>}
-            open={modalOpen}
-            onCancel={handleCancel}
-            footer={null}
-            centered
-        >
+        <Modal open={modalOpen} onCancel={handleCancel} footer={null} centered>
             <FormContainer
                 form={form}
-                onFinish={handleFinish}
+                onFinish={handleOnFinish}
                 buttonName="Update Phone Number"
             >
                 <CustomForm.PasswordInputField

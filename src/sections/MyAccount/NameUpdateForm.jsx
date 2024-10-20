@@ -10,22 +10,21 @@ function NameUpdateForm({
 }) {
     const [form] = Form.useForm();
 
+    const handleOnFinish = (values) => {
+        onClose(false);
+        handleFinish(values);
+    };
+
     const handleCancel = () => {
         onClose(false);
         form.resetFields();
     };
     return (
-        <Modal
-            // title={<span className="py-6">Update Name</span>}
-            open={modalOpen}
-            onCancel={handleCancel}
-            footer={null}
-            centered
-        >
+        <Modal open={modalOpen} onCancel={handleCancel} footer={null} centered>
             <FormContainer
                 initialValues={initialValues}
                 form={form}
-                onFinish={handleFinish}
+                onFinish={handleOnFinish}
                 buttonName="Update User Name"
             >
                 <CustomForm.InputField

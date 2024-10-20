@@ -5,22 +5,21 @@ import { Form, Modal } from "antd";
 function ChangePasswordForm({ modalOpen, onClose, handleFinish }) {
     const [form] = Form.useForm();
 
+    const handleOnFinish = (values) => {
+        onClose(false);
+        handleFinish(values);
+    };
+
     const handleCancel = () => {
         onClose(false);
         form.resetFields();
     };
 
     return (
-        <Modal
-            // title={<span className="py-6">Change Password</span>}
-            open={modalOpen}
-            onCancel={handleCancel}
-            footer={null}
-            centered
-        >
+        <Modal open={modalOpen} onCancel={handleCancel} footer={null} centered>
             <FormContainer
                 form={form}
-                onFinish={handleFinish}
+                onFinish={handleOnFinish}
                 buttonName="Change Password"
             >
                 <CustomForm.PasswordInputField

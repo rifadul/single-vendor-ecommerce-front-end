@@ -30,9 +30,6 @@ const MyAccountPage = () => {
     const [openChangePasswordModal, setOpenChangePasswordModal] =
         useState(false);
 
-    const handleFinish = (values) => {
-        console.log("values", values);
-    };
 
     // for image
 

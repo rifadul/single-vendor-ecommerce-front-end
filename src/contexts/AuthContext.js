@@ -77,6 +77,7 @@ export const AuthProvider = ({ children }) => {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
+                cache: "no-store",
             });
             const data = await response.json();
             if (response.ok) {

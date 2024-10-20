@@ -7,6 +7,8 @@ import { Modal, Button, Input, Form, Rate } from "antd"; // Use antd for modal a
 import { toast } from "react-toastify"; // Notification
 import { PRODUCT_REVIEW_API_URL } from "@/helpers/apiUrls";
 import { useAuth } from "@/contexts/AuthContext";
+import RequiredErrorMessage from "@/components/common/RequiredErrorMessage";
+import Label from "@/components/Forms/Label";
 
 export function CollapsibleOrderItem({ item }) {
     const [isOpen, setIsOpen] = useState(false);
@@ -163,12 +165,13 @@ export function CollapsibleOrderItem({ item }) {
                         </div>
 
                         {/* Review Button */}
-                        <Button
-                            className="mt-4 bg-magenta-500 text-white hover:bg-magenta-600"
+                        <button
+                            type="button"
+                            className="bg-magenta-600 w-full mt-5 py-2  rounded-sm text-white font-semibold text-xs md:text-base hover:bg-magenta-700 transition duration-300"
                             onClick={showReviewModal}
                         >
                             Review this product
-                        </Button>
+                        </button>
                     </div>
                 )}
             </div>
@@ -184,47 +187,63 @@ export function CollapsibleOrderItem({ item }) {
                     form={form} // Attach form instance to the form
                     layout="vertical"
                     onFinish={handleReviewSubmit}
+                    initialValues={{
+                        rating: 3,
+                    }}
                 >
                     {/* Rating Input */}
                     <Form.Item
                         name="rating"
-                        label="Rating"
+                        label={<Label>Rating</Label>}
                         rules={[
                             {
                                 required: true,
-                                message: "Please rate the product!",
+                                message: (
+                                    <RequiredErrorMessage>
+                                        Please rate the product!
+                                    </RequiredErrorMessage>
+                                ),
                             },
                         ]}
                     >
-                        <Rate />
+                        <Rate
+                            style={{
+                                color: "#F08200",
+                            }}
+                        />
                     </Form.Item>
 
                     {/* Comment Input */}
                     <Form.Item
                         name="comment"
-                        label="Comment"
+                        label={<Label>Comment</Label>}
                         rules={[
                             {
                                 required: true,
-                                message: "Please provide a comment",
+                                message: (
+                                    <RequiredErrorMessage>
+                                        Please provide a comment
+                                    </RequiredErrorMessage>
+                                ),
                             },
                         ]}
                     >
                         <Input.TextArea
                             rows={4}
                             placeholder="Write your review"
+                            className="font-medium font-poppins text-neutral-100 py-3 px-4 rounded focus:text-magenta-600 outline-none"
                         />
                     </Form.Item>
 
                     {/* Submit Button */}
                     <Form.Item>
-                        <Button
-                            type="primary"
-                            htmlType="submit"
-                            className="bg-magenta-500"
+                        <button
+                            type="submit"
+                            className="bg-magenta-600 w-full mt-5 py-2  rounded-sm text-white font-semibold text-xs md:text-base hover:bg-magenta-700 transition duration-300"
+                            onClick={showReviewModal}
                         >
                             Submit Review
-                        </Button>
+                        </button>
                     </Form.Item>
                 </Form>
             </Modal>

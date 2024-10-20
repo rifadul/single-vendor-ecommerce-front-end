@@ -10,7 +10,7 @@ export function CategoriesProvider({ children }) {
 
     async function getCategories() {
         const response = await MakeApiCall({
-            apiUrl: CATEGORY_API_URL,
+            apiUrl: `${CATEGORY_API_URL}?page_size=${1000}`,
         });
 
         setCategoriesData(response);

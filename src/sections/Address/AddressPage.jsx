@@ -38,9 +38,15 @@ function AddressPage() {
             </div>
 
             <div>
-                {addresses.map((address) => (
-                    <AddressItem key={address.id} address={address} />
-                ))}
+                {addresses.length > 0 ? (
+                    addresses.map((address) => (
+                        <AddressItem key={address.id} address={address} />
+                    ))
+                ) : (
+                    <p className="text-base text-center py-10 font-medium font-poppins text-neutral-300">
+                        No Address added
+                    </p>
+                )}
             </div>
 
             <Modal

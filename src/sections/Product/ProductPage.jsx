@@ -22,7 +22,7 @@ function ProductPage() {
         <div className="container mx-auto">
             <div className="flex flex-col lg:flex-row h-screen gap-6">
                 {/* Product Filter */}
-                <div className="hidden lg:block lg:w-1/4">
+                <div className="hidden lg:block lg:overflow-y-auto scrollbar-hide lg:w-1/4">
                     <FilterSidebar />
                 </div>
 
