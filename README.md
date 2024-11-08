@@ -1,4 +1,4 @@
-Here's the complete `README.md` file content for your Palooi e-commerce project in one file:
+Here's a `README.md` file for your Palooi e-commerce project created with Next.js:
 
 ```markdown
 # Palooi E-commerce Project
@@ -11,7 +11,7 @@ Follow the steps below to set up and run the Palooi project on your local machin
 
 ### Prerequisites
 
-Make sure you have [Node.js](https://nodejs.org/) installed on your system. You can check if Node.js is installed using:
+Make sure you have [Node.js](https://nodejs.org/) installed on your system. You can check if Node.js is installed using the following command:
 
 ```bash
 node -v
@@ -23,12 +23,7 @@ node -v
    Clone the project repository to your local machine.
 
    ```bash
-   git clone https://github.com/rifadul/palooi-ecommerce-front-end.git
-   # or
-   git clone git@github.com:rifadul/palooi-ecommerce-front-end.git
-   # or
-   gh repo clone rifadul/palooi-ecommerce-front-end
-
+   git clone <repository-url>
    cd palooi-ecommerce
    ```
 
@@ -61,6 +56,7 @@ node -v
 5. **Open in Browser**:
    Open [http://localhost:3000](http://localhost:3000) with your browser to see the Palooi application.
 
+
 ## Scripts
 
 - `npm run dev` / `yarn dev`: Runs the development server.
@@ -73,5 +69,6 @@ node -v
 - [React](https://reactjs.org/)
 - [Node.js](https://nodejs.org/)
 
+---
+
 Happy coding!
-```
