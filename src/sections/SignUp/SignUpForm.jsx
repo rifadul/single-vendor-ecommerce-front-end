@@ -22,7 +22,7 @@ function SignUpForm() {
         delete values.acceptTP;
         const credentials = {
             ...values,
-            role: "0172ca90-970a-4d4e-9ad8-32f9b6750e0b",
+            role: "0172ca90-970a-4d4e-9ad8-32f9b6750e0b", // here need to replace with role id or make it dynamic
         };
         setLoading(true);
         try {
