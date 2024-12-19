@@ -29,19 +29,19 @@
 /* Custom styles for checkbox */
 
 .ant-checkbox-checked .ant-checkbox-inner {
-  border-color: #eb038b;
-  background-color: #eb038b;
+  border-color: #0540AB;
+  background-color: #0540AB;
 }
 
 .ant-checkbox-checked:not(.ant-checkbox-disabled):hover .ant-checkbox-inner {
-  border-color: #eb038b !important;
-  background-color: #eb038b !important;
+  border-color: #0540AB !important;
+  background-color: #0540AB !important;
 }
 
 .ant-checkbox-wrapper-checked:not(.ant-checkbox-disabled):hover
   .ant-checkbox-inner {
-  border-color: #eb038b !important;
-  background-color: #eb038b !important;
+  border-color: #0540AB !important;
+  background-color: #0540AB !important;
 }
 
 
@@ -62,33 +62,33 @@
 
 /* Custom styles for radio */
 .custom-radio-style:hover {
-  border-color: #eb038b;
+  border-color: #0540AB;
 }
 
 .custom-radio-style:hover .ant-radio-inner {
-  border-color: #eb038b;
+  border-color: #0540AB;
 }
 
 .ant-radio-wrapper .ant-radio-checked::after {
-  border-color: #eb038b;
+  border-color: #0540AB;
 }
 
 .custom-radio-style .ant-radio-checked .ant-radio-inner {
-  background-color: #eb038b !important;
+  background-color: #0540AB !important;
   /* Change the fill color when the radio is checked */
-  border-color: #eb038b !important;
-  outline-color: #eb038b !important;
+  border-color: #0540AB !important;
+  outline-color: #0540AB !important;
 }
 
 /* Custom styles for the Slider */
 
 :where(.css-dev-only-do-not-override-98ntnt).ant-slider .ant-slider-handle::after{
-  background-color: #eb038b !important;
-  box-shadow: 0 0 0 2px #eb038b !important;
+  background-color: #0540AB !important;
+  box-shadow: 0 0 0 2px #0540AB !important;
 }
 
 .ant-slider-track {
-  background-color: #eb038b !important; /* Customize the slider track color */
+  background-color: #0540AB !important; /* Customize the slider track color */
 }
 
 .ant-slider-rail {
@@ -96,23 +96,23 @@
 }
 
 .ant-slider-handle {
-  border-color: #eb038b !important; /* Customize the slider handle border color */
-  background-color: #eb038b !important; /* Customize the slider handle background color */
+  border-color: #0540AB !important; /* Customize the slider handle border color */
+  background-color: #0540AB !important; /* Customize the slider handle background color */
 }
 
 .ant-slider-handle:hover {
-  border-color: #ff1493 !important; /* Customize the slider handle border color on hover */
-  background-color: #ff1493 !important; /* Customize the slider handle background color on hover */
+  border-color: #0540AB !important; /* Customize the slider handle border color on hover */
+  background-color: #0540AB !important; /* Customize the slider handle background color on hover */
 }
 
 
 .ant-slider:hover .ant-slider-track {
-  background-color: #eb038b !important; /* Customize the slider track color on hover */
+  background-color: #0540AB !important; /* Customize the slider track color on hover */
 }
 
 .ant-slider:hover .ant-slider-handle {
-  border-color: #eb038b !important; /* Customize the slider handle border color on hover */
-  background-color: #eb038b !important; /* Customize the slider handle background color on hover */
+  border-color: #0540AB !important; /* Customize the slider handle border color on hover */
+  background-color: #0540AB !important; /* Customize the slider handle background color on hover */
 }
 
 
@@ -130,7 +130,7 @@
 }
 
 .image-carousel .thumbnail-wrapper .thumbnail:hover {
-  border-color: #ff1493;
+  border-color: #0540AB;
 }
 
 

@@ -49,8 +49,8 @@ function SignUpForm() {
     return (
         <FormCardContainer cardTitle="Sign up">
             <Spin fullscreen spinning={loading} />
-            <p className="text-[40px] font-bold text-magenta-600 text-center">
-                Palooi
+            <p className="text-[40px] font-bold text-blue-900 text-center">
+                SHARK WAVE
             </p>
             <div className="space-y-9">
                 <div className="space-y-3">
@@ -121,7 +121,7 @@ function SignUpForm() {
                             By signing up, you agree to our{" "}
                             <Link
                                 href="#"
-                                className="text-magenta-600 font-medium font-poppins hover:text-magenta-600"
+                                className="text-blue-900 font-medium font-poppins hover:text-blue-900"
                             >
                                 Terms & conditions
                             </Link>
@@ -135,7 +135,7 @@ function SignUpForm() {
             <p className="font-medium text-neutral-300 text-center">
                 Don't have an account ?{" "}
                 <Link
-                    className="text-magenta-500 font-semibold"
+                    className="text-blue-700 font-semibold"
                     href={SIGN_IN_PATH}
                 >
                     Sign in

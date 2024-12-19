@@ -1,13 +1,13 @@
-Here's a `README.md` file for your Palooi e-commerce project created with Next.js:
+Here's a `README.md` file for your Shark Wave e-commerce project created with Next.js:
 
 ```markdown
-# Palooi E-commerce Project
+# Shark Wave E-commerce Project
 
-This is a Next.js-based e-commerce project named Palooi. The project offers a modern development experience and includes both client-side and server-side rendering capabilities to enhance user experience and performance.
+This is a Next.js-based e-commerce project named Shark Wave. The project offers a modern development experience and includes both client-side and server-side rendering capabilities to enhance user experience and performance.
 
 ## Getting Started
 
-Follow the steps below to set up and run the Palooi project on your local machine.
+Follow the steps below to set up and run the Shark Wave project on your local machine.
 
 ### Prerequisites
 
@@ -24,7 +24,7 @@ node -v
 
    ```bash
    git clone <repository-url>
-   cd palooi-ecommerce
+   cd shark-wave-e-commerce
    ```
 
 2. **Install Node Modules**:
@@ -40,8 +40,8 @@ node -v
    Create a `.env.local` file in the root directory and add the following environment variables:
 
    ```env
-   PALOOI_API_DOMAIN="http://127.0.0.1:8000/api"
-   NEXT_PUBLIC_PALOOI_API_DOMAIN="http://127.0.0.1:8000/api"
+   SHARK_WAVE_API_DOMAIN="http://127.0.0.1:8000/api"
+   NEXT_PUBLIC_SHARK_WAVE_API_DOMAIN="http://127.0.0.1:8000/api"
    ```
 
 4. **Run the Development Server**:
@@ -54,7 +54,7 @@ node -v
    ```
 
 5. **Open in Browser**:
-   Open [http://localhost:3000](http://localhost:3000) with your browser to see the Palooi application.
+   Open [http://localhost:3000](http://localhost:3000) with your browser to see the Shark Wave application.
 
 
 ## Scripts

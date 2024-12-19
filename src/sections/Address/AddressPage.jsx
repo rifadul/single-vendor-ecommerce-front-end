@@ -1,9 +1,9 @@
 "use client";
+import { useAddress } from "@/contexts/AddressContext";
 import { Modal } from "antd";
 import { useEffect, useState } from "react";
-import AddressItem from "./AddressItem";
 import AddressForm from "./AddressForm";
-import { useAddress } from "@/contexts/AddressContext";
+import AddressItem from "./AddressItem";
 
 function AddressPage() {
     const { addresses, loading, error, fetchAddresses, createAddress } =
@@ -30,7 +30,7 @@ function AddressPage() {
                 </p>
 
                 <button
-                    className="bg-magenta-600 py-2 px-3 md:py-4 md:px-9 rounded-sm text-white font-semibold text-xs md:text-base hover:bg-magenta-700 transition duration-300"
+                    className="bg-blue-900 py-2 px-3 md:py-4 md:px-9 rounded-sm text-white font-semibold text-xs md:text-base hover:bg-blue-800 transition duration-300"
                     onClick={() => setVisible(true)}
                 >
                     Add new address

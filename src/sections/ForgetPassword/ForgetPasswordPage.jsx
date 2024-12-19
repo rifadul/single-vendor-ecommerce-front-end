@@ -1,12 +1,11 @@
 "use client";
-import FormCardContainer from "@/components/Forms/FormCardContainer";
-import Image from "next/image";
-import React from "react";
-import Images from "../../../public/assets/images";
-import FormContainer from "@/components/Forms/FormContainer";
 import CustomForm from "@/components/Forms";
+import FormCardContainer from "@/components/Forms/FormCardContainer";
+import FormContainer from "@/components/Forms/FormContainer";
 import { useAuth } from "@/contexts/AuthContext";
 import { Spin } from "antd";
+import Image from "next/image";
+import Images from "../../../public/assets/images";
 
 function ForgetPasswordPage() {
     const { forgetPassword, loading } = useAuth();
@@ -14,8 +13,8 @@ function ForgetPasswordPage() {
     return (
         <FormCardContainer cardTitle="Forget Password">
             <Spin fullscreen spinning={loading} />
-            <p className="text-[40px] font-bold text-magenta-600 text-center">
-                Palooi
+            <p className="text-[40px] font-bold text-blue-900 text-center">
+                SHARK WAVE
             </p>
             <Image src={Images.signInBanner} alt="Sign in banner" />
             <div className="space-y-9">

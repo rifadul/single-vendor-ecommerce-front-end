@@ -15,27 +15,27 @@ function ProductDescriptionAndRatingTabs({ product }) {
                 <button
                     className={`relative py-2 text-base focus:outline-none ${
                         activeTab === "description"
-                            ? "text-magenta-500 font-semibold"
-                            : "text-neutral-300 hover:text-magenta-500 font-medium"
+                            ? "text-blue-700 font-semibold"
+                            : "text-neutral-300 hover:text-blue-700 font-medium"
                     }`}
                     onClick={() => handleTabClick("description")}
                 >
                     Description
                     {activeTab === "description" && (
-                        <span className="absolute left-0 bottom-0 h-1 w-full bg-magenta-500 rounded"></span>
+                        <span className="absolute left-0 bottom-0 h-1 w-full bg-blue-700 rounded"></span>
                     )}
                 </button>
                 <button
                     className={`relative py-2 text-base focus:outline-none ${
                         activeTab === "rating"
-                            ? "text-magenta-500 font-semibold"
-                            : "text-neutral-300 hover:text-magenta-500 font-medium"
+                            ? "text-blue-700 font-semibold"
+                            : "text-neutral-300 hover:text-blue-700 font-medium"
                     }`}
                     onClick={() => handleTabClick("rating")}
                 >
                     Rating & Review
                     {activeTab === "rating" && (
-                        <span className="absolute left-0 bottom-0 h-1 w-full bg-magenta-500 rounded"></span>
+                        <span className="absolute left-0 bottom-0 h-1 w-full bg-blue-700 rounded"></span>
                     )}
                 </button>
             </div>

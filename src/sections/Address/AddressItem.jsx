@@ -1,9 +1,9 @@
-import { useState } from "react";
-import Image from "next/image";
-import Icons from "../../../public/assets/Icons";
-import { Modal } from "antd";
-import AddressForm from "./AddressForm";
 import { useAddress } from "@/contexts/AddressContext";
+import { Modal } from "antd";
+import Image from "next/image";
+import { useState } from "react";
+import Icons from "../../../public/assets/Icons";
+import AddressForm from "./AddressForm";
 import AddressInfo from "./AddressInfo";
 
 const AddressItem = ({ address }) => {
@@ -22,7 +22,7 @@ const AddressItem = ({ address }) => {
         <div
             className={`flex items-center justify-between px-5 py-6 mb-4 border rounded ${
                 address.defaultAddress
-                    ? "border-magenta-600"
+                    ? "border-blue-900"
                     : "border-none bg-neutral-10"
             }`}
         >
@@ -31,7 +31,7 @@ const AddressItem = ({ address }) => {
                     type="radio"
                     name="address"
                     checked={address.defaultAddress}
-                    className="text-magenta-500 accent-magenta-600"
+                    className="text-blue-700 accent-blue-900"
                     readOnly
                 />
                 <AddressInfo address={address} />

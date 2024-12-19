@@ -1,7 +1,5 @@
 "use client";
-import React from "react";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { useAuth } from "@/contexts/AuthContext";
 import {
     ACTIVE_ORDERS_PATH,
     MY_ACCOUNT_PATH,
@@ -10,19 +8,20 @@ import {
     TRACK_ORDERS_PATH,
     WISHLIST_PATH,
 } from "@/helpers/slug";
+import Image from "next/image";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import {
-    FaUser,
-    FaMapMarkerAlt,
-    FaHeart,
+    FaCheck,
     FaClipboardList,
     FaClock,
+    FaHeart,
     FaHistory,
-    FaCheck,
+    FaMapMarkerAlt,
     FaSignOutAlt,
+    FaUser,
 } from "react-icons/fa";
-import Image from "next/image";
 import Icons from "../../public/assets/Icons";
-import { useAuth } from "@/contexts/AuthContext";
 
 function ProfileMenuItem() {
     const pathname = usePathname();
@@ -97,21 +96,21 @@ function ProfileMenuItem() {
                                     <div
                                         className={`flex items-center font-poppins ${
                                             isActive
-                                                ? "text-magenta-600 font-semibold"
+                                                ? "text-blue-900 font-semibold"
                                                 : "text-neutral-300 font-medium"
                                         }`}
                                     >
                                         <item.icon
                                             className={`mr-2 ${
                                                 isActive
-                                                    ? "text-magenta-600 font-semibold"
+                                                    ? "text-blue-900 font-semibold"
                                                     : "text-neutral-300 font-medium"
                                             }`}
                                         />
                                         {item.name}
                                     </div>
                                     {isActive && (
-                                        <FaCheck className="text-white bg-magenta-600 rounded-full p-1" />
+                                        <FaCheck className="text-white bg-blue-900 rounded-full p-1" />
                                     )}
                                 </Link>
                             );

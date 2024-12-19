@@ -1,9 +1,9 @@
-import React, { useState } from "react";
-import { Modal, Switch } from "antd";
-import AddressItem from "./AddressItem";
-import NoAddressAddedMessage from "../Address/NoAddressAddedMessage";
-import AddressForm from "../Address/AddressForm";
 import { useAddress } from "@/contexts/AddressContext";
+import { Modal, Switch } from "antd";
+import { useState } from "react";
+import AddressForm from "../Address/AddressForm";
+import NoAddressAddedMessage from "../Address/NoAddressAddedMessage";
+import AddressItem from "./AddressItem";
 
 const AddressSection = ({
     addresses,
@@ -44,7 +44,7 @@ const AddressSection = ({
                     {addresses.length < !0 && (
                         <p
                             onClick={() => setVisible(true)}
-                            className="text-magenta-600 hover:underline font-medium cursor-pointer"
+                            className="text-blue-900 hover:underline font-medium cursor-pointer"
                         >
                             Create new address
                         </p>
@@ -76,7 +76,7 @@ const AddressSection = ({
                     {addresses.length < !0 && (
                         <p
                             onClick={() => setVisible(true)}
-                            className="text-magenta-600 hover:underline font-medium cursor-pointer"
+                            className="text-blue-900 hover:underline font-medium cursor-pointer"
                         >
                             Create new address
                         </p>

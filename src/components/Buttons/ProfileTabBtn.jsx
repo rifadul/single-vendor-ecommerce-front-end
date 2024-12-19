@@ -1,5 +1,4 @@
 import Image from "next/image";
-import React from "react";
 import Icons from "../../../public/assets/Icons";
 
 const ProfileTabBtn = ({
@@ -28,7 +27,7 @@ const ProfileTabBtn = ({
                 <p
                     className={`text-sm font-poppins ${
                         active
-                            ? "text-magenta-600"
+                            ? "text-blue-900"
                             : label === "Logout"
                             ? "text-error-500"
                             : "text-neutral-300"

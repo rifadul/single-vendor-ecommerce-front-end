@@ -36,7 +36,7 @@ const ProductSummary = ({ items }) => {
 
             <div className="flex justify-end">
                 <Link href={PRODUCTS_PATH}>
-                    <button className="border border-magenta-600 text-center font-semibold text-magenta-600 px-6 py-4 rounded-sm my-4">
+                    <button className="border border-blue-900 text-center font-semibold text-blue-900 px-6 py-4 rounded-sm my-4">
                         CONTINUE SHOPPING
                     </button>
                 </Link>

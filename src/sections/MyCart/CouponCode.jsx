@@ -24,7 +24,7 @@ const CouponCode = ({ applyCoupon }) => {
                 <button
                     disabled={code === ""}
                     onClick={handleApply}
-                    className="bg-magenta-600 text-white px-4 py-2 rounded-r font-medium"
+                    className="bg-blue-900 text-white px-4 py-2 rounded-r font-medium"
                 >
                     Apply
                 </button>

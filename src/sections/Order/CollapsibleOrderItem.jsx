@@ -1,14 +1,14 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
-import Image from "next/image";
-import React, { useState } from "react";
-import { FaChevronDown, FaChevronUp } from "react-icons/fa"; // Import icons for dropdown
-import { Modal, Button, Input, Form, Rate } from "antd"; // Use antd for modal and form components
-import { toast } from "react-toastify"; // Notification
-import { PRODUCT_REVIEW_API_URL } from "@/helpers/apiUrls";
-import { useAuth } from "@/contexts/AuthContext";
 import RequiredErrorMessage from "@/components/common/RequiredErrorMessage";
 import Label from "@/components/Forms/Label";
+import { useAuth } from "@/contexts/AuthContext";
+import { PRODUCT_REVIEW_API_URL } from "@/helpers/apiUrls";
+import { Form, Input, Modal, Rate } from "antd"; // Use antd for modal and form components
+import Image from "next/image";
+import { useState } from "react";
+import { FaChevronDown, FaChevronUp } from "react-icons/fa"; // Import icons for dropdown
+import { toast } from "react-toastify"; // Notification
 
 export function CollapsibleOrderItem({ item }) {
     const [isOpen, setIsOpen] = useState(false);
@@ -167,7 +167,7 @@ export function CollapsibleOrderItem({ item }) {
                         {/* Review Button */}
                         <button
                             type="button"
-                            className="bg-magenta-600 w-full mt-5 py-2  rounded-sm text-white font-semibold text-xs md:text-base hover:bg-magenta-700 transition duration-300"
+                            className="bg-blue-900 w-full mt-5 py-2  rounded-sm text-white font-semibold text-xs md:text-base hover:bg-blue-800 transition duration-300"
                             onClick={showReviewModal}
                         >
                             Review this product
@@ -231,7 +231,7 @@ export function CollapsibleOrderItem({ item }) {
                         <Input.TextArea
                             rows={4}
                             placeholder="Write your review"
-                            className="font-medium font-poppins text-neutral-100 py-3 px-4 rounded focus:text-magenta-600 outline-none"
+                            className="font-medium font-poppins text-neutral-100 py-3 px-4 rounded focus:text-blue-900 outline-none"
                         />
                     </Form.Item>
 
@@ -239,7 +239,7 @@ export function CollapsibleOrderItem({ item }) {
                     <Form.Item>
                         <button
                             type="submit"
-                            className="bg-magenta-600 w-full mt-5 py-2  rounded-sm text-white font-semibold text-xs md:text-base hover:bg-magenta-700 transition duration-300"
+                            className="bg-blue-900 w-full mt-5 py-2  rounded-sm text-white font-semibold text-xs md:text-base hover:bg-blue-800 transition duration-300"
                             onClick={showReviewModal}
                         >
                             Submit Review

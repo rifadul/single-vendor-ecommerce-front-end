@@ -1,9 +1,9 @@
 "use client";
-import Image from "next/image";
-import React, { useState } from "react";
-import { useRouter } from "next/navigation";
-import { CATEGORY_WITH_PRODUCT_PATH, PRODUCTS_PATH } from "@/helpers/slug";
 import { useCategoriesContext } from "@/contexts/CategoriesContext";
+import { CATEGORY_WITH_PRODUCT_PATH, PRODUCTS_PATH } from "@/helpers/slug";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 import Icons from "../../../public/assets/Icons";
 
 const CategoryMenu = ({ onClose }) => {
@@ -50,7 +50,7 @@ const CategoryMenu = ({ onClose }) => {
                                     }
                                     ${
                                         openCategory === category?.id
-                                            ? "text-magenta-600"
+                                            ? "text-blue-900"
                                             : "text-neutral-800"
                                     }`}
                                 onClick={() =>

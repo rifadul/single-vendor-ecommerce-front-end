@@ -1,16 +1,16 @@
 "use client";
+import SocialButtons from "@/components/common/socialButtons/SocialButtons";
 import CustomForm from "@/components/Forms";
 import FormCardContainer from "@/components/Forms/FormCardContainer";
 import FormContainer from "@/components/Forms/FormContainer";
+import { useAuth } from "@/contexts/AuthContext";
+import { FORGET_PASSWORD_PATH, SIGN_UP_PATH } from "@/helpers/slug";
+import { debounce } from "@/utils";
+import { Checkbox, Form, Spin } from "antd";
 import Image from "next/image";
 import Link from "next/link";
-import Images from "../../../public/assets/images";
-import SocialButtons from "@/components/common/socialButtons/SocialButtons";
-import { debounce } from "@/utils";
-import { FORGET_PASSWORD_PATH, SIGN_UP_PATH } from "@/helpers/slug";
-import { Checkbox, Form, Spin } from "antd";
-import { useAuth } from "@/contexts/AuthContext";
 import { useSearchParams } from "next/navigation";
+import Images from "../../../public/assets/images";
 
 function SignInForm() {
     const { login, loading } = useAuth();
@@ -27,8 +27,8 @@ function SignInForm() {
     return (
         <FormCardContainer cardTitle="Sign in">
             <Spin fullscreen spinning={loading} />
-            <p className="text-[40px] font-bold text-magenta-600 text-center">
-                Palooi
+            <p className="text-[40px] font-bold text-blue-900 text-center">
+                SHARK WAVE
             </p>
             <Image src={Images.signInBanner} alt="Sign in banner" />
             <div className="space-y-9">
@@ -68,7 +68,7 @@ function SignInForm() {
                         </Form.Item>
                         <Link
                             href={FORGET_PASSWORD_PATH}
-                            className="text-magenta-600 font-medium hover:text-magenta-600"
+                            className="text-blue-900 font-medium hover:text-blue-900"
                         >
                             Forgot password?
                         </Link>
@@ -81,7 +81,7 @@ function SignInForm() {
             <p className="font-medium text-neutral-300 text-center">
                 Don't have an account ?{" "}
                 <Link
-                    className="text-magenta-500 font-semibold"
+                    className="text-blue-700 font-semibold"
                     href={SIGN_UP_PATH}
                 >
                     Sign up
