@@ -28,7 +28,7 @@ function SignInForm() {
         <FormCardContainer cardTitle="Sign in">
             <Spin fullscreen spinning={loading} />
             <p className="text-[40px] font-bold text-blue-900 text-center">
-                Palooi
+                SHARK WAVE
             </p>
             <Image src={Images.signInBanner} alt="Sign in banner" />
             <div className="space-y-9">

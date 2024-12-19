@@ -48,7 +48,7 @@ const FooterSections = ({ data }) => {
         <div className="flex flex-col sm:flex-row items-center  sm:justify-start gap-6  w-full sm:w-[286px] lg:w-[350px] xl:w-auto">
             <Image
                 src={data.icon}
-                alt="palooi-footer-image"
+                alt="shark-wave-footer-image"
                 width={100}
                 height={100}
                 className="h-10 w-12"

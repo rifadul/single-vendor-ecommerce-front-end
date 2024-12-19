@@ -50,7 +50,7 @@ function SignUpForm() {
         <FormCardContainer cardTitle="Sign up">
             <Spin fullscreen spinning={loading} />
             <p className="text-[40px] font-bold text-blue-900 text-center">
-                Palooi
+                SHARK WAVE
             </p>
             <div className="space-y-9">
                 <div className="space-y-3">

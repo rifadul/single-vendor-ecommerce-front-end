@@ -61,11 +61,12 @@ function Primary() {
 						className='text-white md:text-4xl text-[28px] font-bold'
 						onClick={() => router.push('/')}>
 						<Image
-							alt='Palooi-logo'
+							alt='Shark-wave-logo'
 							height={1000}
 							width={1000}
-							src={'/palooi_icon.svg'}
-							className='w-16 h-16'
+							src={'/shark_wave_icon.svg'}
+							// className='w-16 h-16'
+							className='w-[138px]'
 						/>
 					</button>
 				</div>

@@ -53,15 +53,13 @@ const Primary = () => {
 			<div className='container mx-auto px-6'>
 				<div className='lg:pt-20 md:pt-14 sm:pt-11 pt-9 pb-4 grid grid-cols-12 lg:flex-row items-start justify-between lg:gap-x-12 gap-y-9'>
 					<div className='flex flex-col gap-5  col-span-12  md:col-span-4'>
-						{/* <h1 className="text-[40px] font-bold text-white m-0 sm:text-left text-center">
-                            Palooi
-                        </h1> */}
 						<Image
-							alt='Palooi-logo'
+							alt='shark-wave-logo'
 							height={1000}
 							width={1000}
-							src={'/palooi_icon.svg'}
-							className='w-40 h-40 self-center sm:self-start'
+							src={'/shark_wave_icon.svg'}
+							className='w-[138px] self-center sm:self-start'
+							// className='w-40 h-40 self-center sm:self-start'
 						/>
 						<p className='text-sm text-white font-medium mt-5 sm:block hidden'>
 							Follow us on social media
@@ -79,38 +77,6 @@ const Primary = () => {
 								</Link>
 							))}
 						</div>
-						{/* <div className="mt-8">
-                            <p className="text-sm text-white font-medium">
-                                Subscribe to our newsletter
-                            </p>
-                            <div className="flex items-center mt-3">
-                                <input
-                                    type="email"
-                                    value={subscribeEmail}
-                                    className="bg-light-gray py-3 px-5 rounded-l input-field border-none outline-none text-sm lg:text-base text-white w-full lg:w-[257px]"
-                                    placeholder="username@email.com"
-                                    onChange={(event) =>
-                                        setSubscribeEmail(event.target.value)
-                                    }
-                                />
-                                <div>
-                                    <button
-                                        className="py-3.5 px-5 bg-white
-                                            text-blue-900 text-sm font-medium
-                                            rounded-r whitespace-nowrap"
-                                        disabled={subscribeEmail === ""}
-                                        onClick={() =>
-                                            console.log(
-                                                "Subscribe email is ",
-                                                subscribeEmail
-                                            )
-                                        }
-                                    >
-                                        Sign up
-                                    </button>
-                                </div>
-                            </div>
-                        </div> */}
 					</div>
 					<div className='w-full grid grid-cols-2 lg:grid-cols-4 gap-y-10 col-span-12 md:col-span-8'>
 						{combinedLinks.map((item) => (
@@ -149,7 +115,12 @@ const Primary = () => {
 						))}
 					</div>
 					<p className='text-center py-5 text-sm text-white'>
-						Copyright {new Date().getFullYear()} by SHARK WAVE.
+						Copyright {new Date().getFullYear()} by{' '}
+						<Link
+							target='_blank'
+							href='https://www.facebook.com/profile.php?id=61557595179242'>
+							SHARK WAVE.
+						</Link>
 					</p>
 					<p className='text-sm text-white pb-4 md:pb-0'>
 						Developed by{' '}

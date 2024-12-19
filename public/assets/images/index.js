@@ -1,8 +1,6 @@
 import banner_img from "./banner_img.jpeg";
 import banner_img2 from "./banner_img2.jpeg";
-import sign_in_bg from "./sign_in_bg.webp";
 import verify_otp_image from "./verifyOTP.svg";
-import forgot_password from "./forget_password.png";
 import profile_avatar from "./profile_avatar.webp";
 import cart_item from "./cartItemImage.webp";
 import iphone from "./iphone.png";
@@ -28,8 +26,6 @@ const Images = {
   banner_img2,
   profile_avatar,
   verify_otp_image,
-  sign_in_bg,
-  forgot_password,
   wish_list_photo,
   cart_item,
   page_not_found,
