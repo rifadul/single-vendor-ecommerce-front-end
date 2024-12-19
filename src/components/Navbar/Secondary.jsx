@@ -1,9 +1,9 @@
 "use client";
+import { megaMenuData } from "@/libs/megaMenuData";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import MegaMenu from "./MegaMenu";
-import { megaMenuData } from "@/libs/megaMenuData";
 
 function Secondary() {
     const pathname = usePathname();
@@ -43,7 +43,7 @@ function Secondary() {
                             href={item.path}
                             className={`text-base relative py-4 ${
                                 pathname === item.path
-                                    ? "text-magenta-600"
+                                    ? "text-blue-900"
                                     : "text-neutral-600"
                             }`}
                         >

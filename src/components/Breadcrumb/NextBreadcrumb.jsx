@@ -1,8 +1,8 @@
 "use client";
-import { usePathname } from "next/navigation";
-import Link from "next/link";
-import { Breadcrumb } from "antd";
 import { generateBreadcrumbPath } from "@/utils";
+import { Breadcrumb } from "antd";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 function NextBreadcrumb() {
     const paths = usePathname();
@@ -55,7 +55,7 @@ function NextBreadcrumb() {
                             }`}
                             className={`font-poppins ${
                                 breadcrumbPath()?.length - 1 === index
-                                    ? "text-magenta-600"
+                                    ? "text-blue-900"
                                     : ""
                             }`}
                         >

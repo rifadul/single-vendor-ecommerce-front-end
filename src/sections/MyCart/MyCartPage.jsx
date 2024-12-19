@@ -1,13 +1,12 @@
 "use client";
-import React from "react";
-import CartItem from "./CartItem";
-import OrderSummary from "./OrderSummary";
-import CouponCode from "./CouponCode";
 import { useCart } from "@/contexts/CartContext";
-import { Spin } from "antd";
-import CartTableHeading from "./CartTableHeading";
-import Link from "next/link";
 import { CHECKOUT_PATH, PRODUCTS_PATH } from "@/helpers/slug";
+import { Spin } from "antd";
+import Link from "next/link";
+import CartItem from "./CartItem";
+import CartTableHeading from "./CartTableHeading";
+import CouponCode from "./CouponCode";
+import OrderSummary from "./OrderSummary";
 
 const MyCartPage = () => {
     const { cart, loading, applyCoupon } = useCart();
@@ -47,7 +46,7 @@ const MyCartPage = () => {
                             )}
 
                             <Link href={PRODUCTS_PATH}>
-                                <button className="bg-magenta-600 text-center font-semibold text-white px-6 py-4 rounded-sm my-4">
+                                <button className="bg-blue-900 text-center font-semibold text-white px-6 py-4 rounded-sm my-4">
                                     CONTINUE SHOPPING
                                 </button>
                             </Link>
@@ -70,7 +69,7 @@ const MyCartPage = () => {
                     />
                     <CouponCode applyCoupon={applyCoupon} />
                     <Link href={CHECKOUT_PATH}>
-                        <button className="bg-magenta-600 font-semibold text-white px-6 w-full py-4 rounded-sm">
+                        <button className="bg-blue-900 font-semibold text-white px-6 w-full py-4 rounded-sm">
                             CHECKOUT
                         </button>
                     </Link>

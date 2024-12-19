@@ -24,9 +24,9 @@ const PrimaryOutlinedBtn = ({
                     ? `${
                           activeBorderColor
                               ? activeBorderColor
-                              : "border-magenta-500"
+                              : "border-blue-700"
                       } ${
-                          activeTextColor ? activeTextColor : "text-magenta-500"
+                          activeTextColor ? activeTextColor : "text-blue-700"
                       }`
                     : `${
                           deactivateBorderColor

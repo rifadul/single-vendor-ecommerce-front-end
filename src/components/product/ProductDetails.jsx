@@ -1,13 +1,13 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useCart } from "@/contexts/CartContext";
+import { PRODUCT_DETAILS_PATH } from "@/helpers/slug";
 import { Rate } from "antd";
 import Image from "next/image";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
 import Icons from "../../../public/assets/Icons";
 import Buttons from "../Buttons";
-import { useCart } from "@/contexts/CartContext";
-import Link from "next/link";
-import { PRODUCT_DETAILS_PATH } from "@/helpers/slug";
-import { usePathname } from "next/navigation";
 // import { useRouter } from "next/navigation";
 
 const ProductDetails = ({ product }) => {
@@ -120,7 +120,7 @@ const ProductDetails = ({ product }) => {
                                     key={size.size_id}
                                     className={`w-full h-12 border-[1px] flex justify-center items-center cursor-pointer ${
                                         size.size_id === selectedSize.size_id
-                                            ? "border-magenta-500"
+                                            ? "border-blue-700"
                                             : "border-neutral-50"
                                     }`}
                                     onClick={() => handleSizeChange(size)}

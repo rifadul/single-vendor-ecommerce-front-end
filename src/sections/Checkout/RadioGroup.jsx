@@ -1,4 +1,3 @@
-import React from "react";
 
 const RadioGroup = ({ items, selectedItem, handleChange, title }) => {
     return (
@@ -17,7 +16,7 @@ const RadioGroup = ({ items, selectedItem, handleChange, title }) => {
                             type="radio"
                             id={item?.id}
                             checked={selectedItem === item?.id}
-                            className="text-magenta-500 accent-magenta-600"
+                            className="text-blue-700 accent-blue-900"
                             onChange={handleChange}
                         />
                         <div>

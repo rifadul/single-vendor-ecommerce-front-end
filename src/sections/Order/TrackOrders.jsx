@@ -1,10 +1,10 @@
 "use client";
+import TrackOrderSkeletonLoader from "@/components/common/Loader/Skeleton/TrackOrderSkeletonLoader";
 import { useAuth } from "@/contexts/AuthContext";
 import { ORDER_DETAILS_API_URL } from "@/helpers/apiUrls";
 import { useState } from "react";
 import { toast } from "react-toastify";
 import OrderItem from "./OrderOverview/OrderItem";
-import TrackOrderSkeletonLoader from "@/components/common/Loader/Skeleton/TrackOrderSkeletonLoader";
 
 function TrackOrders() {
     const [orderNumber, setOrderNumber] = useState("");
@@ -61,11 +61,11 @@ function TrackOrders() {
                     placeholder="Enter your order number"
                     value={orderNumber}
                     onChange={(e) => setOrderNumber(e.target.value)}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-magenta-500"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-700"
                 />
                 <button
                     onClick={handleFindOrder}
-                    className="ml-4 px-6 py-2 bg-magenta-500 text-white font-semibold rounded-md hover:bg-magenta-600 focus:outline-none focus:ring-2 focus:ring-magenta-500"
+                    className="ml-4 px-6 py-2 bg-blue-700 text-white font-semibold rounded-md hover:bg-blue-900 focus:outline-none focus:ring-2 focus:ring-blue-700"
                 >
                     Track Order
                 </button>

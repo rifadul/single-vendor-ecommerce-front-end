@@ -1,7 +1,6 @@
 "use client";
-import { useState, useRef, useEffect } from "react";
 import { Carousel, Image } from "antd";
-import { LeftOutlined, RightOutlined } from "@ant-design/icons";
+import { useRef, useState } from "react";
 
 const ImageCarousel = ({ images }) => {
     const [currentIndex, setCurrentIndex] = useState(0);
@@ -24,61 +23,61 @@ const ImageCarousel = ({ images }) => {
     };
 
     return (
-        <div className="image-carousel">
-            <Carousel
-                afterChange={(current) => setCurrentIndex(current)}
-                dots={false}
-                ref={carouselRef}
-                className="w-full"
-            >
-                {images.map((img, index) => (
-                    <div key={index} className="flex justify-center">
-                        <Image
-                            src={img.image}
-                            alt={`Product ${index}`}
-                            height={"600px"}
-                            // className="w-full h-96 object-contain cursor-pointer"
-                        />
-                    </div>
-                ))}
-            </Carousel>
-            <div className=" mt-4">
-                <div
-                    className="thumbnail-wrapper flex overflow-x-auto scrollbar-hide"
-                    ref={thumbnailsRef}
-                    // style={{
-                    //     scrollSnapType: "x mandatory",
-                    //     gap: "16px",
-                    //     width: "calc(100% - 64px)",
-                    //     position: "",
-                    //     margin: "0 auto",
-                    // }}
-                >
-                    {images.map((img, index) => (
-                        <div
-                            key={index}
-                            className={`thumbnail border ${
-                                currentIndex === index
-                                    ? "border-pink-500"
-                                    : "border-gray-200"
-                            } cursor-pointer`}
-                            onClick={() => handleSelectThumbnail(index)}
-                            style={{
-                                scrollSnapAlign: "center",
-                                minWidth: "100px",
-                            }}
-                        >
-                            <img
-                                src={img.image}
-                                alt={`Thumbnail ${index}`}
-                                className="w-16 h-16 object-cover"
-                            />
-                        </div>
-                    ))}
-                </div>
-            </div>
-        </div>
-    );
+		<div className='image-carousel'>
+			<Carousel
+				afterChange={(current) => setCurrentIndex(current)}
+				dots={false}
+				ref={carouselRef}
+				className='w-full'>
+				{images.map((img, index) => (
+					<div
+						key={index}
+						className='flex justify-center'>
+						<Image
+							src={img.image}
+							alt={`Product ${index}`}
+							height={'600px'}
+							// className="w-full h-96 object-contain cursor-pointer"
+						/>
+					</div>
+				))}
+			</Carousel>
+			<div className=' mt-4'>
+				<div
+					className='thumbnail-wrapper flex overflow-x-auto scrollbar-hide'
+					ref={thumbnailsRef}
+					// style={{
+					//     scrollSnapType: "x mandatory",
+					//     gap: "16px",
+					//     width: "calc(100% - 64px)",
+					//     position: "",
+					//     margin: "0 auto",
+					// }}
+				>
+					{images.map((img, index) => (
+						<div
+							key={index}
+							className={`thumbnail border ${
+								currentIndex === index
+									? 'border-blue-900'
+									: 'border-gray-200'
+							} cursor-pointer`}
+							onClick={() => handleSelectThumbnail(index)}
+							style={{
+								scrollSnapAlign: 'center',
+								minWidth: '100px',
+							}}>
+							<img
+								src={img.image}
+								alt={`Thumbnail ${index}`}
+								className='w-16 h-16 object-cover'
+							/>
+						</div>
+					))}
+				</div>
+			</div>
+		</div>
+	);
 };
 
 export default ImageCarousel;

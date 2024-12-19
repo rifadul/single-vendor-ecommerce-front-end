@@ -1,13 +1,13 @@
 "use client";
-import React, { useEffect, useState } from "react";
 import { useAddress } from "@/contexts/AddressContext";
-import AddressSection from "./AddressSection";
-import RadioGroup from "./RadioGroup";
 import { useCart } from "@/contexts/CartContext";
-import OrderSummary from "../MyCart/OrderSummary";
-import { toast } from "react-toastify";
 import { useOrder } from "@/contexts/OrderContext";
 import { Spin } from "antd";
+import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
+import OrderSummary from "../MyCart/OrderSummary";
+import AddressSection from "./AddressSection";
+import RadioGroup from "./RadioGroup";
 
 function CheckoutPage() {
     const { addresses, fetchAddresses, loading: addressLoading } = useAddress();
@@ -132,7 +132,7 @@ function CheckoutPage() {
                         />
 
                         <button
-                            className="bg-magenta-600 font-semibold text-white px-6 w-full py-4 rounded-sm"
+                            className="bg-blue-900 font-semibold text-white px-6 w-full py-4 rounded-sm"
                             onClick={handlePlaceOrder}
                         >
                             PLACE ORDER
