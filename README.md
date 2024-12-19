@@ -40,8 +40,8 @@ node -v
    Create a `.env.local` file in the root directory and add the following environment variables:
 
    ```env
-   SHARK_WAVE_API_DOMAIN="http://127.0.0.1:8000/api"
-   NEXT_PUBLIC_SHARK_WAVE_API_DOMAIN="http://127.0.0.1:8000/api"
+   SHARK_WAVE_API_DOMAIN="YOUR_BACKEND_BASE_URL"
+   NEXT_PUBLIC_SHARK_WAVE_API_DOMAIN="YOUR_BACKEND_BASE_URL"
    ```
 
 4. **Run the Development Server**:
