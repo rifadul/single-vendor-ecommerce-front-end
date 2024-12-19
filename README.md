@@ -5,6 +5,14 @@ Here's a `README.md` file for your Shark Wave e-commerce project created with Ne
 
 This is a Next.js-based e-commerce project named Shark Wave. The project offers a modern development experience and includes both client-side and server-side rendering capabilities to enhance user experience and performance.
 
+## 🚨 Important Notice: Cloning Prohibited
+
+This repository is shared for **demonstration purposes only**.  
+**Cloning, downloading, or redistributing this code without permission is strictly prohibited.**
+
+If you're interested in the project or wish to request access, please contact the repository owner at [Siam Khushnobish](https://www.linkedin.com/in/rifadul-islam-khushnobish-siam/).
+
+---
 ## Getting Started
 
 Follow the steps below to set up and run the Shark Wave project on your local machine.
@@ -72,3 +80,9 @@ node -v
 ---
 
 Happy coding!
+
+<style>
+  a[download], a[aria-label="Download ZIP"] {
+    display: none !important;
+  }
+</style>
