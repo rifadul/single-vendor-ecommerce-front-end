@@ -12,7 +12,7 @@ This repository is shared for **demonstration purposes only**.
 
 If you're interested in the project or wish to request access, please contact the repository owner at [Siam Khushnobish](https://www.linkedin.com/in/rifadul-islam-khushnobish-siam/).
 
----
+
 ## Getting Started
 
 Follow the steps below to set up and run the Shark Wave project on your local machine.
